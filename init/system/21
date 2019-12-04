@@ -1,0 +1,1 @@
+getent passwd {1000..65535} | awk -F: '{print $1}'
