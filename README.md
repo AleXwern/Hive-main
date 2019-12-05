@@ -13,6 +13,6 @@ Fillit				- cleared on 27.11.2019 at 12:51
 
 -Participants:		pkuussaa
 
-Init				- cleared on
+Init				- cleared on 05.12.2019 at 16:03
 
 FDF					- cleared on
