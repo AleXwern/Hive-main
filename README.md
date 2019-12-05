@@ -1,6 +1,6 @@
 This is a README file for AleX Nyström "AleXwern"'s Hive Helsinki personal git repostory.
 
-History:
+*History:*
 
 
 Piscine Reloaded	- cleared on 18.10.2019 at 12:20
@@ -16,3 +16,12 @@ Fillit				- cleared on 27.11.2019 at 12:51
 Init				- cleared on 05.12.2019 at 16:03
 
 FDF					- cleared on
+
+*Milestones:*
+
+
+Level 1     - achieved on 03.11.2019 at 15:30
+
+Level 3     - achieved on 05.12.2019 at 17:30
+
+Level 5     - achieved on
