@@ -1,25 +1,145 @@
-/*
-** xpm-read.c for MinilibX in 
-** 
-** Made by Charlie Root
-** Login   <ol@epitech.net>
-** 
-** Started on  Tue Dec 11 15:25:27 2001 olivier crouzet
-** Last update Sat Oct  1 14:56:13 2005 Olivier Crouzet
-*/
+// mlx xpm
+// by ol
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+
+#include "mlx.h"
+
+typedef struct  s_xpm_col
+{
+  int           name;
+  int           col;
+} t_xpm_col;
 
 
-#include	"mlx_int.h"
+struct  s_col_name
+{
+  char  *name;
+  int   color;
+};
 
-extern struct s_col_name mlx_col_name[];
+//extern struct s_col_name mlx_col_name[];
+#include "mlx_rgb.c"
 
 
 #define	RETURN	{ if (colors) free(colors); if (tab) free(tab); \
 		  if (colors_direct) free(colors_direct); \
-                  if (img) {XDestroyImage(img->image); \
-                            XFreePixmap(xvar->display,img->pix);free(img);} \
-                  return ((void *)0);}
+                  if (img) mlx_destroy_image(xvar, img);   \
+                  return ((void *)0); }
 
+
+
+
+//
+// str 2 wordtab & co
+
+int	mlx_int_str_str(char *str,char *find,int len)
+{
+  int	len_f;
+  int	pos;
+  char	*s;
+  char	*f;
+
+  len_f = strlen(find);
+  if (len_f>len)
+    return (-1);
+  pos = 0;
+  while (*(str+len_f-1))
+    {
+      s = str;
+      f = find;
+      while (*(f++) == *(s++))
+        if (!*f)
+          return (pos);
+      str ++;
+      pos ++;
+    }
+  return (-1);
+}
+
+
+
+int	mlx_int_str_str_cote(char *str,char *find,int len)
+{
+  int	len_f;
+  int	pos;
+  char	*s;
+  char	*f;
+  int	cote;
+
+  len_f = strlen(find);
+  if (len_f>len)
+    return (-1);
+  cote = 0;
+  pos = 0;
+  while (*(str+len_f-1))
+    {
+      if (*str=='"')
+	cote = 1-cote;
+      if (!cote)
+	{
+	  s = str;
+	  f = find;
+	  while (*(f++) == *(s++))
+	    if (!*f)
+	      return (pos);
+	}
+      str ++;
+      pos ++;
+    }
+  return (-1);
+}
+
+
+char	**mlx_int_str_to_wordtab(char *str)
+{
+  char	**tab;
+  int	pos;
+  int	nb_word;
+  int	len;
+
+  len = strlen(str);
+  nb_word = 0;
+  pos = 0;
+  while (pos<len)
+  {
+    while (*(str+pos)==' ' || *(str+pos)=='\t')
+      pos ++;
+    if (*(str+pos))
+      nb_word ++;
+    while (*(str+pos) && *(str+pos)!=' ' && *(str+pos)!='\t')
+      pos ++;
+  }
+  if (!(tab = malloc((1+nb_word)*sizeof(*tab))))
+    return ((char **)0);
+  nb_word = 0;
+  pos = 0;
+  while (pos<len)
+    {
+      while (*(str+pos)==' ' || *(str+pos)=='\t')
+	{
+	  *(str+pos) = 0;
+	  pos ++;
+	}
+      if (*(str+pos))
+	{
+	  tab[nb_word] = str+pos;
+	  nb_word ++;
+	}
+      while (*(str+pos) && *(str+pos)!=' ' && *(str+pos)!='\t')
+	pos ++;
+    }
+  tab[nb_word] = 0;
+  return (tab);
+}
+
+
+// back to mlx_xpm
 
 
 
@@ -97,23 +217,13 @@ int	mlx_int_get_text_rgb(char *name, char *end)
 }
 
 
-int	mlx_int_xpm_set_pixel(t_img *img, char *data, int opp, int col, int x)
+void	mlx_int_xpm_set_pixel(char *data, int opp, int col, int x)
 {
-  int	dec;
-
-  dec = opp;
-  while (dec--)
-    {
-      if (img->image->byte_order)
-	*(data+x*opp+dec) = col&0xFF;
-      else
-	*(data+x*opp+opp-dec-1) = col&0xFF;
-      col >>= 8;
-    }
+  *((unsigned int *)(data+4*x)) = col;
 }
 
 
-void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
+void	*mlx_int_parse_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *width, int *height)
 {
   int	pos;
   char	*line;
@@ -122,6 +232,8 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
   char	*clip_data;
   int	nc;
   int	opp;
+  int   sl;
+  int   endian;
   int	cpp;
   int	col;
   int	rgb_col;
@@ -130,14 +242,9 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
   int	x;
   int	i;
   int	j;
-  t_img	*img;
+  void	*img;
   t_xpm_col	*colors;
   int		*colors_direct;
-  int	width;
-  int	height;
-  XImage	*clip_img;
-  XGCValues	xgcv;
-  Pixmap	clip_pix;
 
   colors = 0;
   colors_direct = 0;
@@ -145,8 +252,8 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
   tab = 0;
   pos = 0;
   if (!(line = f(info,&pos,info_size)) ||
-      !(tab = mlx_int_str_to_wordtab(line)) || !(width = atoi(tab[0])) ||
-      !(height = atoi(tab[1])) || !(nc = atoi(tab[2])) ||
+      !(tab = mlx_int_str_to_wordtab(line)) || !(*width = atoi(tab[0])) ||
+      !(*height = atoi(tab[1])) || !(nc = atoi(tab[2])) ||
       !(cpp = atoi(tab[3])) )
     RETURN;
   free(tab);
@@ -176,41 +283,31 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 
       if (!tab[j])
 	RETURN;
-      
-      if ((rgb_col = mlx_int_get_text_rgb(tab[j], tab[j+1]))==-1)
-	{
-	  if (!(clip_data = malloc(4*width*height)) ||   /* ok, nice size .. */
-	      !(clip_img = XCreateImage(xvar->display, xvar->visual,
-					1, XYPixmap, 0, clip_data,
-					width, height, 8, (width+7)/8)) )
-	    RETURN;
-	  memset(clip_data, 0xFF, 4*width*height);
-	}
 
+      rgb_col = mlx_int_get_text_rgb(tab[j], tab[j+1]);
       if (method)
-	colors_direct[mlx_int_get_col_name(line,cpp)] =
-	  rgb_col>=0?mlx_get_color_value(xvar, rgb_col):rgb_col;
+	colors_direct[mlx_int_get_col_name(line,cpp)] = rgb_col;
       else
 	{
 	  colors[i].name = mlx_int_get_col_name(line,cpp);
-	  colors[i].col = rgb_col>=0?mlx_get_color_value(xvar,rgb_col):rgb_col;
+	  colors[i].col = rgb_col;
 	}
       free(tab);
+      tab = 0;
     }
 
-  if (!(img = mlx_new_image(xvar,width,height)))
+  if (!(img = mlx_new_image(xvar,*width,*height)))
     RETURN;
-  opp = img->bpp/8;
+  data = mlx_get_data_addr(img, &opp, &sl, &endian);
+  opp = 4;
 
-
-  i = height;
-  data = img->data;
+  i = *height;
   while (i--)
     {
       if (!(line = f(info,&pos,info_size)))
 	RETURN;
       x = 0;
-      while (x<width)
+      while (x<*width)
 	{
 	  col = 0;
 	  col_name = mlx_int_get_col_name(line+cpp*x,cpp);
@@ -227,29 +324,11 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 		  }
 	    }
 	  if (col==-1)
-	    XPutPixel(clip_img, x, height-1-i, 0);
-	  else
-	    mlx_int_xpm_set_pixel(img, data, opp, col, x);
+	    col = 0xFF000000;
+	  mlx_int_xpm_set_pixel(data, opp, col, x);
 	  x ++;
 	}
-      data += img->size_line;
-    }
-  if (clip_data)
-    {
-      if (!(clip_pix = XCreatePixmap(xvar->display, xvar->root,
-					   width, height, 1)) )
-	RETURN;
-      img->gc = XCreateGC(xvar->display, clip_pix, 0, &xgcv);
-      XPutImage(xvar->display, clip_pix, img->gc, clip_img,
-		0, 0, 0, 0, width, height);
-      XFreeGC(xvar->display, img->gc);
-      xgcv.clip_mask = clip_pix;
-      xgcv.function = GXcopy;
-      xgcv.plane_mask = AllPlanes;
-      img->gc = XCreateGC(xvar->display, xvar->root, GCClipMask|GCFunction|
-			  GCPlaneMask, &xgcv);
-      XSync(xvar->display, False);
-      XDestroyImage(clip_img);
+      data += sl; //img->width*4;
     }
   if (colors)
     free(colors);
@@ -259,7 +338,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 }
 
 
-int	mlx_int_file_get_rid_comment(char *ptr, int size)
+void	mlx_int_file_get_rid_comment(char *ptr, int size)
 {
   int	com_begin;
   int	com_end;
@@ -277,14 +356,13 @@ int	mlx_int_file_get_rid_comment(char *ptr, int size)
 }
 
 
-void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
+void	*mlx_xpm_file_to_image(void *xvar,char *file,int *width,int *height)
 {
   int	fd;
   int	size;
   char	*ptr;
-  t_img	*img;
+  void	*img;
 
-  fd = -1;
   if ((fd = open(file,O_RDONLY))==-1 || (size = lseek(fd,0,SEEK_END))==-1 ||
       (ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0))==
       (void *)MAP_FAILED)
@@ -294,24 +372,13 @@ void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
       return ((void *)0);
     }
   mlx_int_file_get_rid_comment(ptr, size);
-  if (img = mlx_int_parse_xpm(xvar,ptr,size,mlx_int_get_line))
-    {
-      *width = img->width;
-      *height = img->height;
-    }
+  img = mlx_int_parse_xpm(xvar,ptr,size,mlx_int_get_line, width, height);
   munmap(ptr,size);
   close(fd);
   return (img);
 }
 
-void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)
+void	*mlx_xpm_to_image(void *xvar,char **xpm_data,int *width,int *height)
 {
-  t_img	*img;
-
-  if (img = mlx_int_parse_xpm(xvar,xpm_data,0,mlx_int_static_line))
-    {
-      *width = img->width;
-      *height = img->height;
-    }
-  return (img);
+  return (mlx_int_parse_xpm(xvar,xpm_data,0,mlx_int_static_line, width, height));
 }
