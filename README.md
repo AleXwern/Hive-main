@@ -2,16 +2,17 @@ This is a README file for AleX Nyström "AleXwern"'s Hive Helsinki personal git 
 
 History:
 
-Piscine Reloaded  - cleared on 18.10.2019 at 12:20
 
-Libft             - cleared on 02.11.2019 at 19:30
+Piscine Reloaded	- cleared on 18.10.2019 at 12:20
 
-Get_next_line     - cleared on 11.11.2019 at 11:58
+Libft				- cleared on 02.11.2019 at 19:30
 
-Fillit            - cleared on 27.11.2019 at 12:51
+Get_next_line		- cleared on 11.11.2019 at 11:58
 
--Participants:    pkuussaa
+Fillit				- cleared on 27.11.2019 at 12:51
 
-Init              - cleared on
+-Participants:		pkuussaa
 
-FDF               - cleared on
+Init				- cleared on
+
+FDF					- cleared on
