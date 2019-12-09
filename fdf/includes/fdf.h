@@ -14,7 +14,22 @@
 # define FDF_H
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "error.h"
 # include <math.h>
 # include <mlx.h>
+# define WINX	1920
+# define WINY	1080
+
+typedef struct	s_fdf
+{
+	void		*mlx;
+	void		*win;
+	int			**map;
+}				t_fdf;
+
+int		**fileformat(int fd, int **map);
+
+void	error_out(char *msg);
+void	fdf_main(t_fdf *fdf, int fd);
 
 #endif

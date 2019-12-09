@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,26 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-
-void	error_out(char *msg)
-{
-	ft_putendl(msg);
-	exit(0);
-}
-
-int		main(int ac, char **av)
-{
-	t_fdf	fdf;
-	int		fd;
-
-	if (ac != 2)
-		error_out(A_ERROR);
-	else
-	{
-		if ((fd = open(av[1])) == -1)
-			error_out(F_ERROR);
-		fdf_main(&fdf, fd);
-	}
-	return(0);
-}
+#ifndef ERROR_H
+# define ERROR_H
+# define G_ERROR	"General error happened. Exiting program."
+# define F_ERROR	"Couldn't read the given file or it doesn't exist."
+# define M_ERROR	"File given is not a supported."
+# define A_ERROR	"Usage:	./fdf file"
+# define MEM_ERROR	"Not enough memory to allocate space for ./fdf."
+# define OOPS		"This should never be shown. Everyone panic!"
+#endif

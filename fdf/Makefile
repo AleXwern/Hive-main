@@ -11,12 +11,12 @@
 # **************************************************************************** #
 
 NAME = fdf
-SRCFILE = main.c
+SRCFILE = main.c fdfmain.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./libft/libft.a
 OBJ = $(SRC:.c=.o)
 INCL = -I /usr/local/include -I ./libft -I ./includes
-CAPL = -L /usr/local/lib/
+MLXLIB = -L /usr/local/lib/
 FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
@@ -28,7 +28,7 @@ $(LIBFT):
 	gcc -I ./includes -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJ)
-	gcc $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(CAPL) $(FRAMEWORK)
+	gcc $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
 
 clean:
 	/bin/rm -f $(OBJ)
@@ -37,5 +37,12 @@ clean:
 fclean: clean
 	/bin/rm -f $(NAME)
 	make -C ./libft fclean
+
+git:
+	git clone https://github.com/AleXwern/fillit-tests.git fdfmaps
+	#URL REQUIRED
+
+gitrm:
+	/bin/rm -rf fdfmaps
 
 re: fclean all

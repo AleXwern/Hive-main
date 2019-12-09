@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdfmain.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,24 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void	error_out(char *msg)
+void	fdf_main(t_fdf *fdf, int fd)
 {
-	ft_putendl(msg);
-	exit(0);
-}
-
-int		main(int ac, char **av)
-{
-	t_fdf	fdf;
-	int		fd;
-
-	if (ac != 2)
-		error_out(A_ERROR);
-	else
-	{
-		if ((fd = open(av[1])) == -1)
-			error_out(F_ERROR);
-		fdf_main(&fdf, fd);
-	}
-	return(0);
+	fileformat(fd, fdf->map);
 }
