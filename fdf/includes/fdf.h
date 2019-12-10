@@ -27,7 +27,7 @@ typedef struct	s_fdf
 	int			**map;
 }				t_fdf;
 
-int		**fileformat(int fd, int **map);
+int		fileformat(int fd, int **map);
 
 void	error_out(char *msg);
 void	fdf_main(t_fdf *fdf, int fd);

@@ -9,3 +9,19 @@
 /*   Updated: 2019/11/01 15:20:10 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/fdf.h"
+
+int		fileformat(int fd, int **map)
+{
+	char	**temp;
+	char	*gnl;
+	int		tempint;
+
+	while (get_next_line(fd, &gnl) == 1)
+	{
+		temp = ft_strsplit(gnl, ' ');
+		ft_strdel(&gnl);
+		
+	}
+}
