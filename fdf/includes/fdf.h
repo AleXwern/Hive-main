@@ -20,11 +20,28 @@
 # define WINX	1920
 # define WINY	1080
 
+/*
+**	Matrix structure to hold XYZ coords and location of next 2 pointers.
+*/
+
+typedef struct	s_marix
+{
+	int			y;
+	int			x;
+	int			z;
+	int			right;
+	int			down;
+}				t_matrix;
+
+/*
+**	General structure that holds everything.
+*/
+
 typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
-	int			**map;
+	t_matrix	*matrix;
 }				t_fdf;
 
 int		fileformat(int fd, int **map);

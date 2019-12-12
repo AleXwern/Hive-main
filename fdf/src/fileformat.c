@@ -12,6 +12,11 @@
 
 #include "../includes/fdf.h"
 
+int		get_next_matrix(int **map, char **temp, int x, int y)
+{
+	
+}
+
 int		fileformat(int fd, int **map)
 {
 	char	**temp;
@@ -22,6 +27,8 @@ int		fileformat(int fd, int **map)
 	{
 		temp = ft_strsplit(gnl, ' ');
 		ft_strdel(&gnl);
-		
+		if (get_next_matrix(map, temp, 0, 0) == 0)
+			return (0);
 	}
+	return (1);
 }

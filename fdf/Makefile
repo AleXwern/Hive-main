@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = fdf
-SRCFILE = main.c fdfmain.c
+SRCFILE = test.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./libft/libft.a
 OBJ = $(SRC:.c=.o)

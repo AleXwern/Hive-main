@@ -20,9 +20,11 @@ void	error_out(char *msg)
 
 int		main(int ac, char **av)
 {
-	t_fdf	fdf;
+	t_fdf	*fdf;
 	int		fd;
 
+	if (!(fd = malloc(sizeof(t_fdf))))
+		error_out(MEM_ERROR);
 	if (ac != 2)
 		error_out(A_ERROR);
 	else
