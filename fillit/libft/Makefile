@@ -38,7 +38,7 @@ OBJS = ft_memalloc.o ft_putendl.o ft_strcpy.o ft_strmapi.o ft_strsub.o \
 	ft_strmap.o ft_strstr.o ft_wordlen.o ft_isblank.o ft_isnegative.o \
 	ft_intsize.o ft_isextascii.o
 
-INCLS = ./libft.h 
+INCLS = ./ 
 
 .PHONY: all clean fclean re
 

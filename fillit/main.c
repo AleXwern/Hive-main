@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "./fillit.h"
 
 int		*set_offset(int *offset, int x, int y, int *i)
 {

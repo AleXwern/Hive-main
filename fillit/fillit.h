@@ -13,8 +13,8 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+# include "./libft/libft.h"
+# include "./get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
