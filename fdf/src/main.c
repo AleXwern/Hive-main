@@ -12,9 +12,19 @@
 
 #include "../includes/fdf.h"
 
-void	error_out(char *msg)
+void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
+	if (fdf)
+	{
+		if (fdf->matrix)
+			ft_memdel(fdf->matrix);
+		if (fdf->mlx)
+			ft_memdel(fdf->mlx);
+		if (fdf->win)
+			ft_memdel(fdf->win);
+		ft_memdel(fdf);
+	}
 	exit(0);
 }
 
@@ -23,15 +33,15 @@ int		main(int ac, char **av)
 	t_fdf	*fdf;
 	int		fd;
 
-	if (!(fd = malloc(sizeof(t_fdf))))
-		error_out(MEM_ERROR);
+	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
+		error_out(MEM_ERROR, fdf);
 	if (ac != 2)
-		error_out(A_ERROR);
+		error_out(USAGE, fdf);
 	else
 	{
 		if ((fd = open(av[1])) == -1)
-			error_out(F_ERROR);
-		fdf_main(&fdf, fd);
+			error_out(F_ERROR, fdf);
+		fdf_main(fdf, fd);
 	}
 	return(0);
 }

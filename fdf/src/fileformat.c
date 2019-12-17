@@ -12,23 +12,35 @@
 
 #include "../includes/fdf.h"
 
-int		get_next_matrix(int **map, char **temp, int x, int y)
+int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
 {
-	
+	t_matrix	*tempto;
+
+	if (!fdf->width)
+		fdf->width == templen(temp);
+	if (!(fdf->matrix))
+		if (!(fdf->matrix = (t_matrix*)malloc(sizeof(t_matrix))))
 }
 
-int		fileformat(int fd, int **map)
+int		fileformat(int fd, t_fdf *fdf)
 {
 	char	**temp;
 	char	*gnl;
-	int		tempint;
+	int		y;
 
+	y = 0;
 	while (get_next_line(fd, &gnl) == 1)
 	{
 		temp = ft_strsplit(gnl, ' ');
 		ft_strdel(&gnl);
-		if (get_next_matrix(map, temp, 0, 0) == 0)
-			return (0);
+		if (get_next_matrix(fdf, temp, 0, y) == 0)
+		{
+			ft_strdel(gnl);
+			error_out(M_ERROR, fdf);
+		}
+		y++;
 	}
+	ft_memdel(temp);
+	ft_memdel(gnl);
 	return (1);
 }

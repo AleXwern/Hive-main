@@ -29,8 +29,8 @@ typedef struct	s_marix
 	int			y;
 	int			x;
 	int			z;
-	int			right;
-	int			down;
+	int			up;
+	int			left;
 }				t_matrix;
 
 /*
@@ -41,12 +41,15 @@ typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
+	int			pad;
+	int			width;
+	int			height;
 	t_matrix	*matrix;
 }				t_fdf;
 
-int		fileformat(int fd, int **map);
+int		fileformat(int fd, t_fdf *fdf);
 
-void	error_out(char *msg);
+void	error_out(char *msg, t_fdf *fdf);
 void	fdf_main(t_fdf *fdf, int fd);
 
 #endif

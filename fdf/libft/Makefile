@@ -23,7 +23,7 @@ SRCS = ft_memalloc.c ft_putendl.c ft_strcpy.c ft_strmapi.c ft_strsub.c \
 	ft_strlcat.c ft_strrchr.c ft_isprint.c ft_putchar.c ft_strclr.c \
 	ft_strlen.c ft_strsplit.c ft_itoa.c ft_putchar_fd.c ft_strcmp.c \
 	ft_strmap.c ft_strstr.c ft_wordlen.c ft_isblank.c ft_isnegative.c \
-	ft_intsize.c ft_isextascii.c
+	ft_intsize.c ft_isextascii.c get_next_line.c
 
 OBJS = ft_memalloc.o ft_putendl.o ft_strcpy.o ft_strmapi.o ft_strsub.o \
 	ft_memccpy.o ft_putendl_fd.o ft_strdel.o ft_strncat.o ft_strtrim.o \
@@ -36,7 +36,7 @@ OBJS = ft_memalloc.o ft_putendl.o ft_strcpy.o ft_strmapi.o ft_strsub.o \
 	ft_strlcat.o ft_strrchr.o ft_isprint.o ft_putchar.o ft_strclr.o \
 	ft_strlen.o ft_strsplit.o ft_itoa.o ft_putchar_fd.o ft_strcmp.o \
 	ft_strmap.o ft_strstr.o ft_wordlen.o ft_isblank.o ft_isnegative.o \
-	ft_intsize.o ft_isextascii.o
+	ft_intsize.o ft_isextascii.o get_next_line.o
 
 INCLS = ./ 
 
