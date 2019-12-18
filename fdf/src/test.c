@@ -23,10 +23,10 @@ void	vectorize(int px, int py, int x, int y, t_fdf *fdf)
 	mult = 0;
 	deltax = px - x;
 	deltay = py - y;
-	temp = (deltax > deltay ? deltax : deltay);
+	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= temp;
 	deltay /= temp;
-	while (deltax * mult != temp && deltay * mult != temp)
+	while (fabs(deltax) * mult <= fabs(temp) && fabs(deltay) * mult <= fabs(temp))
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, x + (deltax * mult), y + (deltay * mult), 0xffffff);
 		mult++;

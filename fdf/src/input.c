@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdfmain.c                                          :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,28 @@
 
 #include "../includes/fdf.h"
 
-void	fdf_init(t_fdf *fdf, char *av)
+int		mouse_main(int key, int x, int y, t_fdf *fdf)
 {
-	av = ft_strjoin(av, " - FDF render");
-	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, av);
-	fdf->pad = (int)floor((WINX / 3) / fdf->width);
-	fdf->posx = (int)floor((WINX / 2) - (fdf->pad * fdf->width / 2));
-	fdf->posy = (int)floor((WINY / 2) - (fdf->pad * fdf->height / 2));
+	return (0);
 }
 
-void	fdf_main(t_fdf *fdf, int fd, char *av)
+int		key_main(int key, t_fdf *fdf)
 {
-	int		i;
-
-	i = 0;
-	fileformat(fd, fdf);
-	fdf_init(fdf, av);
-	while (i < fdf->height * fdf->width)
+	//printf("Key %d\n", key);
+	if (key == ESC)
+		error_out(FINE, fdf);
+	if (key == UP)
+		fdf->posy -= 5;
+	if (key == DOWN)
+		fdf->posy += 5;
+	if (key == LEFT)
+		fdf->posx -= 5;
+	if (key == RIGHT)
+		fdf->posx += 5;
+	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 	{
-		printf("ID:%d X:%d Y:%d Z:%d Left:%d Up:%d\n", i, fdf->matrix[i].x, fdf->matrix[i].y, fdf->matrix[i].z, fdf->matrix[i].left, fdf->matrix[i].up);
-		i++;
+		mlx_clear_window(fdf->mlx, fdf->win);
+		draw_image(fdf, 0);
 	}
-	draw_image(fdf, 0);
-	mlx_key_hook(fdf->win, key_main, fdf);
-	mlx_mouse_hook(fdf->win, mouse_main, fdf);
-	mlx_loop(fdf->mlx);
+	return (0);
 }
