@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "./fillit.h"
 
 static void		check_xy(t_tetri *blist, int x, int y)
 {

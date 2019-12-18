@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "./fillit.h"
 
 void	reset_ints(int *coll, int *count, int *index)
 {

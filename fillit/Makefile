@@ -25,11 +25,11 @@ $(LIBFT):
 	@make -C ./libft
 
 %.o:%.c
-	@gcc $(FLG) -I ./filllit.h -o $@ -c $<
+	@gcc $(FLG) -I ./ -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "Compiling...."
-	@gcc $(FLG) -I ./fillit.h -o $(NAME) $(LIBFT) $(OBJ)
+	@gcc $(FLG) -I ./ -I ./libft/ -I ./get_next_line/ -o $(NAME) $(LIBFT) $(OBJ)
 	@echo "Done."
 
 clean:

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "./fillit.h"
 
 int				*relative_offset(t_tetri *blist, int y, int x, int *i)
 {

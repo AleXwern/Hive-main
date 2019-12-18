@@ -12,9 +12,34 @@
 
 #include "../includes/fdf.h"
 
-void	error_out(char *msg)
+void	heightgetter(t_fdf *fdf, int fd)
+{
+	char	*dummy;
+
+	dummy = ft_strnew(1);
+	while (get_next_line(fd, &dummy) == 1)
+	{
+		fdf->height++;
+	}
+}
+
+void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
+	if (fdf)
+	{
+		/*printf("free matrix\n");
+		if (fdf->matrix != NULL)
+			ft_memdel((void**)fdf->matrix);
+		printf("free mlx\n");
+		if (fdf->mlx)
+			ft_memdel((void**)fdf->mlx);
+		printf("free win\n");
+		if (fdf->win)
+			ft_memdel((void**)fdf->win);
+		printf("free fdf\n");
+		ft_memdel((void**)fdf);*/
+	}
 	exit(0);
 }
 
@@ -23,15 +48,18 @@ int		main(int ac, char **av)
 	t_fdf	*fdf;
 	int		fd;
 
-	if (!(fd = malloc(sizeof(t_fdf))))
-		error_out(MEM_ERROR);
+	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
+		error_out(MEM_ERROR, fdf);
 	if (ac != 2)
-		error_out(A_ERROR);
+		error_out(USAGE, fdf);
 	else
 	{
-		if ((fd = open(av[1])) == -1)
-			error_out(F_ERROR);
-		fdf_main(&fdf, fd);
+		if ((fd = open(av[1], O_RDONLY)) == -1)
+			error_out(F_ERROR, fdf);
+		heightgetter(fdf, fd);
+		close(fd);
+		open(av[1], O_RDONLY);
+		fdf_main(fdf, fd, av[1]);
 	}
 	return(0);
 }
