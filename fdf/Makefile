@@ -15,9 +15,9 @@ SRCFILE = test.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./libft/libft.a
 OBJ = $(SRC:.c=.o)
-INCL = -I /usr/local/include -I ./libft -I ./includes
-MLXLIB = -L /usr/local/lib/
-FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
+INCL = -I /usr/X11/include -I ./libft -I ./includes
+MLXLIB = -L /usr/X11/lib/
+FRAMEWORK = -lmlx -lXext -lX11 -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
