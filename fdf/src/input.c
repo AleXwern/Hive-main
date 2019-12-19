@@ -30,9 +30,9 @@ int		key_main(int key, t_fdf *fdf)
 	if (key == RIGHT)
 		fdf->posx += 5;
 	if (key == MINUS)
-		fdf->sinrot -= M_PI / 18;
+		fdf->rlsin -= 5;
 	if (key == PLUS)
-		fdf->sinrot += M_PI / 18;
+		fdf->rlsin += 5;
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT || key == MINUS || key == PLUS)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);

@@ -25,16 +25,16 @@ void	rotation(t_fdf *fdf, int i)
 	double		tempx;
 	double		tempy;
 
+	fdf->sinrot = (fdf->rlsin * (M_PI / 180));
+	fdf->fltrot = (fdf->rlflt * (M_PI / 180));
 	tempx = (fdf->matrix[i].x - fdf->matrix[fdf->center].x) * fdf->pad;
 	tempy = (fdf->matrix[i].y - fdf->matrix[fdf->center].y) * fdf->pad;
 	fdf->matrix[i].sx = tempx * cos(fdf->sinrot) + tempy * sin(fdf->sinrot);
 	fdf->matrix[i].sy = -tempx * sin(fdf->sinrot) + tempy * cos(fdf->sinrot);
-	//printf("Angle:%f X%d Y%d to SY%d SX%d\n", fdf->sinrot,fdf->matrix[i].x, fdf->matrix[i].y, fdf->matrix[i].sx, fdf->matrix[i].sy);
-	//printf("Relative pos X%f Y%f\n", tempx, tempy);
 	//fdf->matrix[i].sx = 
 }
 
-void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int bad)
+void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
 {
 	double	deltax;
 	double	deltay;
@@ -47,13 +47,10 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int bad)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= temp;
 	deltay /= temp;
-	printf("Vectors X %d to %d Y %d to %d\nDeltas: %f - %f\n", fir.sx, sec.sx, fir.sy, sec.sy, deltax, deltay);
-	while (mult < fdf->pad)
+	while (mult <= fdf->pad && deltax * mult != temp && deltay * mult != temp)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
-				fdf->posy + sec.sy + (deltax * mult), bad);
-		//POSITION CALCULATION: fdf->posx + (sec.x * fdf->pad) + (deltax * mult)
-		printf("Pixel put X%f Y%f\n*******\n", fdf->posx + sec.sx + (deltax * mult), fdf->posy + sec.sx + (deltay * mult));
+				fdf->posy + sec.sy + (deltay * mult), color);
 		mult++;
 	}
 }
@@ -68,10 +65,20 @@ void	draw_image(t_fdf *fdf, int c)
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
+		{
+			if (fdf->matrix[i].sx < fdf->matrix[c].sx)
+				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
+			else
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff00ff);
+		}
 		c = fdf->matrix[i].up;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff2119);
+		{
+			if (fdf->matrix[i].sy < fdf->matrix[c].sy)
+				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
+			else
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff00ff);
+		}
 		i++;
 	}
 }

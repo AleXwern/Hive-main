@@ -45,9 +45,10 @@ typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
-
 	double		sinrot;
 	double		fltrot;
+	int			rlsin;
+	int			rlflt;
 	int			pad;
 	int			center;
 	int			posx;
