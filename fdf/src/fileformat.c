@@ -34,9 +34,10 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 	t = 0;
 	while (temp[t] != '\0')
 	{
-		if (!ft_isdigit(temp[t]))
+		if (ft_isdigit(temp[t]) || (temp[t] == '-' && t == 0))
+			t++;
+		else
 			return (0);
-		t++;
 	}
 	fdf->matrix[mtx].x = x;
 	fdf->matrix[mtx].y = y;
@@ -65,27 +66,20 @@ int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
 {
 	int i  = 0;
 	static int o;
-	printf("GNM with X%d Y%d\n", x, y);
 	if (y == 0 && x == 0)
 		fdf->width = templen(temp);
 	if (templen(temp) != fdf->width)
 		return (0);
-	if (!(fdf->matrix = (t_matrix*)malloc(sizeof(t_matrix) * fdf->height
-			* fdf->width)))
-		return (0);
+	if (!fdf->matrix)
+		if (!(fdf->matrix = (t_matrix*)malloc(sizeof(t_matrix) * fdf->height
+				* fdf->width)))
+			return (0);
 	while (temp[x])
 	{
 		if (!addpoint(fdf, x, y, temp[x]))
 			return (0);
 		x++;
 	}
-	o++;
-	while (i < o * fdf->width)
-	{
-		printf("ID:%d X:%d Y:%d Z:%d Left:%d Up:%d\n", i, fdf->matrix[i].x, fdf->matrix[i].y, fdf->matrix[i].z, fdf->matrix[i].left, fdf->matrix[i].up);
-		i++;
-	}
-	printf("----------\n");
 	return (1);
 }
 

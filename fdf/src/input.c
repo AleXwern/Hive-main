@@ -19,7 +19,6 @@ int		mouse_main(int key, int x, int y, t_fdf *fdf)
 
 int		key_main(int key, t_fdf *fdf)
 {
-	//printf("Key %d\n", key);
 	if (key == ESC)
 		error_out(FINE, fdf);
 	if (key == UP)
@@ -30,7 +29,11 @@ int		key_main(int key, t_fdf *fdf)
 		fdf->posx -= 5;
 	if (key == RIGHT)
 		fdf->posx += 5;
-	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
+	if (key == MINUS)
+		fdf->sinrot -= M_PI / 18;
+	if (key == PLUS)
+		fdf->sinrot += M_PI / 18;
+	if (key == UP || key == DOWN || key == LEFT || key == RIGHT || key == MINUS || key == PLUS)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
 		draw_image(fdf, 0);

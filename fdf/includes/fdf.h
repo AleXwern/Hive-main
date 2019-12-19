@@ -33,6 +33,8 @@ typedef struct	s_marix
 	int			z;
 	int			up;
 	int			left;
+	int			sx;
+	int			sy;
 }				t_matrix;
 
 /*
@@ -43,7 +45,11 @@ typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
+
+	double		sinrot;
+	double		fltrot;
 	int			pad;
+	int			center;
 	int			posx;
 	int			posy;
 	int			width;

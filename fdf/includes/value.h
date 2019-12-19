@@ -25,4 +25,6 @@
 # define RIGHT		124
 # define DOWN		125
 # define UP			126
+# define MINUS		24
+# define PLUS		27
 #endif
