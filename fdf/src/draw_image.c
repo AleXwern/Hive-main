@@ -12,7 +12,29 @@
 
 #include "../includes/fdf.h"
 
-void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int bad)
+int		colour(t_matrix fir, t_matrix sec)
+{
+	return (0xffffff);
+}
+/*
+**X=xcos(θ)+ysin(θ)
+**Y=−xsin(θ)+ycos(θ)
+*/
+void	rotation(t_fdf *fdf, int i)
+{
+	double		tempx;
+	double		tempy;
+
+	fdf->sinrot = (fdf->rlsin * (M_PI / 180));
+	fdf->fltrot = (fdf->rlflt * (M_PI / 180));
+	tempx = (fdf->matrix[i].x - fdf->matrix[fdf->center].x) * fdf->pad;
+	tempy = (fdf->matrix[i].y - fdf->matrix[fdf->center].y) * fdf->pad;
+	fdf->matrix[i].sx = tempx * cos(fdf->sinrot) + tempy * sin(fdf->sinrot);
+	fdf->matrix[i].sy = -tempx * sin(fdf->sinrot) + tempy * cos(fdf->sinrot);
+	fdf->matrix[i].sy = fdf->matrix[i].sy * cos(fdf->fltrot) + (fdf->matrix[i].z * fdf->pad * sin(fdf->fltrot));
+}
+
+void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
 {
 	double	deltax;
 	double	deltay;
@@ -20,20 +42,16 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int bad)
 	int		mult;
 
 	mult = 0;
-	deltax = (fir.x * fdf->pad) - (sec.x * fdf->pad);
-	deltay = (fir.y * fdf->pad) - (sec.y * fdf->pad);
-	temp = (deltax > deltay ? deltax : deltay);
+	deltax = fir.sx - sec.sx;
+	deltay = fir.sy - sec.sy;
+	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= temp;
 	deltay /= temp;
-	//printf("**FIR X%d Y%d\n", fir.x, fir.y);
-	//printf("**SEC X%d Y%d\n", sec.x, sec.y);
-	//printf("Pad %d", fdf->pad);
-	while (bad < fdf->pad)
+	while (mult <= fdf->pad * 2 && deltax * mult != temp && deltay * mult != temp)
 	{
-		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + (deltax * mult), fdf->posy + (deltay * mult), 0xffffff);
-		//printf("Pixel put X%f Y%f\n", fdf->posx + (deltax * mult), fdf->posy + (deltay * mult));
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
+				fdf->posy + sec.sy + (deltay * mult), color);
 		mult++;
-		bad++;
 	}
 }
 
@@ -41,15 +59,26 @@ void	draw_image(t_fdf *fdf, int c)
 {
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (i < fdf->height * fdf->width)
 	{
+		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0);
+		{
+			if (fdf->matrix[i].sx >= fdf->matrix[c].sx)
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
+			else
+				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xff0000);
+		}
 		c = fdf->matrix[i].up;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0);
+		{
+			if (fdf->matrix[i].sx >= fdf->matrix[c].sx)
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
+			else
+				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
+		}
 		i++;
 	}
 }

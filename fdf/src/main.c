@@ -28,17 +28,17 @@ void	error_out(char *msg, t_fdf *fdf)
 	ft_putendl(msg);
 	if (fdf)
 	{
-		/*printf("free matrix\n");
-		if (fdf->matrix != NULL)
+		//printf("free matrix\n");
+		if (fdf->matrix)
 			ft_memdel((void**)fdf->matrix);
-		printf("free mlx\n");
+		//printf("free mlx\n");
 		if (fdf->mlx)
 			ft_memdel((void**)fdf->mlx);
-		printf("free win\n");
+		//printf("free win\n");
 		if (fdf->win)
 			ft_memdel((void**)fdf->win);
-		printf("free fdf\n");
-		ft_memdel((void**)fdf);*/
+		//printf("free fdf\n");
+		ft_memdel((void**)fdf);
 	}
 	exit(0);
 }
