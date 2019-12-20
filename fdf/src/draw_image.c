@@ -66,18 +66,18 @@ void	draw_image(t_fdf *fdf, int c)
 		c = fdf->matrix[i].left;
 		if (c != -1)
 		{
-			if (fdf->matrix[i].sx < fdf->matrix[c].sx)
-				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
+			if (fdf->matrix[i].sx >= fdf->matrix[c].sx)
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
 			else
-				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff00ff);
+				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xff0000);
 		}
 		c = fdf->matrix[i].up;
 		if (c != -1)
 		{
-			if (fdf->matrix[i].sy < fdf->matrix[c].sy)
-				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
+			if (fdf->matrix[i].sx >= fdf->matrix[c].sx)
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
 			else
-				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff00ff);
+				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
 		}
 		i++;
 	}

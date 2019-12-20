@@ -49,6 +49,5 @@ void	fdf_main(t_fdf *fdf, int fd, char *av)
 	fdf_init(fdf, av);
 	draw_image(fdf, 0);
 	mlx_key_hook(fdf->win, key_main, fdf);
-	mlx_mouse_hook(fdf->win, mouse_main, fdf);
 	mlx_loop(fdf->mlx);
 }

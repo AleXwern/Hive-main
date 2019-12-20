@@ -29,4 +29,6 @@
 # define ROTRL		88
 # define ROTUP		91
 # define ROTDW		84
+# define ZOOMI		89
+# define ZOOMO		92
 #endif
