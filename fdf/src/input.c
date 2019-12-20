@@ -19,6 +19,7 @@ int		mouse_main(int key, int x, int y, t_fdf *fdf)
 
 int		key_main(int key, t_fdf *fdf)
 {
+	printf("Koy: %d\n", key);
 	if (key == ESC)
 		error_out(FINE, fdf);
 	if (key == UP)
@@ -29,11 +30,15 @@ int		key_main(int key, t_fdf *fdf)
 		fdf->posx -= 5;
 	if (key == RIGHT)
 		fdf->posx += 5;
-	if (key == MINUS)
+	if (key == ROTLF)
 		fdf->rlsin -= 5;
-	if (key == PLUS)
+	if (key == ROTRL)
 		fdf->rlsin += 5;
-	if (key == UP || key == DOWN || key == LEFT || key == RIGHT || key == MINUS || key == PLUS)
+	if (key == ROTUP)
+		fdf->rlflt -= 5;
+	if (key == ROTDW)
+		fdf->rlflt += 5;
+	if (key == UP || key == DOWN || key == LEFT || key == RIGHT || key == ROTDW || key == ROTLF || key == ROTUP || key == ROTRL)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
 		draw_image(fdf, 0);

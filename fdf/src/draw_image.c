@@ -31,7 +31,7 @@ void	rotation(t_fdf *fdf, int i)
 	tempy = (fdf->matrix[i].y - fdf->matrix[fdf->center].y) * fdf->pad;
 	fdf->matrix[i].sx = tempx * cos(fdf->sinrot) + tempy * sin(fdf->sinrot);
 	fdf->matrix[i].sy = -tempx * sin(fdf->sinrot) + tempy * cos(fdf->sinrot);
-	//fdf->matrix[i].sx = 
+	fdf->matrix[i].sy = fdf->matrix[i].sy * cos(fdf->fltrot) + (fdf->matrix[i].z * fdf->pad * sin(fdf->fltrot));
 }
 
 void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
@@ -47,7 +47,7 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= temp;
 	deltay /= temp;
-	while (mult <= fdf->pad && deltax * mult != temp && deltay * mult != temp)
+	while (mult <= fdf->pad * 2 && deltax * mult != temp && deltay * mult != temp)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
 				fdf->posy + sec.sy + (deltay * mult), color);

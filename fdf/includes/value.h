@@ -25,6 +25,8 @@
 # define RIGHT		124
 # define DOWN		125
 # define UP			126
-# define MINUS		24
-# define PLUS		27
+# define ROTLF		86
+# define ROTRL		88
+# define ROTUP		91
+# define ROTDW		84
 #endif

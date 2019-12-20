@@ -29,8 +29,8 @@ int		centerid(t_fdf *fdf, int x, int y)
 void	fdf_init(t_fdf *fdf, char *av)
 {
 	av = ft_strjoin(av, " - FDF render");
-	fdf->rlsin = 45;
-	fdf->rlflt = 45;
+	fdf->rlsin = 0;
+	fdf->rlflt = 0;
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, av);
 	fdf->pad = (int)floor((WINX / 3) / fdf->width);
