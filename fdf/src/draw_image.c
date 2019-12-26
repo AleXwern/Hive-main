@@ -45,9 +45,9 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
 	deltax = fir.sx - sec.sx;
 	deltay = fir.sy - sec.sy;
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
-	deltax /= temp;
-	deltay /= temp;
-	while (mult <= fdf->pad * 2 && deltax * mult != temp && deltay * mult != temp)
+	deltax /= fabs(temp);
+	deltay /= fabs(temp);
+	while (mult <= fdf->pad * 20 && deltax * mult != temp && deltay * mult != temp)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
 				fdf->posy + sec.sy + (deltay * mult), color);
@@ -65,20 +65,10 @@ void	draw_image(t_fdf *fdf, int c)
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
-		{
-			if (fdf->matrix[i].sx >= fdf->matrix[c].sx)
-				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
-			else
-				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xff0000);
-		}
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
 		c = fdf->matrix[i].up;
 		if (c != -1)
-		{
-			if (fdf->matrix[i].sx >= fdf->matrix[c].sx)
-				vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
-			else
-				vectorize(fdf->matrix[c], fdf->matrix[i], fdf, 0xffffff);
-		}
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
 		i++;
 	}
 }

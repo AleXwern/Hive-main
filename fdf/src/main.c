@@ -23,6 +23,19 @@ void	heightgetter(t_fdf *fdf, int fd)
 	}
 }
 
+void	free_memory(char **arr)
+{
+	int y;
+
+	y = 0;
+	while (arr[y])
+		y++;
+	while (y >= 0)
+		ft_strdel(&arr[y--]);
+	free(arr);
+	arr = NULL;
+}
+
 void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
@@ -30,16 +43,17 @@ void	error_out(char *msg, t_fdf *fdf)
 	{
 		//printf("free matrix\n");
 		if (fdf->matrix)
-			ft_memdel((void**)fdf->matrix);
+			free(fdf->matrix);
+			//printf("free win\n");
+		if (fdf->win)
+			mlx_destroy_window(fdf->mlx, fdf->win);
 		//printf("free mlx\n");
 		if (fdf->mlx)
-			ft_memdel((void**)fdf->mlx);
-		//printf("free win\n");
-		if (fdf->win)
-			ft_memdel((void**)fdf->win);
+			free(fdf->mlx);
 		//printf("free fdf\n");
-		ft_memdel((void**)fdf);
+		free(fdf);
 	}
+	while (1) {}
 	exit(0);
 }
 
@@ -59,7 +73,7 @@ int		main(int ac, char **av)
 		heightgetter(fdf, fd);
 		close(fd);
 		open(av[1], O_RDONLY);
-		fdf_main(fdf, fd, av[1]);
+		fdf_main(fdf, fd, av);
 	}
 	return(0);
 }

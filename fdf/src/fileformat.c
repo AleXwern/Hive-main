@@ -65,7 +65,7 @@ int		templen(char **temp)
 int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
 {
 	int i  = 0;
-	static int o;
+
 	if (y == 0 && x == 0)
 		fdf->width = templen(temp);
 	if (templen(temp) != fdf->width)
@@ -90,18 +90,17 @@ int		fileformat(int fd, t_fdf *fdf)
 	int		y;
 
 	y = 0;
-	gnl = ft_strnew(1);
 	while (get_next_line(fd, &gnl) == 1)
 	{
 		temp = ft_strsplit(gnl, ' ');
-		ft_strdel(&gnl);
+		free(gnl);
 		if (get_next_matrix(fdf, temp, 0, y) == 0)
 		{
-			ft_strdel(temp);
+			free_memory(temp);
 			error_out(M_ERROR, fdf);
 		}
 		y++;
-		ft_memdel((void**)temp);
+		free_memory(temp);
 	}
 	return (1);
 }

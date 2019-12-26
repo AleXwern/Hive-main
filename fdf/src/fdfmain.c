@@ -26,13 +26,16 @@ int		centerid(t_fdf *fdf, int x, int y)
 	return (-1);
 }
 
-void	fdf_init(t_fdf *fdf, char *av)
+void	fdf_init(t_fdf *fdf, char **av)
 {
-	av = ft_strjoin(av, " - FDF render");
+	char	*title;
+
+	title = ft_strjoin(av[1], " - FDF render");
 	fdf->rlsin = 0;
 	fdf->rlflt = 0;
 	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, av);
+	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, title);
+	free(title);
 	fdf->pad = (int)floor((WINX / 3) / fdf->width);
 	if ((fdf->center = centerid(fdf, floor(fdf->width / 2), floor(fdf->height / 2))) == -1)
 		error_out(OOPS, fdf);
@@ -40,7 +43,7 @@ void	fdf_init(t_fdf *fdf, char *av)
 	fdf->posy = WINY / 2;
 }
 
-void	fdf_main(t_fdf *fdf, int fd, char *av)
+void	fdf_main(t_fdf *fdf, int fd, char **av)
 {
 	int		i;
 

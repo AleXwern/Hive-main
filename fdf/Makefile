@@ -13,7 +13,6 @@
 NAME = fdf
 FLG = -Wall -Wextra -Werror
 SRCFILE = fdfmain.c fileformat.c main.c input.c draw_image.c
-TEST = ./src/test.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./libft/libft.a
 OBJ = $(SRC:.c=.o)
@@ -32,10 +31,7 @@ $(LIBFT):
 	gcc -I ./includes -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJ)
-	gcc $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
-
-test: $(LIBFT)
-	gcc $(INCL) -o $(NAME) $(TEST) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
+	gcc  $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
 
 clean:
 	/bin/rm -f $(OBJ)
