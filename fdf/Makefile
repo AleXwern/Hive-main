@@ -42,10 +42,12 @@ fclean: clean
 	make -C ./libft fclean
 
 git:
-	git clone https://github.com/AleXwern/fillit-tests.git fdfmaps
-	#URL REQUIRED
+	git clone https://github.com/AleXwern/fillit-tests.git tests
+	mv ./tests/maps ./
+	rm -rf tests/
 
 gitrm:
-	/bin/rm -rf fdfmaps
+	/bin/rm -rf maps
+	/bin/rm -rf tests
 
 re: fclean all

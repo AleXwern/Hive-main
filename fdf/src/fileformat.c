@@ -30,7 +30,7 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 {
 	static int	mtx;
 	int			t;
-	
+
 	t = 0;
 	while (temp[t] != '\0')
 	{
@@ -47,7 +47,7 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 	if (x > 0)
 		fdf->matrix[mtx].left = searchid(fdf, x - 1, y);
 	if (y > 0)
-		fdf->matrix[mtx].up = searchid(fdf, x, y -1);
+		fdf->matrix[mtx].up = searchid(fdf, x, y - 1);
 	mtx++;
 	return (1);
 }
@@ -64,8 +64,6 @@ int		templen(char **temp)
 
 int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
 {
-	int i  = 0;
-
 	if (y == 0 && x == 0)
 		fdf->width = templen(temp);
 	if (templen(temp) != fdf->width)

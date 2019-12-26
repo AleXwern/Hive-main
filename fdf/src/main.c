@@ -16,10 +16,10 @@ void	heightgetter(t_fdf *fdf, int fd)
 {
 	char	*dummy;
 
-	dummy = ft_strnew(1);
 	while (get_next_line(fd, &dummy) == 1)
 	{
 		fdf->height++;
+		free(dummy);
 	}
 }
 
@@ -41,19 +41,12 @@ void	error_out(char *msg, t_fdf *fdf)
 	ft_putendl(msg);
 	if (fdf)
 	{
-		//printf("free matrix\n");
 		if (fdf->matrix)
 			free(fdf->matrix);
-			//printf("free win\n");
 		if (fdf->win)
 			mlx_destroy_window(fdf->mlx, fdf->win);
-		//printf("free mlx\n");
-		if (fdf->mlx)
-			free(fdf->mlx);
-		//printf("free fdf\n");
 		free(fdf);
 	}
-	while (1) {}
 	exit(0);
 }
 
@@ -72,8 +65,7 @@ int		main(int ac, char **av)
 			error_out(F_ERROR, fdf);
 		heightgetter(fdf, fd);
 		close(fd);
-		open(av[1], O_RDONLY);
 		fdf_main(fdf, fd, av);
 	}
-	return(0);
+	return (0);
 }

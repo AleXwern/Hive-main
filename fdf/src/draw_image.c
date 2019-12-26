@@ -14,12 +14,23 @@
 
 int		colour(t_matrix fir, t_matrix sec)
 {
-	return (0xffffff);
+	int		base;
+	int		temp;
+
+	base = 0xffffff;
+	temp = (fir.z >= sec.z ? fir.z * 2 : sec.z * 2);
+	if (temp < 0)
+		return (0xa6deff);
+	if (temp == 0)
+		temp++;
+	while (abs(temp) > 0)
+	{
+		base -= 0x02080f;
+		temp -= (abs(temp) / temp);
+	}
+	return (base);
 }
-/*
-**X=xcos(θ)+ysin(θ)
-**Y=−xsin(θ)+ycos(θ)
-*/
+
 void	rotation(t_fdf *fdf, int i)
 {
 	double		tempx;
@@ -31,10 +42,11 @@ void	rotation(t_fdf *fdf, int i)
 	tempy = (fdf->matrix[i].y - fdf->matrix[fdf->center].y) * fdf->pad;
 	fdf->matrix[i].sx = tempx * cos(fdf->sinrot) + tempy * sin(fdf->sinrot);
 	fdf->matrix[i].sy = -tempx * sin(fdf->sinrot) + tempy * cos(fdf->sinrot);
-	fdf->matrix[i].sy = fdf->matrix[i].sy * cos(fdf->fltrot) + (fdf->matrix[i].z * fdf->pad * sin(fdf->fltrot));
+	fdf->matrix[i].sy = fdf->matrix[i].sy * cos(fdf->fltrot) + (fdf->matrix[i].z
+			* fdf->pad * sin(fdf->fltrot));
 }
 
-void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
+void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf)
 {
 	double	deltax;
 	double	deltay;
@@ -47,10 +59,11 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= fabs(temp);
 	deltay /= fabs(temp);
-	while (mult <= fdf->pad * 20 && deltax * mult != temp && deltay * mult != temp)
+	while (mult <= fdf->pad * 20 && deltax * mult != temp &&
+			deltay * mult != temp)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
-				fdf->posy + sec.sy + (deltay * mult), color);
+				fdf->posy + sec.sy + (deltay * mult), colour(fir, sec));
 		mult++;
 	}
 }
@@ -65,10 +78,10 @@ void	draw_image(t_fdf *fdf, int c)
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf);
 		c = fdf->matrix[i].up;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf);
 		i++;
 	}
 }

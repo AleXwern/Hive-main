@@ -12,6 +12,7 @@
 
 #include "../includes/fdf.h"
 
+
 int		camera_main(int key, t_fdf *fdf)
 {
 	if (key == ROTLF)
@@ -30,7 +31,8 @@ int		camera_main(int key, t_fdf *fdf)
 		if (fdf->pad == 0)
 			fdf->pad = 1;
 	}
-	if (key == ROTLF || key == ROTRL || key == ROTUP || key == ROTDW || key == ZOOMI || key == ZOOMO)
+	if (key == ROTLF || key == ROTRL || key == ROTUP || key == ROTDW ||
+			key == ZOOMI || key == ZOOMO)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
 		draw_image(fdf, 0);
@@ -40,17 +42,16 @@ int		camera_main(int key, t_fdf *fdf)
 
 int		key_main(int key, t_fdf *fdf)
 {
-	//printf("Koy: %d\n", key);
 	if (key == ESC)
 		error_out(FINE, fdf);
 	if (key == UP)
-		fdf->posy -= 5;
+		fdf->posy -= 7;
 	if (key == DOWN)
-		fdf->posy += 5;
+		fdf->posy += 7;
 	if (key == LEFT)
-		fdf->posx -= 5;
+		fdf->posx -= 7;
 	if (key == RIGHT)
-		fdf->posx += 5;
+		fdf->posx += 7;
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);

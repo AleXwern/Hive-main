@@ -18,7 +18,6 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
-# include <stdio.h>
 # define WINX	1920
 # define WINY	1080
 
