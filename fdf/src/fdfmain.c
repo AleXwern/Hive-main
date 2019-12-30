@@ -31,6 +31,7 @@ void	fdf_init(t_fdf *fdf, char **av)
 	char	*title;
 
 	title = ft_strjoin(av[1], " - FDF render");
+	fdf->top = 0;
 	fdf->rlsin = 0;
 	fdf->rlflt = 0;
 	fdf->mlx = mlx_init();

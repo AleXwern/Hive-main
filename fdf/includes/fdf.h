@@ -46,6 +46,7 @@ typedef struct	s_fdf
 	void		*win;
 	double		sinrot;
 	double		fltrot;
+	int			top;
 	int			rlsin;
 	int			rlflt;
 	int			pad;

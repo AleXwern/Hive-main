@@ -12,7 +12,6 @@
 
 #include "../includes/fdf.h"
 
-
 int		camera_main(int key, t_fdf *fdf)
 {
 	if (key == ROTLF)

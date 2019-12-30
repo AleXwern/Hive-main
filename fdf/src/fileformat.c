@@ -42,6 +42,8 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 	fdf->matrix[mtx].x = x;
 	fdf->matrix[mtx].y = y;
 	fdf->matrix[mtx].z = ft_atoi(temp);
+	if (fdf->matrix[mtx].z > fdf->top)
+		fdf->top = fdf->matrix[mtx].z;
 	fdf->matrix[mtx].left = -1;
 	fdf->matrix[mtx].up = -1;
 	if (x > 0)

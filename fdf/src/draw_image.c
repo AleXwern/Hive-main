@@ -12,23 +12,24 @@
 
 #include "../includes/fdf.h"
 
-int		colour(t_matrix fir, t_matrix sec)
+int		colour(t_matrix fir, t_matrix sec, int top)
 {
-	int		base;
-	int		temp;
+	int		z;
 
-	base = 0xffffff;
-	temp = (fir.z >= sec.z ? fir.z * 2 : sec.z * 2);
-	if (temp < 0)
-		return (0xa6deff);
-	if (temp == 0)
-		temp++;
-	while (abs(temp) > 0)
-	{
-		base -= 0x02080f;
-		temp -= (abs(temp) / temp);
-	}
-	return (base);
+	z = (abs(fir.z) > abs(sec.z) ? fir.z : sec.z);
+	if (z == 0)
+		return (0xFFFFFF);
+	if (z < 0)
+		return (0x87CEFA);
+	if (z <= ((double)top / 5.0))
+		return (0x03ff03);
+	if (z <= ((double)top * (2.0 / 5.0)))
+		return (0x28992d);
+	if (z <= ((double)top * (3.0 / 5.0)))
+		return (0xc27604);
+	if (z <= ((double)top * (4.0 / 5.0)))
+		return (0x946205);
+	return (0xb50c04);
 }
 
 void	rotation(t_fdf *fdf, int i)
@@ -46,7 +47,7 @@ void	rotation(t_fdf *fdf, int i)
 			* fdf->pad * sin(fdf->fltrot));
 }
 
-void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf)
+void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int colour)
 {
 	double	deltax;
 	double	deltay;
@@ -59,11 +60,11 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= fabs(temp);
 	deltay /= fabs(temp);
-	while (mult <= fdf->pad * 20 && deltax * mult != temp &&
+	while (mult <= fdf->pad * fabs(temp) * 20 && deltax * mult != temp &&
 			deltay * mult != temp)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
-				fdf->posy + sec.sy + (deltay * mult), colour(fir, sec));
+				fdf->posy + sec.sy + (deltay * mult), colour);
 		mult++;
 	}
 }
@@ -78,10 +79,12 @@ void	draw_image(t_fdf *fdf, int c)
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf);
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
 		c = fdf->matrix[i].up;
 		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf);
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
 		i++;
 	}
 }
