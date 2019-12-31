@@ -17,7 +17,7 @@ int		centerid(t_fdf *fdf, int x, int y)
 	int		id;
 
 	id = 0;
-	while (id < fdf->mallocht * fdf->width)
+	while (id < fdf->height * fdf->width)
 	{
 		if (fdf->matrix[id].x == x && fdf->matrix[id].y == y)
 			return (id);
@@ -26,11 +26,11 @@ int		centerid(t_fdf *fdf, int x, int y)
 	return (-1);
 }
 
-void	fdf_init(t_fdf *fdf, char **av)
+void	fdf_init(t_fdf *fdf, char *av)
 {
 	char	*title;
 
-	title = ft_strjoin(av[1], " - FDF render");
+	title = ft_strjoin(av, " - FDF render");
 	fdf->top = 0;
 	fdf->rlsin = 0;
 	fdf->rlflt = 0;
@@ -42,12 +42,12 @@ void	fdf_init(t_fdf *fdf, char **av)
 	fdf->posy = WINY / 2;
 }
 
-void	fdf_main(t_fdf *fdf, int fd, char **av)
+void	fdf_main(t_fdf *fdf, int fd, char *av)
 {
 	int		boolean;
 
-	boolean = (ft_strstr(av[1], ".xemo") != 0);
-	fd = open(av[1], O_RDONLY);
+	boolean = (ft_strstr(av, ".xemo") != 0);
+	fd = open(av, O_RDONLY);
 	fdf_init(fdf, av);
 	if (boolean == 0)
 		fileformat(fd, fdf);

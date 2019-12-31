@@ -37,7 +37,7 @@ clean:
 	/bin/rm -f $(OBJ)
 	make -C ./libft clean
 
-fclean: clean
+fclean: clean gitrm
 	/bin/rm -f $(NAME)
 	make -C ./libft fclean
 

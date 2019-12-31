@@ -69,9 +69,10 @@ int		mouse_main(int key, int x, int y, t_fdf *fdf);
 int		searchid(t_fdf *fdf, int x, int y);
 int		templen(char **temp);
 
+void	arggetter(t_fdf *fdf, char **av, int ac);
 void	draw_image(t_fdf *fdf, int c);
 void	error_out(char *msg, t_fdf *fdf);
-void	fdf_main(t_fdf *fdf, int fd, char **av);
+void	fdf_main(t_fdf *fdf, int fd, char *av);
 void	free_memory(char **arr);
 
 #endif

@@ -15,7 +15,7 @@
 # define G_ERROR	"General error happened. Exiting program."
 # define F_ERROR	"Couldn't read the given file or it doesn't exist."
 # define M_ERROR	"File given is not supported."
-# define USAGE		"Usage:	./fdf file"
+# define USAGE		"Usage:	./fdf [file]"
 # define MEM_ERROR	"Not enough memory to allocate space for ./fdf."
 # define OOPS		"This should never be shown. Everyone panic!"
 # define FINE		"Successfully exiting program."

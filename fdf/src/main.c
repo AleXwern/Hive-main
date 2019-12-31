@@ -29,6 +29,8 @@ void	heightgetter(t_fdf *fdf, int fd, char *av)
 			fdf->mallocht++;
 		free(dummy);
 	}
+	if (fdf->height == 0)
+		fdf->height = fdf->mallocht;
 }
 
 void	free_memory(char **arr)
@@ -47,6 +49,9 @@ void	free_memory(char **arr)
 void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
+	if (!ft_strcmp(msg, F_ERROR) || !ft_strcmp(msg, USAGE) ||
+			!ft_strcmp(msg, MEM_ERROR))
+		exit(0);
 	if (fdf->matrix)
 		free(fdf->matrix);
 	if (fdf->win)
@@ -67,9 +72,9 @@ int		main(int ac, char **av)
 	{
 		if ((fd = open(av[1], O_RDONLY)) == -1)
 			error_out(F_ERROR, fdf);
-		heightgetter(fdf, fd, av[1]);
+		heightgetter(fdf, fd, av[ac - 1]);
 		close(fd);
-		fdf_main(fdf, fd, av);
+		fdf_main(fdf, fd, av[ac - 1]);
 	}
 	ft_putendl(OOPS);
 	return (0);

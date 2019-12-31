@@ -16,7 +16,7 @@ int		colour(t_matrix fir, t_matrix sec, int top)
 {
 	int		z;
 
-	z = (abs(fir.z) >= abs(sec.z) ? fir.z : sec.z);
+	z = (fir.z > sec.z ? fir.z : sec.z);
 	if (z == 0)
 		return (0xFFFFFF);
 	if (z < 0)
