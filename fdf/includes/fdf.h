@@ -30,8 +30,10 @@ typedef struct	s_marix
 	int			y;
 	int			x;
 	int			z;
+	int			ht;
 	int			up;
 	int			left;
+	int			top;
 	int			sx;
 	int			sy;
 }				t_matrix;
@@ -46,6 +48,7 @@ typedef struct	s_fdf
 	void		*win;
 	double		sinrot;
 	double		fltrot;
+	int			depth;
 	int			top;
 	int			rlsin;
 	int			rlflt;
@@ -55,12 +58,16 @@ typedef struct	s_fdf
 	int			posy;
 	int			width;
 	int			height;
+	int			mallocht;
 	t_matrix	*matrix;
 }				t_fdf;
 
+int		dim_fileformat(int fd, t_fdf *fdf);
 int		fileformat(int fd, t_fdf *fdf);
 int		key_main(int key, t_fdf *fdf);
 int		mouse_main(int key, int x, int y, t_fdf *fdf);
+int		searchid(t_fdf *fdf, int x, int y);
+int		templen(char **temp);
 
 void	draw_image(t_fdf *fdf, int c);
 void	error_out(char *msg, t_fdf *fdf);

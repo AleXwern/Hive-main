@@ -12,7 +12,7 @@
 
 NAME = fdf
 FLG = -Wall -Wextra -Werror
-SRCFILE = fdfmain.c fileformat.c main.c input.c draw_image.c
+SRCFILE = fdfmain.c fileformat.c main.c input.c draw_image.c dim_fileformat.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./libft/libft.a
 OBJ = $(SRC:.c=.o)
@@ -28,7 +28,7 @@ $(LIBFT):
 	@make -C ./libft
 
 %.o:%.c
-	gcc -I ./includes -o $@ -c $<
+	gcc $(FLG) -I ./includes -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJ)
 	gcc  $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)

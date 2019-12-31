@@ -16,7 +16,7 @@ int		colour(t_matrix fir, t_matrix sec, int top)
 {
 	int		z;
 
-	z = (abs(fir.z) > abs(sec.z) ? fir.z : sec.z);
+	z = (abs(fir.z) >= abs(sec.z) ? fir.z : sec.z);
 	if (z == 0)
 		return (0xFFFFFF);
 	if (z < 0)
@@ -74,7 +74,7 @@ void	draw_image(t_fdf *fdf, int c)
 	int		i;
 
 	i = 0;
-	while (i < fdf->height * fdf->width)
+	while (i < fdf->mallocht * fdf->width)
 	{
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
@@ -82,6 +82,10 @@ void	draw_image(t_fdf *fdf, int c)
 			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
 					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
 		c = fdf->matrix[i].up;
+		if (c != -1)
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
+		c = fdf->matrix[i].top;
 		if (c != -1)
 			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
 					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));

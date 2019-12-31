@@ -12,13 +12,21 @@
 
 #include "../includes/fdf.h"
 
-void	heightgetter(t_fdf *fdf, int fd)
+void	heightgetter(t_fdf *fdf, int fd, char *av)
 {
 	char	*dummy;
+	int		boolean;
 
+	boolean = 0;
 	while (get_next_line(fd, &dummy) == 1)
 	{
-		fdf->height++;
+		if (dummy[0] == 'z' && boolean == 0 && ft_strstr(av, ".xemo") != 0)
+		{
+			fdf->height = fdf->mallocht;
+			boolean = 1;
+		}
+		else
+			fdf->mallocht++;
 		free(dummy);
 	}
 }
@@ -39,14 +47,10 @@ void	free_memory(char **arr)
 void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
-	if (fdf)
-	{
-		if (fdf->matrix)
-			free(fdf->matrix);
-		if (fdf->win)
-			mlx_destroy_window(fdf->mlx, fdf->win);
-		free(fdf);
-	}
+	if (fdf->matrix)
+		free(fdf->matrix);
+	if (fdf->win)
+		mlx_destroy_window(fdf->mlx, fdf->win);
 	exit(0);
 }
 
@@ -63,9 +67,10 @@ int		main(int ac, char **av)
 	{
 		if ((fd = open(av[1], O_RDONLY)) == -1)
 			error_out(F_ERROR, fdf);
-		heightgetter(fdf, fd);
+		heightgetter(fdf, fd, av[1]);
 		close(fd);
 		fdf_main(fdf, fd, av);
 	}
+	ft_putendl(OOPS);
 	return (0);
 }

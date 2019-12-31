@@ -17,7 +17,7 @@ int		centerid(t_fdf *fdf, int x, int y)
 	int		id;
 
 	id = 0;
-	while (id < fdf->height * fdf->width)
+	while (id < fdf->mallocht * fdf->width)
 	{
 		if (fdf->matrix[id].x == x && fdf->matrix[id].y == y)
 			return (id);
@@ -34,6 +34,7 @@ void	fdf_init(t_fdf *fdf, char **av)
 	fdf->top = 0;
 	fdf->rlsin = 0;
 	fdf->rlflt = 0;
+	fdf->depth = 0;
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, title);
 	free(title);
@@ -43,9 +44,15 @@ void	fdf_init(t_fdf *fdf, char **av)
 
 void	fdf_main(t_fdf *fdf, int fd, char **av)
 {
+	int		boolean;
+
+	boolean = (ft_strstr(av[1], ".xemo") != 0);
 	fd = open(av[1], O_RDONLY);
 	fdf_init(fdf, av);
-	fileformat(fd, fdf);
+	if (boolean == 0)
+		fileformat(fd, fdf);
+	else
+		dim_fileformat(fd, fdf);
 	close(fd);
 	fdf->pad = (int)floor((WINX / 3) / fdf->width);
 	if ((fdf->center = centerid(fdf, floor(fdf->width / 2),

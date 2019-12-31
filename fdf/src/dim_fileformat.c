@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fileformat.c                                       :+:      :+:    :+:   */
+/*   dim_fileformat.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,32 @@
 
 #include "../includes/fdf.h"
 
-int		searchid(t_fdf *fdf, int x, int y)
+int		searchidto(t_fdf *fdf, int x, int y, int d)
 {
 	int		i;
 
 	i = 0;
 	while (i < fdf->mallocht * fdf->width)
 	{
-		if (fdf->matrix[i].x == x && fdf->matrix[i].y == y)
+		if (fdf->matrix[i].x == x && fdf->matrix[i].y == y &&
+				fdf->matrix[i].ht == d)
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int		addpoint(t_fdf *fdf, int x, int y, char *temp)
+void	addrelative(t_fdf *fdf, int x, int y, int mtx)
+{
+	if (x > 0)
+		fdf->matrix[mtx].left = searchidto(fdf, x - 1, y, fdf->depth);
+	if (y > 0)
+		fdf->matrix[mtx].up = searchidto(fdf, x, y - 1, fdf->depth);
+	if (fdf->depth > 0)
+		fdf->matrix[mtx].top = searchidto(fdf, x, y, fdf->depth - 1);
+}
+
+int		addpointto(t_fdf *fdf, int x, int y, char *temp)
 {
 	static int	mtx;
 	int			t;
@@ -41,33 +52,21 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 	}
 	fdf->matrix[mtx].x = x;
 	fdf->matrix[mtx].y = y;
+	fdf->matrix[mtx].ht = fdf->depth;
 	fdf->matrix[mtx].z = ft_atoi(temp);
 	if (fdf->matrix[mtx].z > fdf->top)
 		fdf->top = fdf->matrix[mtx].z;
 	fdf->matrix[mtx].left = -1;
 	fdf->matrix[mtx].up = -1;
 	fdf->matrix[mtx].top = -1;
-	if (x > 0)
-		fdf->matrix[mtx].left = searchid(fdf, x - 1, y);
-	if (y > 0)
-		fdf->matrix[mtx].up = searchid(fdf, x, y - 1);
+	addrelative(fdf, x, y, mtx);
 	mtx++;
 	return (1);
 }
 
-int		templen(char **temp)
+int		get_next_matrixto(t_fdf *fdf, char **temp, int x, int y)
 {
-	int		i;
-
-	i = 0;
-	while (temp[i])
-		i++;
-	return (i);
-}
-
-int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
-{
-	if (y == 0 && x == 0)
+	if (y == 0 && x == 0 && fdf->depth == 0)
 		fdf->width = templen(temp);
 	if (templen(temp) != fdf->width)
 		return (0);
@@ -77,14 +76,14 @@ int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
 			return (0);
 	while (temp[x])
 	{
-		if (!addpoint(fdf, x, y, temp[x]))
+		if (!addpointto(fdf, x, y, temp[x]))
 			return (0);
 		x++;
 	}
 	return (1);
 }
 
-int		fileformat(int fd, t_fdf *fdf)
+int		dim_fileformat(int fd, t_fdf *fdf)
 {
 	char	**temp;
 	char	*gnl;
@@ -95,7 +94,12 @@ int		fileformat(int fd, t_fdf *fdf)
 	{
 		temp = ft_strsplit(gnl, ' ');
 		free(gnl);
-		if (get_next_matrix(fdf, temp, 0, y) == 0)
+		if (temp[0][0] == 'z' && y != 0)
+		{
+			y = -1;
+			fdf->depth++;
+		}
+		else if (get_next_matrixto(fdf, temp, 0, y) == 0)
 		{
 			free_memory(temp);
 			error_out(M_ERROR, fdf);
