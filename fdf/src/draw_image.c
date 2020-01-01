@@ -69,12 +69,15 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int colour)
 	}
 }
 
-void	draw_image(t_fdf *fdf, int c)
+void	draw_image(t_fdf *fdf, int c, char *av)
 {
-	int		i;
+	int			i;
+	static int	boolean;
 
-	i = 0;
-	while (i < fdf->mallocht * fdf->width)
+	i = -1;
+	if (!ft_strncmp("-nolink", av, 6))
+		boolean = 1;
+	while (i++ < fdf->mallocht * fdf->width)
 	{
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
@@ -85,10 +88,12 @@ void	draw_image(t_fdf *fdf, int c)
 		if (c != -1)
 			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
 					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
-		c = fdf->matrix[i].top;
-		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
-					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
-		i++;
+		if (boolean != 1)
+		{
+			c = fdf->matrix[i].top;
+			if (c != -1)
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+						colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
+		}
 	}
 }

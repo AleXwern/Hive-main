@@ -42,13 +42,13 @@ void	fdf_init(t_fdf *fdf, char *av)
 	fdf->posy = WINY / 2;
 }
 
-void	fdf_main(t_fdf *fdf, int fd, char *av)
+void	fdf_main(t_fdf *fdf, int fd, char **av, int ac)
 {
 	int		boolean;
 
-	boolean = (ft_strstr(av, ".xemo") != 0);
-	fd = open(av, O_RDONLY);
-	fdf_init(fdf, av);
+	boolean = (ft_strstr(av[ac - 1], ".xemo") != 0);
+	fd = open(av[ac - 1], O_RDONLY);
+	fdf_init(fdf, av[ac - 1]);
 	if (boolean == 0)
 		fileformat(fd, fdf);
 	else
@@ -58,7 +58,7 @@ void	fdf_main(t_fdf *fdf, int fd, char *av)
 	if ((fdf->center = centerid(fdf, floor(fdf->width / 2),
 			floor(fdf->height / 2))) == -1)
 		error_out(OOPS, fdf);
-	draw_image(fdf, 0);
+	draw_image(fdf, 0, av[1]);
 	mlx_key_hook(fdf->win, key_main, fdf);
 	mlx_loop(fdf->mlx);
 }

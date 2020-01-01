@@ -49,6 +49,11 @@ void	free_memory(char **arr)
 void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
+	if (!ft_strcmp(msg, USAGE))
+	{
+		ft_putstr("Arguments:\n  -nolink: Doesn't connect carpets");
+		ft_putendl(" together when using .xemo presentation.");
+	}
 	if (!ft_strcmp(msg, F_ERROR) || !ft_strcmp(msg, USAGE) ||
 			!ft_strcmp(msg, MEM_ERROR))
 		exit(0);
@@ -66,15 +71,15 @@ int		main(int ac, char **av)
 
 	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
 		error_out(MEM_ERROR, fdf);
-	if (ac != 2)
+	if (ac < 2 || ac > 3)
 		error_out(USAGE, fdf);
 	else
 	{
-		if ((fd = open(av[1], O_RDONLY)) == -1)
+		if ((fd = open(av[ac - 1], O_RDONLY)) == -1)
 			error_out(F_ERROR, fdf);
 		heightgetter(fdf, fd, av[ac - 1]);
 		close(fd);
-		fdf_main(fdf, fd, av[ac - 1]);
+		fdf_main(fdf, fd, av, ac);
 	}
 	ft_putendl(OOPS);
 	return (0);

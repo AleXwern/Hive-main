@@ -34,7 +34,7 @@ int		camera_main(int key, t_fdf *fdf)
 			key == ZOOMI || key == ZOOMO)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
-		draw_image(fdf, 0);
+		draw_image(fdf, 0, "");
 	}
 	return (0);
 }
@@ -54,7 +54,7 @@ int		key_main(int key, t_fdf *fdf)
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
-		draw_image(fdf, 0);
+		draw_image(fdf, 0, "");
 	}
 	else
 		camera_main(key, fdf);
