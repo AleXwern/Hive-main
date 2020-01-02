@@ -16,10 +16,12 @@ void	heightgetter(t_fdf *fdf, int fd, char *av)
 {
 	char	*dummy;
 	int		boolean;
+	char	c;
 
 	boolean = 0;
 	while (get_next_line(fd, &dummy) == 1)
 	{
+		c = dummy[0];
 		if (dummy[0] == 'z' && boolean == 0 && ft_strstr(av, ".xemo") != 0)
 		{
 			fdf->height = fdf->mallocht;
@@ -29,6 +31,8 @@ void	heightgetter(t_fdf *fdf, int fd, char *av)
 			fdf->mallocht++;
 		free(dummy);
 	}
+	if (c == '\0')
+		fdf->mallocht--;
 	if (fdf->height == 0)
 		fdf->height = fdf->mallocht;
 }

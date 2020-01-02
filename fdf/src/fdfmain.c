@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <stdio.h>
 
 int		centerid(t_fdf *fdf, int x, int y)
 {

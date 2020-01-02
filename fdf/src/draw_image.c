@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <stdio.h>
 
 int		colour(t_matrix fir, t_matrix sec, int top)
 {
@@ -60,8 +61,8 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int colour)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= fabs(temp);
 	deltay /= fabs(temp);
-	while (mult <= fdf->pad * fabs(temp) * 20 && deltax * mult != temp &&
-			deltay * mult != temp)
+	while (mult <= fdf->pad * fabs(temp) * fdf->top &&
+			deltax * mult != temp && deltay * mult != temp)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
 				fdf->posy + sec.sy + (deltay * mult), colour);
@@ -77,8 +78,9 @@ void	draw_image(t_fdf *fdf, int c, char *av)
 	i = -1;
 	if (!ft_strncmp("-nolink", av, 6))
 		boolean = 1;
-	while (i++ < fdf->mallocht * fdf->width)
+	while (i++ < fdf->mallocht * fdf->width - 1)
 	{
+		printf("ID%d	X%d	Y%d	Z%d	left%d	up%d	top%d\n", i, fdf->matrix[i].x, fdf->matrix[i].y, fdf->matrix[i].z, fdf->matrix[i].left, fdf->matrix[i].up, fdf->matrix[i].top);
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
