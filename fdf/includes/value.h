@@ -13,7 +13,7 @@
 #ifndef VALUE_H
 # define VALUE_H
 # define G_ERROR	"General error happened. Exiting program."
-# define F_ERROR	"Couldn't read the given file or it doesn't exist."
+# define F_ERROR	"Couldn't read the file or it's badly formatted."
 # define M_ERROR	"File given is not supported."
 # define USAGE		"Usage:	./fdf [arg] [file]"
 # define MEM_ERROR	"Not enough memory to allocate space for ./fdf."

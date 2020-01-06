@@ -43,7 +43,7 @@ int		addpointto(t_fdf *fdf, int x, int y, char *temp)
 	int			t;
 
 	t = 0;
-	while (temp[t] != '\0')
+	while (temp[t])
 	{
 		if (ft_isdigit(temp[t]) || (temp[t] == '-' && t == 0))
 			t++;
@@ -92,6 +92,8 @@ int		dim_fileformat(int fd, t_fdf *fdf)
 	y = 0;
 	while (get_next_line(fd, &gnl) == 1)
 	{
+		if (gnl[0] == ' ' && gnl[1] == '\0')
+			break ;
 		temp = ft_strsplit(gnl, ' ');
 		free(gnl);
 		if (temp[0][0] == 'z' && y != 0)

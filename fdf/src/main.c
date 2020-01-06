@@ -31,8 +31,10 @@ void	heightgetter(t_fdf *fdf, int fd, char *av)
 			fdf->mallocht++;
 		free(dummy);
 	}
-	if (c == '\0')
+	if (c == '\0' || c == 'z')
 		fdf->mallocht--;
+	if (c == ' ')
+		error_out(F_ERROR, fdf);
 	if (fdf->height == 0)
 		fdf->height = fdf->mallocht;
 }
