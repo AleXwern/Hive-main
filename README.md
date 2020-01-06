@@ -17,6 +17,8 @@ Init				- cleared on 05.12.2019 at 16:03
 
 FDF					- cleared on 06.01.2020 at 17:40
 
+Fract'ol    - cleared on
+
 *Milestones:*
 
 
