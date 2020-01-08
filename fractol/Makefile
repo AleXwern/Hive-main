@@ -6,14 +6,14 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/01/07 17:08:48 by anystrom         ###   ########.fr        #
+#    Updated: 2020/01/08 16:02:36 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = fractol
 FLG = -Wall -Wextra -Werror
-SRCFILE = main.c
+SRCFILE = input.c main.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a
 OBJS = $(SRC:.c=.o)
@@ -35,10 +35,10 @@ $(LIBFT):
 	@/bin/rm -rf obj
 	@/bin/mkdir obj
 	@gcc $(FLG) -I ./includes -o $@ -c $<
-	@mv $(OBJS) ./obj
 
 $(NAME): $(OBJS) $(LIBFT)
 	@echo Compiling binaries.
+	@mv $(OBJS) ./obj
 	@gcc  $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
 	@echo Done.
 

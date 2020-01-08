@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/07 13:43:32 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/08 15:55:26 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "value.h"
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
@@ -39,6 +40,7 @@ typedef struct	s_complex
 typedef struct	s_image
 {
 	void		*img;
+	char		*data;
 	int			sizel;
 	int			bpp;
 	int			endn;
@@ -48,13 +50,20 @@ typedef struct	s_image
 ** General toolbox for handling information.
 ** void *mlx = generic mlx pointer.
 ** void *win = generil mlx window pointer.
+** int winbool = 0 or 1 if window exists. Mlx wants to seq fault sometimes.
 ** int fractol = id of fractol type. -1 equals error.
 */
 typedef struct	s_fractol
 {
 	void		*mlx;
 	void		*win;
+	int			winbool;
+	t_image		img;
 	int			fractol;
 }				t_fractol;
+
+void	error_out(char *msg, t_fractol *frc);
+
+int		key_main(int key, t_fractol *frc);
 
 #endif
