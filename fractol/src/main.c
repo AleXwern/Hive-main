@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/13 16:31:49 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/13 17:31:28 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		main(int ac, char **av)
 			ft_strjoin("Fractol ", av[1]))))
 		error_out(WIN_ERROR, frc);
 	frc->winbool = 1;
+	frc->img = init_image(frc);
 	fractol_main(frc);
 	return (0);
 } 

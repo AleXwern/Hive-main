@@ -6,18 +6,27 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:52:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/13 17:12:06 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/13 17:32:07 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	testdraw(t_fractol *frc)
+void		testdraw(t_fractol *frc)
 {
 
 }
 
-t_image	*init_image(t_fractol *frc)
+t_complex	set_complex(double rn, double in)
+{
+	t_complex	cn;
+
+	cn.r = rn;
+	cn.i = in;
+	return (cn);
+}
+
+t_image		*init_image(t_fractol *frc)
 {
 	t_image		*img;
 
@@ -30,9 +39,10 @@ t_image	*init_image(t_fractol *frc)
 	return (img);
 }
 
-void	fractol_main(t_fractol *frc)
+void		fractol_main(t_fractol *frc)
 {
-	frc->img = init_image(frc);
+	frc->max = set_complex();
+	frc->min = set_complex();
 	testdraw(frc);
 	mlx_put_image_to_window(frc->mlx, frc->win, frc->img, 0, 0);
 	mlx_key_hook(frc->win, key_main, frc);

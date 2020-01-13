@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/13 17:19:53 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/13 17:27:31 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 */
 typedef struct	s_complex
 {
-	int			r;
-	int			i;
+	double		r;
+	double		i;
 }				t_complex;
 
 /*
@@ -73,6 +73,8 @@ typedef struct	s_color
 ** int zoom = is exponent for zoom modifer.
 ** int ishelp = 0 or -1 if help window is shown.
 ** int fixjulia = 0 or -1 if julia follows mouse.
+** t_complex max = 
+** t_complex min =
 */
 typedef struct	s_fractol
 {
@@ -85,6 +87,8 @@ typedef struct	s_fractol
 	int			zoom;
 	int			ishelp;
 	int			fixjulia;
+	t_complex	max;
+	t_complex	min;
 }				t_fractol;
 
 void	error_out(char *msg, t_fractol *frc);
