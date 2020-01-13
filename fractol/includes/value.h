@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/08 15:32:59 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/13 17:13:24 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define MEM_ERROR	"Not enough memory to allocate space for ./fractol."
 # define OOPS		"This should never be shown. Everyone panic!"
 # define FINE		"Successfully exiting program."
+# define WIN_ERROR	"Could not create a window."
+# define IMG_ERROR	"Could not create a image."
 
 # define WINX		1080
 # define WINY		720
@@ -29,9 +31,26 @@
 # define KEY_ONE	18
 # define KEY_TWO	19
 # define KEY_TRE	20
+# define SPACE		49
 # define UP			126
 # define DOWN		125
 # define LEFT		123
 # define RIGHT		124
+# define SCR_UPH	4
+# define SCR_DOWN	5
+
+# define BLUE_ONE	0x000000
+# define BLUE_TWO	0xffff00
+# define BLUE_THREE	0x00ffff
+# define BLUE_FOUR	0x0000ff
+# define BW_ONE		0xffffff
+# define BW_TWO		0xa0a0a0
+# define BW_THREE	0x606060
+# define BW_FOUR	0x000000
+# define PSY_ONE	0x000000
+# define PSY_TWO	0x696969
+# define PSY_THREE	0x696969
+# define PSY_FOUR	0x424242
+# define HL			0xff3333
 
 #endif
