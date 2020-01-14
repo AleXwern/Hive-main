@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/13 17:27:31 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/14 17:22:57 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 */
 typedef struct	s_complex
 {
-	double		r;
-	double		i;
+	double		re;
+	double		im;
 }				t_complex;
 
 /*
@@ -85,10 +85,13 @@ typedef struct	s_fractol
 	t_color		color;
 	int			fractol;
 	int			zoom;
+	int			iter;
 	int			ishelp;
 	int			fixjulia;
 	t_complex	max;
 	t_complex	min;
+	t_complex	factor;
+	t_complex	c;
 }				t_fractol;
 
 void	error_out(char *msg, t_fractol *frc);
@@ -98,5 +101,9 @@ void	help_window(t_fractol *frc);
 int		julia_move(int x, int y, t_fractol *frc);
 int		key_main(int key, t_fractol *frc);
 int		mouse_main(int key, int x, int y, t_fractol *frc);
+
+t_image		*init_image(t_fractol *frc);
+
+t_color		color_set(int set, t_color color);
 
 #endif
