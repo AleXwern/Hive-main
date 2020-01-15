@@ -6,14 +6,14 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/01/13 17:12:32 by anystrom         ###   ########.fr        #
+#    Updated: 2020/01/15 14:57:07 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = fractol
 FLG =
-SRCFILE = input.c main.c help.c color.c fractol.c
+SRCFILE = input.c main.c help.c color.c fractol.c define_set.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a
 OBJS = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:52:04 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/14 16:59:51 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/15 16:37:44 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,19 @@ int		key_main(int key, t_fractol *frc)
 {
 	if (key == ESC)
 		error_out(FINE, frc);
-	if (key == SCR_UPH)
+	else if (key == SCR_UPH)
 		frc->ishelp = (frc->ishelp * frc->ishelp) - 1;
-	if (key == SPACE)
+	else if (key == SPACE)
 		frc->fixjulia = (frc->fixjulia * frc->fixjulia) - 1;
-	fractol_main(frc);
+	else if (key == UP)
+		frc->sy -= WINX / 30;
+	else if (key == DOWN)
+		frc->sy += WINX / 30;
+	else if (key == LEFT)
+		frc->sx -= WINX / 30;
+	else if (key == RIGHT)
+		frc->sx += WINX / 30;
+	testdraw(frc, 0);
 	return (0);
 }
 
@@ -35,9 +43,12 @@ int		mouse_main(int key, int x, int y, t_fractol *frc)
 
 int		julia_move(int x, int y, t_fractol *frc)
 {
-	if (frc->fixjulia)
-		ft_putendl("OWO\n");
-	if (x > 100000)
-		error_out(FINE, frc);
+	if (frc->fixjulia && frc->fractol == 1)
+	{
+		frc->jul = set_complex(
+			((double)x / WINX - 0.5),
+			((double)(WINY - y) / WINY - 0.5));
+		testdraw(frc, 1);
+	}
 	return (0);
 }

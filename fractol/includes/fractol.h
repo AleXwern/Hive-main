@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/14 17:22:57 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/15 15:53:59 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ typedef struct	s_color
 ** void *win = generil mlx window pointer.
 ** int winbool = 0 or 1 if window exists. Mlx wants to seq fault sometimes.
 ** int fractol = id of fractol type. -1 equals error.
+** 0 Mandelbrot
+** 1 Julia
+** 2 Bship
 ** t_image = is image data.
 ** t_color = has color data.
 ** int zoom = is exponent for zoom modifer.
@@ -88,22 +91,27 @@ typedef struct	s_fractol
 	int			iter;
 	int			ishelp;
 	int			fixjulia;
+	int			sx;
+	int			sy;
 	t_complex	max;
 	t_complex	min;
 	t_complex	factor;
 	t_complex	c;
+	t_complex	jul;
 }				t_fractol;
 
 void	error_out(char *msg, t_fractol *frc);
 void	fractol_main(t_fractol *frc);
 void	help_window(t_fractol *frc);
+void	testdraw(t_fractol *frc, int rd);
 
+int		define_set(t_fractol *frc);
 int		julia_move(int x, int y, t_fractol *frc);
 int		key_main(int key, t_fractol *frc);
 int		mouse_main(int key, int x, int y, t_fractol *frc);
 
 t_image		*init_image(t_fractol *frc);
-
 t_color		color_set(int set, t_color color);
+t_complex	set_complex(double rn, double in);
 
 #endif
