@@ -6,11 +6,24 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 16:24:44 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:03:26 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+static t_image		*init_image(t_fractol *frc)
+{
+	t_image		*img;
+
+	if (!(img = (t_image*)malloc(sizeof(t_image))))
+		error_out(MEM_ERROR, frc);
+	if (!(img->img = mlx_new_image(frc->mlx, WINX, WINY)))
+		error_out(IMG_ERROR, frc);
+	img->data = mlx_get_data_addr(img->img, &(img->bpp), &(img->sizel),
+			&(img->endn));
+	return (img);
+}
 
 void	set_default(t_fractol *frc)
 {
@@ -33,7 +46,7 @@ void	error_out(char *msg, t_fractol *frc)
 	exit(0);
 }
 
-void	define_fratol(t_fractol *frc, char **av)
+static void	define_fratol(t_fractol *frc, char **av)
 {
 	if (!ft_strcmp(av[1], "mandelbrot"))
 		frc->fractol = 0;

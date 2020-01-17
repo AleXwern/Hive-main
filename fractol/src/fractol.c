@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:52:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 15:55:16 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:07:36 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,7 @@ t_complex	set_complex(double rn, double in)
 	return (cn);
 }
 
-t_image		*init_image(t_fractol *frc)
-{
-	t_image		*img;
-
-	if (!(img = (t_image*)malloc(sizeof(t_image))))
-		error_out(MEM_ERROR, frc);
-	if (!(img->img = mlx_new_image(frc->mlx, WINX, WINY)))
-		error_out(IMG_ERROR, frc);
-	img->data = mlx_get_data_addr(img->img, &(img->bpp), &(img->sizel),
-			&(img->endn));
-	return (img);
-}
-
-void		set_pixel(t_fractol *frc, int x, int y)
+static void		set_pixel(t_fractol *frc, int x, int y)
 {
 	int			i;
 

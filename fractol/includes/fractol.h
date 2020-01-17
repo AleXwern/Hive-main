@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 16:01:08 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:05:21 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ int		julia_move(int x, int y, t_fractol *frc);
 int		key_main(int key, t_fractol *frc);
 int		mouse_main(int key, int x, int y, t_fractol *frc);
 
-t_image		*init_image(t_fractol *frc);
-t_color		color_set(int set, double y, t_color color);
 t_color		get_color(int iter, t_fractol *frc);
 t_complex	set_complex(double rn, double in);
 

@@ -6,14 +6,14 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:52:04 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 16:28:49 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:01:40 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 #include <stdio.h>
 
-void	zoom(int key, double y, double x, t_fractol *frc)
+static void	zoom(int key, double y, double x, t_fractol *frc)
 {
 	static int	power;
 
@@ -26,8 +26,6 @@ void	zoom(int key, double y, double x, t_fractol *frc)
 	frc->min.im *= frc->zoom;
 	frc->max.re *= frc->zoom;
 	frc->max.im *= frc->zoom;
-	frc->jul.re *= frc->zoom;
-	frc->jul.im *= frc->zoom;
 	frc->min.re += x;
 	frc->min.im -= y;
 	frc->max.re += x;
@@ -39,8 +37,8 @@ int		mouse_main(int key, int x, int y, t_fractol *frc)
 	double	ydelta;
 	double	xdelta;
 
-	xdelta = ((double)x / WINX - 0.5);
-	ydelta = ((double)y / WINY - 0.5);
+	xdelta = 0.5 * ((double)x / WINX - 0.5);
+	ydelta = 0.5 * ((double)y / WINY - 0.5);
 	printf("Key:%d at X%d Y%d\n", key, x, y);
 	if (key == SCR_DOWN || key == SCR_UPH)
 		zoom(key, ydelta, xdelta, frc);

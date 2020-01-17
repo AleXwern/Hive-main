@@ -6,13 +6,13 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:40:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 16:01:36 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:02:06 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	change_fractal(int key, t_fractol *frc)
+static void	change_fractal(int key, t_fractol *frc)
 {
 	if (key == KEY_ONE)
 		frc->fractol = 0;
@@ -28,7 +28,7 @@ void	change_fractal(int key, t_fractol *frc)
 		frc->iter--;
 }
 
-void	arrow_key(int key, t_fractol *frc)
+static void	arrow_key(int key, t_fractol *frc)
 {
 	t_complex	delta;
 
