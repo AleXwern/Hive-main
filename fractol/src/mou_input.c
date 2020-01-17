@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:52:04 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:01:40 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:50:19 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		mouse_main(int key, int x, int y, t_fractol *frc)
 	if (key == SCR_DOWN || key == SCR_UPH)
 		zoom(key, ydelta, xdelta, frc);
 	mlx_clear_window(frc->mlx, frc->win);
-	testdraw(frc, 1);
+	thread_core(frc);
 	return (0);
 }
 
@@ -54,7 +54,7 @@ int		julia_move(int x, int y, t_fractol *frc)
 		frc->jul = set_complex(4 * ((double)x / WINX - 0.5),
 			4 * ((double)(WINY - y) / WINY - 0.5));
 		mlx_clear_window(frc->mlx, frc->win);
-		testdraw(frc, 1);
+		thread_core(frc);
 	}
 	return (0);
 }

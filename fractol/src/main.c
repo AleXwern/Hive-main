@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:03:26 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:35:03 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		main(int ac, char **av)
 		error_out(WIN_ERROR, frc);
 	frc->winbool = 1;
 	frc->img = init_image(frc);
+	frc->threads = 8;
 	fractol_main(frc);
 	ft_putendl(OOPS);
 	return (0);

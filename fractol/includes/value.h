@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 14:38:42 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:53:46 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # define B_ARG		"Error: Bad argument."
 # define USAGE		"Usage:	./fractol mandelbrot/julia/bship"
 # define MEM_ERROR	"Not enough memory to allocate space for ./fractol."
+# define T_ERROR	"There was a threading problem."
 # define OOPS		"This should never be shown. Everyone panic!"
 # define FINE		"Successfully exiting program."
 # define WIN_ERROR	"Could not create a window."
 # define IMG_ERROR	"Could not create a image."
 
-# define WINX		550
-# define WINY		550
+# define WINX		1000
+# define WINY		1000
 
 # define ESC		53
 # define KEY_R		15

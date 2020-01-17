@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:05:21 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:49:58 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ typedef struct	s_fractol
 	void		*mlx;
 	void		*win;
 	int			winbool;
+	int			threads;
+	int			start;
+	int			end;
 	t_image		*img;
 	t_color		color;
 	int			fractol;
@@ -102,7 +105,7 @@ void	error_out(char *msg, t_fractol *frc);
 void	fractol_main(t_fractol *frc);
 void	help_window(t_fractol *frc);
 void	set_default(t_fractol *frc);
-void	testdraw(t_fractol *frc, int rd);
+void	thread_core(t_fractol *frc);
 
 int		define_set(t_fractol *frc);
 int		julia_move(int x, int y, t_fractol *frc);

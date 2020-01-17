@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:40:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:02:06 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:50:37 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int		key_main(int key, t_fractol *frc)
 	else if ((key >= 18 && key <= 20) || key == 8 || key == 69 || key == 78)
 		change_fractal(key ,frc);
 	mlx_clear_window(frc->mlx, frc->win);
-	testdraw(frc, 1);
+	thread_core(frc);
 	return (0);
 }
