@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/15 15:53:59 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 16:01:08 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ typedef struct	s_image
 */
 typedef struct	s_color
 {
-	int			set;
-	int			one;
-	int			two;
-	int			three;
-	int			four;
+	unsigned int	set;
+	unsigned int	one;
+	unsigned int	two;
+	unsigned int	three;
+	unsigned int	four;
 }				t_color;
 
 
@@ -87,12 +87,10 @@ typedef struct	s_fractol
 	t_image		*img;
 	t_color		color;
 	int			fractol;
-	int			zoom;
+	double		zoom;
 	int			iter;
 	int			ishelp;
 	int			fixjulia;
-	int			sx;
-	int			sy;
 	t_complex	max;
 	t_complex	min;
 	t_complex	factor;
@@ -103,6 +101,7 @@ typedef struct	s_fractol
 void	error_out(char *msg, t_fractol *frc);
 void	fractol_main(t_fractol *frc);
 void	help_window(t_fractol *frc);
+void	set_default(t_fractol *frc);
 void	testdraw(t_fractol *frc, int rd);
 
 int		define_set(t_fractol *frc);
@@ -111,7 +110,8 @@ int		key_main(int key, t_fractol *frc);
 int		mouse_main(int key, int x, int y, t_fractol *frc);
 
 t_image		*init_image(t_fractol *frc);
-t_color		color_set(int set, t_color color);
+t_color		color_set(int set, double y, t_color color);
+t_color		get_color(int iter, t_fractol *frc);
 t_complex	set_complex(double rn, double in);
 
 #endif

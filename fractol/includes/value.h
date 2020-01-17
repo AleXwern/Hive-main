@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/13 17:13:24 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/17 14:38:42 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define WIN_ERROR	"Could not create a window."
 # define IMG_ERROR	"Could not create a image."
 
-# define WINX		1080
-# define WINY		720
+# define WINX		550
+# define WINY		550
 
 # define ESC		53
 # define KEY_R		15
@@ -38,8 +38,10 @@
 # define RIGHT		124
 # define SCR_UPH	4
 # define SCR_DOWN	5
+# define NUM_PLU	69
+# define NUM_MIN	78
 
-# define BLUE_ONE	0x000000
+# define BLUE_ONE	0xffffff
 # define BLUE_TWO	0xffff00
 # define BLUE_THREE	0x00ffff
 # define BLUE_FOUR	0x0000ff
@@ -47,7 +49,7 @@
 # define BW_TWO		0xa0a0a0
 # define BW_THREE	0x606060
 # define BW_FOUR	0x000000
-# define PSY_ONE	0x000000
+# define PSY_ONE	0xffffff
 # define PSY_TWO	0x696969
 # define PSY_THREE	0x696969
 # define PSY_FOUR	0x424242
