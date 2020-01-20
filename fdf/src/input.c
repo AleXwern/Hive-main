@@ -40,7 +40,7 @@ int		camera_main(int key, t_fdf *fdf)
 
 int		key_main(int key, t_fdf *fdf)
 {
-	//printf("Koy: %d\n", key);
+	printf("Koy: %d\n", key);
 	if (key == ESC)
 		error_out(FINE, fdf);
 	if (key == UP)
