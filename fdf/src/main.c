@@ -12,34 +12,61 @@
 
 #include "../includes/fdf.h"
 
-void	heightgetter(t_fdf *fdf, int fd)
+void	heightgetter(t_fdf *fdf, int fd, char *av)
 {
 	char	*dummy;
+	int		boolean;
+	char	c;
 
-	dummy = ft_strnew(1);
+	boolean = 0;
 	while (get_next_line(fd, &dummy) == 1)
 	{
-		fdf->height++;
+		c = dummy[0];
+		if (dummy[0] == 'z' && boolean == 0 && ft_strstr(av, ".xemo") != 0)
+		{
+			fdf->height = fdf->mallocht;
+			boolean = 1;
+		}
+		else
+			fdf->mallocht++;
+		free(dummy);
 	}
+	if (c == '\0' || c == 'z')
+		fdf->mallocht--;
+	if (c == ' ')
+		error_out(F_ERROR, fdf);
+	if (fdf->height == 0)
+		fdf->height = fdf->mallocht;
+}
+
+void	free_memory(char **arr)
+{
+	int y;
+
+	y = 0;
+	while (arr[y])
+		y++;
+	while (y >= 0)
+		ft_strdel(&arr[y--]);
+	free(arr);
+	arr = NULL;
 }
 
 void	error_out(char *msg, t_fdf *fdf)
 {
 	ft_putendl(msg);
-	if (fdf)
+	if (!ft_strcmp(msg, USAGE))
 	{
-		//printf("free matrix\n");
-		if (fdf->matrix)
-			ft_memdel((void**)fdf->matrix);
-		//printf("free mlx\n");
-		if (fdf->mlx)
-			ft_memdel((void**)fdf->mlx);
-		//printf("free win\n");
-		if (fdf->win)
-			ft_memdel((void**)fdf->win);
-		//printf("free fdf\n");
-		ft_memdel((void**)fdf);
+		ft_putstr("Arguments:\n  -nolink: Doesn't connect carpets");
+		ft_putendl(" together when using .xemo presentation.");
 	}
+	if (!ft_strcmp(msg, F_ERROR) || !ft_strcmp(msg, USAGE) ||
+			!ft_strcmp(msg, MEM_ERROR))
+		exit(0);
+	if (fdf->matrix)
+		free(fdf->matrix);
+	if (fdf->win)
+		mlx_destroy_window(fdf->mlx, fdf->win);
 	exit(0);
 }
 
@@ -50,16 +77,16 @@ int		main(int ac, char **av)
 
 	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
 		error_out(MEM_ERROR, fdf);
-	if (ac != 2)
+	if (ac < 2 || ac > 3)
 		error_out(USAGE, fdf);
 	else
 	{
-		if ((fd = open(av[1], O_RDONLY)) == -1)
+		if ((fd = open(av[ac - 1], O_RDONLY)) == -1)
 			error_out(F_ERROR, fdf);
-		heightgetter(fdf, fd);
+		heightgetter(fdf, fd, av[ac - 1]);
 		close(fd);
-		open(av[1], O_RDONLY);
-		fdf_main(fdf, fd, av[1]);
+		fdf_main(fdf, fd, av, ac);
 	}
-	return(0);
+	ft_putendl(OOPS);
+	return (0);
 }

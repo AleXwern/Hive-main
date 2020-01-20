@@ -18,7 +18,6 @@
 # include <math.h>
 # include "../minilibx/mlx.h"
 # include <fcntl.h>
-# include <stdio.h>
 # define WINX	1920
 # define WINY	1080
 
@@ -31,8 +30,10 @@ typedef struct	s_marix
 	int			y;
 	int			x;
 	int			z;
+	int			ht;
 	int			up;
 	int			left;
+	int			top;
 	int			sx;
 	int			sy;
 }				t_matrix;
@@ -47,6 +48,8 @@ typedef struct	s_fdf
 	void		*win;
 	double		sinrot;
 	double		fltrot;
+	int			depth;
+	int			top;
 	int			rlsin;
 	int			rlflt;
 	int			pad;
@@ -55,15 +58,21 @@ typedef struct	s_fdf
 	int			posy;
 	int			width;
 	int			height;
+	int			mallocht;
 	t_matrix	*matrix;
 }				t_fdf;
 
-int		fileformat(int fd, t_fdf *fdf);
-int		key_main(int key, t_fdf *fdf);
-int		mouse_main(int key, int x, int y, t_fdf *fdf);
+int				dim_fileformat(int fd, t_fdf *fdf);
+int				fileformat(int fd, t_fdf *fdf);
+int				key_main(int key, t_fdf *fdf);
+int				mouse_main(int key, int x, int y, t_fdf *fdf);
+int				searchid(t_fdf *fdf, int x, int y);
+int				templen(char **temp);
 
-void	draw_image(t_fdf *fdf, int c);
-void	error_out(char *msg, t_fdf *fdf);
-void	fdf_main(t_fdf *fdf, int fd, char *av);
+void			arggetter(t_fdf *fdf, char **av, int ac);
+void			draw_image(t_fdf *fdf, int c, char *av);
+void			error_out(char *msg, t_fdf *fdf);
+void			fdf_main(t_fdf *fdf, int fd, char **av, int ac);
+void			free_memory(char **arr);
 
 #endif

@@ -28,26 +28,37 @@ int		centerid(t_fdf *fdf, int x, int y)
 
 void	fdf_init(t_fdf *fdf, char *av)
 {
-	av = ft_strjoin(av, " - FDF render");
+	char	*title;
+
+	title = ft_strjoin(av, " - FDF render");
+	fdf->top = 0;
 	fdf->rlsin = 0;
 	fdf->rlflt = 0;
+	fdf->depth = 0;
 	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, av);
-	fdf->pad = (int)floor((WINX / 3) / fdf->width);
-	if ((fdf->center = centerid(fdf, floor(fdf->width / 2), floor(fdf->height / 2))) == -1)
-		error_out(OOPS, fdf);
+	fdf->win = mlx_new_window(fdf->mlx, WINX, WINY, title);
+	free(title);
 	fdf->posx = WINX / 2;
 	fdf->posy = WINY / 2;
 }
 
-void	fdf_main(t_fdf *fdf, int fd, char *av)
+void	fdf_main(t_fdf *fdf, int fd, char **av, int ac)
 {
-	int		i;
+	int		boolean;
 
-	i = 0;
-	fileformat(fd, fdf);
-	fdf_init(fdf, av);
-	draw_image(fdf, 0);
+	boolean = (ft_strstr(av[ac - 1], ".xemo") != 0);
+	fd = open(av[ac - 1], O_RDONLY);
+	fdf_init(fdf, av[ac - 1]);
+	if (boolean == 0)
+		fileformat(fd, fdf);
+	else
+		dim_fileformat(fd, fdf);
+	close(fd);
+	fdf->pad = (int)floor((WINX / 3) / fdf->width);
+	if ((fdf->center = centerid(fdf, floor(fdf->width / 2),
+			floor(fdf->height / 2))) == -1)
+		error_out(OOPS, fdf);
+	draw_image(fdf, 0, av[1]);
 	mlx_key_hook(fdf->win, key_main, fdf);
 	mlx_loop(fdf->mlx);
 }

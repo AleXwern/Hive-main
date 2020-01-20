@@ -17,7 +17,7 @@ int		searchid(t_fdf *fdf, int x, int y)
 	int		i;
 
 	i = 0;
-	while (i < fdf->height * fdf->width)
+	while (i < fdf->mallocht * fdf->width)
 	{
 		if (fdf->matrix[i].x == x && fdf->matrix[i].y == y)
 			return (i);
@@ -30,7 +30,7 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 {
 	static int	mtx;
 	int			t;
-	
+
 	t = 0;
 	while (temp[t])
 	{
@@ -42,12 +42,15 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 	fdf->matrix[mtx].x = x;
 	fdf->matrix[mtx].y = y;
 	fdf->matrix[mtx].z = ft_atoi(temp);
+	if (fdf->matrix[mtx].z > fdf->top)
+		fdf->top = fdf->matrix[mtx].z;
 	fdf->matrix[mtx].left = -1;
 	fdf->matrix[mtx].up = -1;
+	fdf->matrix[mtx].top = -1;
 	if (x > 0)
 		fdf->matrix[mtx].left = searchid(fdf, x - 1, y);
 	if (y > 0)
-		fdf->matrix[mtx].up = searchid(fdf, x, y -1);
+		fdf->matrix[mtx].up = searchid(fdf, x, y - 1);
 	mtx++;
 	return (1);
 }
@@ -64,14 +67,12 @@ int		templen(char **temp)
 
 int		get_next_matrix(t_fdf *fdf, char **temp, int x, int y)
 {
-	int i  = 0;
-	static int o;
 	if (y == 0 && x == 0)
 		fdf->width = templen(temp);
 	if (templen(temp) != fdf->width)
 		return (0);
 	if (!fdf->matrix)
-		if (!(fdf->matrix = (t_matrix*)malloc(sizeof(t_matrix) * fdf->height
+		if (!(fdf->matrix = (t_matrix*)malloc(sizeof(t_matrix) * fdf->mallocht
 				* fdf->width)))
 			return (0);
 	while (temp[x])
@@ -90,18 +91,17 @@ int		fileformat(int fd, t_fdf *fdf)
 	int		y;
 
 	y = 0;
-	gnl = ft_strnew(1);
 	while (get_next_line(fd, &gnl) == 1)
 	{
 		temp = ft_strsplit(gnl, ' ');
-		ft_strdel(&gnl);
+		free(gnl);
 		if (get_next_matrix(fdf, temp, 0, y) == 0)
 		{
-			ft_strdel(temp);
+			free_memory(temp);
 			error_out(M_ERROR, fdf);
 		}
 		y++;
-		ft_memdel((void**)temp);
+		free_memory(temp);
 	}
 	return (1);
 }

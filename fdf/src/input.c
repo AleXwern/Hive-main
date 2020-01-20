@@ -30,31 +30,35 @@ int		camera_main(int key, t_fdf *fdf)
 		if (fdf->pad == 0)
 			fdf->pad = 1;
 	}
-	if (key == ROTLF || key == ROTRL || key == ROTUP || key == ROTDW || key == ZOOMI || key == ZOOMO)
+	if (key == ROTLF || key == ROTRL || key == ROTUP || key == ROTDW ||
+			key == ZOOMI || key == ZOOMO)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
-		draw_image(fdf, 0);
+		draw_image(fdf, 0, "");
 	}
 	return (0);
 }
 
 int		key_main(int key, t_fdf *fdf)
 {
+<<<<<<< HEAD
 	printf("Koy: %d\n", key);
+=======
+>>>>>>> 9589b57d19ad7cd30e0059a4b781ca8830b426c3
 	if (key == ESC)
 		error_out(FINE, fdf);
 	if (key == UP)
-		fdf->posy -= 5;
+		fdf->posy -= 7;
 	if (key == DOWN)
-		fdf->posy += 5;
+		fdf->posy += 7;
 	if (key == LEFT)
-		fdf->posx -= 5;
+		fdf->posx -= 7;
 	if (key == RIGHT)
-		fdf->posx += 5;
+		fdf->posx += 7;
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 	{
 		mlx_clear_window(fdf->mlx, fdf->win);
-		draw_image(fdf, 0);
+		draw_image(fdf, 0, "");
 	}
 	else
 		camera_main(key, fdf);

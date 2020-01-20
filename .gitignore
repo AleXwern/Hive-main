@@ -1,4 +1,6 @@
 **/.DS_Store
 **/.vscode/
 **/.vs
+**/.git/
 42MapGenerator/
+test-**/

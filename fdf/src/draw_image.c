@@ -12,14 +12,26 @@
 
 #include "../includes/fdf.h"
 
-int		colour(t_matrix fir, t_matrix sec)
+int		colour(t_matrix fir, t_matrix sec, int top)
 {
-	return (0xffffff);
+	int		z;
+
+	z = (fir.z > sec.z ? fir.z : sec.z);
+	if (z == 0)
+		return (0xFFFFFF);
+	if (z < 0)
+		return (0x87CEFA);
+	if (z <= ((double)top / 5.0))
+		return (0x03ff03);
+	if (z <= ((double)top * (2.0 / 5.0)))
+		return (0x28992d);
+	if (z <= ((double)top * (3.0 / 5.0)))
+		return (0xc27604);
+	if (z <= ((double)top * (4.0 / 5.0)))
+		return (0x946205);
+	return (0xb50c04);
 }
-/*
-**X=xcos(θ)+ysin(θ)
-**Y=−xsin(θ)+ycos(θ)
-*/
+
 void	rotation(t_fdf *fdf, int i)
 {
 	double		tempx;
@@ -31,10 +43,11 @@ void	rotation(t_fdf *fdf, int i)
 	tempy = (fdf->matrix[i].y - fdf->matrix[fdf->center].y) * fdf->pad;
 	fdf->matrix[i].sx = tempx * cos(fdf->sinrot) + tempy * sin(fdf->sinrot);
 	fdf->matrix[i].sy = -tempx * sin(fdf->sinrot) + tempy * cos(fdf->sinrot);
-	fdf->matrix[i].sy = fdf->matrix[i].sy * cos(fdf->fltrot) + (fdf->matrix[i].z * fdf->pad * sin(fdf->fltrot));
+	fdf->matrix[i].sy = fdf->matrix[i].sy * cos(fdf->fltrot) + (fdf->matrix[i].z
+			* fdf->pad * sin(fdf->fltrot));
 }
 
-void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
+void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int colour)
 {
 	double	deltax;
 	double	deltay;
@@ -47,28 +60,52 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int color)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= fabs(temp);
 	deltay /= fabs(temp);
+<<<<<<< HEAD
 	while (mult <= fdf->pad * 2 && deltax * mult != temp && deltay * mult != temp)
+=======
+	while (mult <= fdf->pad * fabs(temp) * (fdf->top + 1) &&
+			deltax * mult != temp && deltay * mult != temp)
+>>>>>>> 9589b57d19ad7cd30e0059a4b781ca8830b426c3
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
-				fdf->posy + sec.sy + (deltay * mult), color);
+				fdf->posy + sec.sy + (deltay * mult), colour);
 		mult++;
 	}
 }
 
-void	draw_image(t_fdf *fdf, int c)
+void	draw_image(t_fdf *fdf, int c, char *av)
 {
-	int		i;
+	int			i;
+	static int	boolean;
 
-	i = 0;
-	while (i < fdf->height * fdf->width)
+	i = -1;
+	if (!ft_strncmp("-nolink", av, 6))
+		boolean = 1;
+	while (i++ < fdf->mallocht * fdf->width - 1)
 	{
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
+<<<<<<< HEAD
 			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
 		c = fdf->matrix[i].up;
 		if (c != -1)
 			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
 		i++;
+=======
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
+		c = fdf->matrix[i].up;
+		if (c != -1)
+			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
+		if (boolean != 1)
+		{
+			c = fdf->matrix[i].top;
+			if (c != -1)
+				vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
+						colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
+		}
+>>>>>>> 9589b57d19ad7cd30e0059a4b781ca8830b426c3
 	}
 }
