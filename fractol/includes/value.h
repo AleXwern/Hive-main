@@ -6,13 +6,16 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:53:46 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:11:42 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VALUE_H
 # define VALUE_H
 
+/*
+** Error messages.
+*/
 # define G_ERROR	"General error happened. Exiting program."
 # define B_ARG		"Error: Bad argument."
 # define USAGE		"Usage:	./fractol mandelbrot/julia/bship"
@@ -22,10 +25,17 @@
 # define FINE		"Successfully exiting program."
 # define WIN_ERROR	"Could not create a window."
 # define IMG_ERROR	"Could not create a image."
+# define MLX_ERROR	"Could not cleate MLX pointer."
 
+/*
+** Window size.
+*/
 # define WINX		1000
 # define WINY		1000
 
+/*
+** Tagged keys.
+*/
 # define ESC		53
 # define KEY_R		15
 # define KEY_C		8
@@ -41,19 +51,23 @@
 # define SCR_DOWN	5
 # define NUM_PLU	69
 # define NUM_MIN	78
+# define SLASH		75
+# define STAR		67
 
-# define BLUE_ONE	0xffffff
-# define BLUE_TWO	0xffff00
-# define BLUE_THREE	0x00ffff
-# define BLUE_FOUR	0x0000ff
-# define BW_ONE		0xffffff
-# define BW_TWO		0xa0a0a0
-# define BW_THREE	0x606060
-# define BW_FOUR	0x000000
-# define PSY_ONE	0xffffff
-# define PSY_TWO	0x696969
-# define PSY_THREE	0x696969
-# define PSY_FOUR	0x424242
+# define DATA		0x13D9EC
 # define HL			0xff3333
+# define HLP		"HELP"
+# define HLP_A		"ESC    = exit"
+# define HLP_B		"R      = reset"
+# define HLP_C		"SPACE  = stop julia"
+# define HLP_D		"D-PAD  = move"
+# define HLP_E		"H      = open/close help"
+# define HLP_F		"123    = change factal"
+# define HLP_G		"C      = change color"
+# define HLP_H		"SCROLL = zoom in/out"
+# define HLP_I		"/*     = add/remove threads"
+# define HLP_J		"+-     = change iteration"
+# define DATA_F		"Julia is fixed"
+# define DATA_O		"Julia is not fixed"
 
 #endif

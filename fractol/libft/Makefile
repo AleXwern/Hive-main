@@ -6,7 +6,7 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 16:09:13 by anystrom          #+#    #+#              #
-#    Updated: 2020/01/07 16:56:37 by anystrom         ###   ########.fr        #
+#    Updated: 2020/01/20 13:45:29 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,18 @@ SRCS = ft_memalloc.c ft_putendl.c ft_strcpy.c ft_strmapi.c ft_strsub.c \
 OBJS = $(SRCS:.c=.o)
 INCLS = ./
 OBJFLD = ../obj/
+GREEN = \033[0;32m
+STOP = \033[0m
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME):
-	@gcc -Wall -Wextra -Werror -I $(INCLS) -c $(SRCS)
+%.o:%.c
+	@gcc -Wall -Wextra -Werror $(FLG) -I $(INCLS) -o $@ -c $<
+	@echo "Compiling Libft -> $(GREEN)$@$(STOP)"
+
+$(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@mv $(OBJS) ../obj

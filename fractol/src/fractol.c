@@ -6,14 +6,14 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:52:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:58:52 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:28:34 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 #include <pthread.h>
 
-t_complex	set_complex(double rn, double in)
+t_complex		set_complex(double rn, double in)
 {
 	t_complex	cn;
 
@@ -36,8 +36,8 @@ static void		set_pixel(t_fractol *frc, int x, int y)
 
 static void		frc_draw(t_fractol *frc)
 {
-	int		y;
-	int		x;
+	int			y;
+	int			x;
 
 	frc->factor = set_complex((frc->max.re - frc->min.re) / (WINX - 1),
 			(frc->max.im - frc->min.im) / (WINY - 1));
@@ -56,9 +56,9 @@ static void		frc_draw(t_fractol *frc)
 	}
 }
 
-void		thread_core(t_fractol *frc)
+void			thread_core(t_fractol *frc)
 {
-	pthread_t 	thread[frc->threads];
+	pthread_t	thread[frc->threads];
 	t_fractol	frac[frc->threads];
 	int			i;
 
@@ -68,21 +68,19 @@ void		thread_core(t_fractol *frc)
 		frac[i] = *frc;
 		frac[i].start = i * (WINY / frc->threads);
 		frac[i].end = (i + 1) * (WINY / frc->threads);
-		if (pthread_create(&thread[i], NULL, (void *(*)(void *))frc_draw, (void* )&frac[i]))
+		if (pthread_create(&thread[i], NULL, (void *(*)(void *))frc_draw,
+				(void*)&frac[i]))
 			error_out(T_ERROR, frc);
 		i++;
 	}
 	while (i-- > 0)
-	{
 		if (pthread_join(thread[i], NULL))
 			error_out(T_ERROR, frc);
-		i--;
-	}
 	mlx_put_image_to_window(frc->mlx, frc->win, frc->img->img, 0, 0);
 	help_window(frc);
 }
 
-void		fractol_main(t_fractol *frc)
+void			fractol_main(t_fractol *frc)
 {
 	set_default(frc);
 	mlx_key_hook(frc->win, key_main, frc);

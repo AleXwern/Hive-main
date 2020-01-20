@@ -6,13 +6,13 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:41:36 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/17 17:03:58 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:29:09 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static int		frc_mandelbrot(t_fractol *frc)
+static int	frc_mandelbrot(t_fractol *frc)
 {
 	int			iter;
 	t_complex	z;
@@ -30,7 +30,7 @@ static int		frc_mandelbrot(t_fractol *frc)
 	return (iter);
 }
 
-static int		frc_bship(t_fractol *frc)
+static int	frc_bship(t_fractol *frc)
 {
 	int			iter;
 	t_complex	z;
@@ -48,7 +48,7 @@ static int		frc_bship(t_fractol *frc)
 	return (iter);
 }
 
-static int		frc_julia(t_fractol *frc)
+static int	frc_julia(t_fractol *frc)
 {
 	int			iter;
 	t_complex	z;
@@ -66,7 +66,7 @@ static int		frc_julia(t_fractol *frc)
 	return (iter);
 }
 
-int		define_set(t_fractol *frc)
+int			define_set(t_fractol *frc)
 {
 	if (frc->fractol == 1)
 		return (frc_julia(frc));
