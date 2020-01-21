@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/20 16:27:45 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:03:55 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static t_image	*init_image(t_fractol *frc)
 
 void			set_default(t_fractol *frc)
 {
+	frc->threads = 10;
 	frc->min = set_complex(-2.0, -2.0);
 	frc->max.re = 2.0;
 	frc->max.im = frc->min.im + (frc->max.re - frc->min.re) *
@@ -55,6 +56,8 @@ static void		define_fratol(t_fractol *frc, char **av)
 		frc->fractol = 1;
 	else if (!ft_strcmp(av[1], "bship"))
 		frc->fractol = 2;
+	else if (!ft_strcmp(av[1], "psecorn"))
+		frc->fractol = 3;
 	else
 		error_out(B_ARG, frc);
 }
@@ -75,7 +78,6 @@ int				main(int ac, char **av)
 		error_out(WIN_ERROR, frc);
 	frc->winbool = 1;
 	frc->img = init_image(frc);
-	frc->threads = 8;
 	fractol_main(frc);
 	ft_putendl(OOPS);
 	return (0);

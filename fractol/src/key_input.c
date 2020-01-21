@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:40:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/20 16:24:47 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/21 16:00:29 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	arrow_key(int key, t_fractol *frc)
 
 int			key_main(int key, t_fractol *frc)
 {
-	ft_putnbr(key);
-	ft_putendl("");
 	if (key == ESC)
 		error_out(FINE, frc);
 	else if (key == SCR_UPH)
