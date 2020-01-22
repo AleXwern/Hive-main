@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/20 17:09:05 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:23:01 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 /*
 ** Window size.
 */
-# define WINX		1000
-# define WINY		1000
+# define WINX		600
+# define WINY		600
 
 /*
 ** Tagged keys.
@@ -42,6 +42,7 @@
 # define KEY_ONE	18
 # define KEY_TWO	19
 # define KEY_TRE	20
+# define KEY_FOU	21
 # define SPACE		49
 # define UP			126
 # define DOWN		125
@@ -65,7 +66,7 @@
 # define HLP_C		"SPACE  = stop julia"
 # define HLP_D		"D-PAD  = move"
 # define HLP_E		"H      = open/close help"
-# define HLP_F		"123    = change factal"
+# define HLP_F		"1234   = change factal"
 # define HLP_G		"C      = change color"
 # define HLP_H		"SCROLL = zoom in/out"
 # define HLP_I		"/*     = add/remove threads"

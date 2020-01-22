@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/21 16:05:37 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:21:56 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ typedef struct		s_image
 
 /*
 ** Colors!!
-** int set	= what the current set is;
-** int one	= RED
-** int two	= GREEN
-** int three= BLUE
-** int four	= transparency
+** int set	= what the current set is
+** int 1-4  = color
 */
 typedef struct		s_color
 {

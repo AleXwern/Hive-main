@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:40:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/21 16:00:29 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:25:08 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	change_fractal(int key, t_fractol *frc)
 		frc->fractol = 1;
 	else if (key == KEY_TRE)
 		frc->fractol = 2;
+	else if (key == KEY_FOU)
+		frc->fractol = 3;
 	else if (key == KEY_C)
 		frc->color.set++;
 	else if (key == NUM_PLU)
@@ -81,7 +83,7 @@ int			key_main(int key, t_fractol *frc)
 		set_default(frc);
 	else if (key >= 123 && key <= 126)
 		arrow_key(key, frc);
-	else if ((key >= 18 && key <= 20) || key == 8 || key == 69 || key == 78)
+	else if ((key >= 18 && key <= 21) || key == 8 || key == 69 || key == 78)
 		change_fractal(key, frc);
 	else if (key == 75 || key == 67)
 		mod_thread(key, frc);
