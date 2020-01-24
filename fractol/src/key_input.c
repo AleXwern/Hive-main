@@ -6,11 +6,16 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:40:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/22 16:25:08 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:28 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** A short function that modifies the amount of threads used.
+** Thread amount must be between 1 and Window height in pixels.
+*/
 
 static void	mod_thread(int key, t_fractol *frc)
 {
@@ -23,6 +28,11 @@ static void	mod_thread(int key, t_fractol *frc)
 	if (frc->threads > WINY)
 		frc->threads = WINY;
 }
+
+/*
+** Changes fractal if 1-4 is pressed as well as the iteration
+** if + or - is pressed as well as color scheme if C is pressed.
+*/
 
 static void	change_fractal(int key, t_fractol *frc)
 {
@@ -43,6 +53,11 @@ static void	change_fractal(int key, t_fractol *frc)
 	if (frc->color.set > 2)
 		frc->color.set = 0;
 }
+
+/*
+** DELTA is the difference between MIN and MAX.
+** The image is moved 5% of this delta and movement is camera based.
+*/
 
 static void	arrow_key(int key, t_fractol *frc)
 {
@@ -70,6 +85,12 @@ static void	arrow_key(int key, t_fractol *frc)
 		frc->max.re += (delta.im * 0.05);
 	}
 }
+
+/*
+** Happens when keyboard is pressed.
+** Keys are explained separately.
+** Anyway, clears the window, draws a new one.
+*/
 
 int			key_main(int key, t_fractol *frc)
 {

@@ -6,7 +6,7 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/01/22 16:29:23 by anystrom         ###   ########.fr        #
+#    Updated: 2020/01/24 14:33:21 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 RED = \033[0;31m
 STOP = \033[0m
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re obj
 
 all: $(NAME)
 

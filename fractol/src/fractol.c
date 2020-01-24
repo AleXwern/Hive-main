@@ -6,13 +6,17 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:52:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/22 16:33:37 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:26 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 #include <pthread.h>
 #include <stdio.h>
+
+/*
+** Creates and sets DOUBLE values into complex number presentation.
+*/
 
 t_complex		set_complex(double rn, double in)
 {
@@ -22,6 +26,11 @@ t_complex		set_complex(double rn, double in)
 	cn.im = in;
 	return (cn);
 }
+
+/*
+** I determines a current XY position since DATA is 1D array.
+** Gets color palette based on iteration and sets the palette into pixel.
+*/
 
 static void		set_pixel(t_fractol *frc, int x, int y)
 {
@@ -34,6 +43,12 @@ static void		set_pixel(t_fractol *frc, int x, int y)
 	*(int *)(frc->img->data + (i + 2)) = frc->color.three;
 	*(int *)(frc->img->data + (i + 3)) = frc->color.four;
 }
+
+/*
+** Bread and butter fratal calculation.
+** First sets a set FACTOR which is then used to calculate
+** C with every single pixel that is analyzed (aka all 1M in 1000x1000)
+*/
 
 static void		frc_draw(t_fractol *frc)
 {
@@ -54,6 +69,16 @@ static void		frc_draw(t_fractol *frc)
 		frc->start++;
 	}
 }
+
+/*
+** Heart of the system.
+** PTHREAD is a bonus.
+** makes X amount of threads and copies of FRC, set's an area they are
+** responsible for.
+** THREAD and FRAC are malloced and then freed after everything is done.
+** Malloc was the easiest way of doing this since thread amount was
+** to be made modifiedable.
+*/
 
 void			thread_core(t_fractol *frc)
 {
@@ -82,6 +107,11 @@ void			thread_core(t_fractol *frc)
 	mlx_put_image_to_window(frc->mlx, frc->win, frc->img->img, 0, 0);
 	help_window(frc);
 }
+
+/*
+** Readies input methods, gets and sets the image trough thread_core and
+** then shows the image in window.
+*/
 
 void			fractol_main(t_fractol *frc)
 {

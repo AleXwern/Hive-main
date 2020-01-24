@@ -6,11 +6,22 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 14:24:04 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/21 15:52:08 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:21 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** Color stuff
+** Function is spread to four parts
+** A * B * C * D
+** Basically B and C are the most important factors.
+** Rising pow(t) power makes the graph lean on right.
+** Likewise pow(1 - t) has the opposite effect.
+** 0-point of X+1 is half of X, where X is power.
+** Removing B or C or setting power as 0 is the key to filling valid area.
+*/
 
 static t_color	color_set(int set, double t, t_color color)
 {
@@ -40,6 +51,11 @@ static t_color	color_set(int set, double t, t_color color)
 	}
 	return (color);
 }
+
+/*
+** Creates, sets and returns a color palette based on ITER
+** T is a double value between 0 and 1.
+*/
 
 t_color			get_color(int iter, t_fractol *frc)
 {

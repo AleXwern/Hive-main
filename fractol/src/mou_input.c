@@ -6,11 +6,19 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:52:04 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/22 16:29:59 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:30:45 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** Author's comment "Pain in the ass"
+** "Dealigns" the image with MPOS modifier, modifies the image with
+** zoom modifier so that the image is enlarged based on O-point and then
+** "Re-alighns" the image back to original position.
+** This makes the zoom anchor into mouse pos.
+*/
 
 static void	zoom(int key, t_fractol *frc, t_complex mpos)
 {
@@ -24,6 +32,12 @@ static void	zoom(int key, t_fractol *frc, t_complex mpos)
 	frc->max.im = ((frc->max.im - mpos.im) * frc->zoom) + mpos.im;
 }
 
+/*
+** Actions when mouse buttons are pressed (complete, not half)
+** MPOS is an modifier used later that calculates how much image
+** needs to be de/re-aligned for the zoom to zoom correctly.
+*/
+
 int			mouse_main(int key, int x, int y, t_fractol *frc)
 {
 	t_complex	mpos;
@@ -36,6 +50,14 @@ int			mouse_main(int key, int x, int y, t_fractol *frc)
 	thread_core(frc);
 	return (0);
 }
+
+/*
+** Happens when mouse is moved.
+** If fractal is julia and it's set to move, calculates a new mod
+** to calculate Julia and then redraws it.
+** Basically JUL ranges from -2+-2i to 2+2i when mouse is in 0-0
+** to WINX-WINY respectively.
+*/
 
 int			julia_move(int x, int y, t_fractol *frc)
 {

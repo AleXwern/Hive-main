@@ -6,11 +6,17 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/22 16:22:21 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:29 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** Initialize image into t_image struct and pull needed data out of it.
+** Different t_image parts are (shortly) explained in fractol.h file.
+** FRC is given in case something goes terribly wrong.
+*/
 
 static t_image	*init_image(t_fractol *frc)
 {
@@ -25,6 +31,12 @@ static t_image	*init_image(t_fractol *frc)
 	return (img);
 }
 
+/*
+** Sets some standard values.
+** First set when FRC is constructed
+** Called again when image needs to be reset.
+*/
+
 void			set_default(t_fractol *frc)
 {
 	frc->threads = 10;
@@ -38,6 +50,12 @@ void			set_default(t_fractol *frc)
 	frc->iter = 30;
 }
 
+/*
+** Program ALWAYS exits trough this function.
+** In no case whatsoever should it exit trough main.
+** MSG is feedback message and FRC is toolbox that need to be handled.
+*/
+
 void			error_out(char *msg, t_fractol *frc)
 {
 	ft_putendl(msg);
@@ -47,6 +65,11 @@ void			error_out(char *msg, t_fractol *frc)
 		mlx_destroy_window(frc->mlx, frc->win);
 	exit(0);
 }
+
+/*
+** A short function to determine what fractal is given as ARGV
+** If an incorrct argument is given, program leaves trough error_out.
+*/
 
 static void		define_fratol(t_fractol *frc, char **av)
 {
@@ -61,6 +84,13 @@ static void		define_fratol(t_fractol *frc, char **av)
 	else
 		error_out(B_ARG, frc);
 }
+
+/*
+** Function main. Sets up some core features that are never modified in future.
+** fractol_main(frc) puts program in set loop
+** ft_putendl(OOPS) should never run.
+** ac != 2 exits program with USAGE and incorrect 1 with B_ARG.
+*/
 
 int				main(int ac, char **av)
 {

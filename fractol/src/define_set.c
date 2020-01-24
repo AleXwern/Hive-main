@@ -6,11 +6,16 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:41:36 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/22 16:27:15 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:25 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** Determines what fractal is currently set and returns int ITER
+** that is used to calculate color with frc_FRACTAL.
+*/
 
 static int	frc_tricorn(t_fractol *frc)
 {
