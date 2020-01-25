@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/20 13:57:06 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:21:56 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ typedef struct		s_image
 
 /*
 ** Colors!!
-** int set	= what the current set is;
-** int one	= RED
-** int two	= GREEN
-** int three= BLUE
-** int four	= transparency
+** int set	= what the current set is
+** int 1-4  = color
 */
 typedef struct		s_color
 {
@@ -69,16 +66,17 @@ typedef struct		s_color
 ** void *mlx	= generic mlx pointer.
 ** void *win	= generil mlx window pointer.
 ** int winbool	= 0 or 1 if window exists. Mlx wants to seq fault sometimes.
-** int threads	= number of threads used to render image. Default 8.
+** int threads	= number of threads used to render image. Default 10.
 ** int start	= start Y pos for thread.
 ** int end		= end Y pos for thread.
-** t_image		= image data.
-** t_color		= color data.
-** int fractol	= id of fractol type. -1 equals error.
+** t_image img	= image data.
+** t_color color= color data.
+** int fractol	= id of fractol type.
 ** 0 Mandelbrot
 ** 1 Julia
 ** 2 Bship
 ** double zoom	= is exponent for zoom modifer.
+** int iter		= how many times value is iterated. Default 30.
 ** int ishelp	= 0 or -1 if help window is shown.
 ** int fixjulia	= 0 or -1 if julia follows mouse.
 ** t_complex max = maximum complex number value.

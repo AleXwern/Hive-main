@@ -6,11 +6,16 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:40:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/20 16:24:47 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:28 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** A short function that modifies the amount of threads used.
+** Thread amount must be between 1 and Window height in pixels.
+*/
 
 static void	mod_thread(int key, t_fractol *frc)
 {
@@ -24,6 +29,11 @@ static void	mod_thread(int key, t_fractol *frc)
 		frc->threads = WINY;
 }
 
+/*
+** Changes fractal if 1-4 is pressed as well as the iteration
+** if + or - is pressed as well as color scheme if C is pressed.
+*/
+
 static void	change_fractal(int key, t_fractol *frc)
 {
 	if (key == KEY_ONE)
@@ -32,6 +42,8 @@ static void	change_fractal(int key, t_fractol *frc)
 		frc->fractol = 1;
 	else if (key == KEY_TRE)
 		frc->fractol = 2;
+	else if (key == KEY_FOU)
+		frc->fractol = 3;
 	else if (key == KEY_C)
 		frc->color.set++;
 	else if (key == NUM_PLU)
@@ -41,6 +53,11 @@ static void	change_fractal(int key, t_fractol *frc)
 	if (frc->color.set > 2)
 		frc->color.set = 0;
 }
+
+/*
+** DELTA is the difference between MIN and MAX.
+** The image is moved 5% of this delta and movement is camera based.
+*/
 
 static void	arrow_key(int key, t_fractol *frc)
 {
@@ -69,10 +86,14 @@ static void	arrow_key(int key, t_fractol *frc)
 	}
 }
 
+/*
+** Happens when keyboard is pressed.
+** Keys are explained separately.
+** Anyway, clears the window, draws a new one.
+*/
+
 int			key_main(int key, t_fractol *frc)
 {
-	ft_putnbr(key);
-	ft_putendl("");
 	if (key == ESC)
 		error_out(FINE, frc);
 	else if (key == SCR_UPH)
@@ -83,7 +104,7 @@ int			key_main(int key, t_fractol *frc)
 		set_default(frc);
 	else if (key >= 123 && key <= 126)
 		arrow_key(key, frc);
-	else if ((key >= 18 && key <= 20) || key == 8 || key == 69 || key == 78)
+	else if ((key >= 18 && key <= 21) || key == 8 || key == 69 || key == 78)
 		change_fractal(key, frc);
 	else if (key == 75 || key == 67)
 		mod_thread(key, frc);

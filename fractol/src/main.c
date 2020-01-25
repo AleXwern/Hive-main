@@ -6,11 +6,17 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/20 16:27:45 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:29 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/*
+** Initialize image into t_image struct and pull needed data out of it.
+** Different t_image parts are (shortly) explained in fractol.h file.
+** FRC is given in case something goes terribly wrong.
+*/
 
 static t_image	*init_image(t_fractol *frc)
 {
@@ -25,8 +31,15 @@ static t_image	*init_image(t_fractol *frc)
 	return (img);
 }
 
+/*
+** Sets some standard values.
+** First set when FRC is constructed
+** Called again when image needs to be reset.
+*/
+
 void			set_default(t_fractol *frc)
 {
+	frc->threads = 10;
 	frc->min = set_complex(-2.0, -2.0);
 	frc->max.re = 2.0;
 	frc->max.im = frc->min.im + (frc->max.re - frc->min.re) *
@@ -36,6 +49,12 @@ void			set_default(t_fractol *frc)
 	frc->zoom = 1.0;
 	frc->iter = 30;
 }
+
+/*
+** Program ALWAYS exits trough this function.
+** In no case whatsoever should it exit trough main.
+** MSG is feedback message and FRC is toolbox that need to be handled.
+*/
 
 void			error_out(char *msg, t_fractol *frc)
 {
@@ -47,6 +66,11 @@ void			error_out(char *msg, t_fractol *frc)
 	exit(0);
 }
 
+/*
+** A short function to determine what fractal is given as ARGV
+** If an incorrct argument is given, program leaves trough error_out.
+*/
+
 static void		define_fratol(t_fractol *frc, char **av)
 {
 	if (!ft_strcmp(av[1], "mandelbrot"))
@@ -55,9 +79,18 @@ static void		define_fratol(t_fractol *frc, char **av)
 		frc->fractol = 1;
 	else if (!ft_strcmp(av[1], "bship"))
 		frc->fractol = 2;
+	else if (!ft_strcmp(av[1], "psecorn"))
+		frc->fractol = 3;
 	else
 		error_out(B_ARG, frc);
 }
+
+/*
+** Function main. Sets up some core features that are never modified in future.
+** fractol_main(frc) puts program in set loop
+** ft_putendl(OOPS) should never run.
+** ac != 2 exits program with USAGE and incorrect 1 with B_ARG.
+*/
 
 int				main(int ac, char **av)
 {
@@ -75,7 +108,6 @@ int				main(int ac, char **av)
 		error_out(WIN_ERROR, frc);
 	frc->winbool = 1;
 	frc->img = init_image(frc);
-	frc->threads = 8;
 	fractol_main(frc);
 	ft_putendl(OOPS);
 	return (0);
