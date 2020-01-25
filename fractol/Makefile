@@ -19,7 +19,7 @@ LIBFT = ./obj/libft.a
 OBJS = $(SRC:.c=.o)
 OBJ = $(addprefix ./obj/,$(SRCFILE:.c=.o))
 INCL = -I /usr/local/include -I ./libft -I ./includes
-MLXLIB = -L /usr/local/lib/
+MLXLIB = ../minilibx/libmlx.a
 FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 RED = \033[0;31m
 STOP = \033[0m
