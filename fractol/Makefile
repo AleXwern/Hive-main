@@ -6,13 +6,13 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/01/24 14:33:21 by anystrom         ###   ########.fr        #
+#    Updated: 2020/01/29 15:05:08 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = fractol
-FLG = -Wall -Wextra -Werror
+FLG = -Wall -Wextra -Werror -O3
 SRCFILE = mou_input.c main.c help.c color.c fractol.c define_set.c key_input.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a

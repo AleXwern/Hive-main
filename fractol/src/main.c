@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/24 14:27:29 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:33:03 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			set_default(t_fractol *frc)
 void			error_out(char *msg, t_fractol *frc)
 {
 	ft_putendl(msg);
-	if (frc->img)
+	if (frc->imgbool == 1)
 		mlx_destroy_image(frc->mlx, frc->img->img);
 	if (frc->winbool == 1)
 		mlx_destroy_window(frc->mlx, frc->win);
@@ -97,7 +97,12 @@ int				main(int ac, char **av)
 	t_fractol	*frc;
 
 	if (!(frc = (t_fractol*)malloc(sizeof(t_fractol))))
-		error_out(MEM_ERROR, frc);
+	{
+		ft_putendl(MEM_ERROR);
+		return (0);
+	}
+	frc->winbool = 0;
+	frc->imgbool = 0;
 	if (ac != 2)
 		error_out(USAGE, frc);
 	define_fratol(frc, av);
@@ -108,6 +113,7 @@ int				main(int ac, char **av)
 		error_out(WIN_ERROR, frc);
 	frc->winbool = 1;
 	frc->img = init_image(frc);
+	frc->imgbool = 1;
 	fractol_main(frc);
 	ft_putendl(OOPS);
 	return (0);

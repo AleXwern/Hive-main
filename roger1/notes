@@ -1,0 +1,18 @@
+Log in as root, install needed packages and add non-root user to sudoers file and log off from root.
+
+4.2G partition
+-Install sudo (if not already there)
+-sudo fdisk /dev/sda
+-d to delete n to create new t to chaange ID
+-w to save changes
+
+IP address
+-/etc/network/
+-vim interfaces
+-Create enp0s3 in interfaces.d
+-sudo service networking restart
+
+Default SSH port
+-vim /etc/ssh/sshd_config
+-Locate "#port 22" remove comment and change it to whatever (ex 42 or 69)
+-service sshd restart
