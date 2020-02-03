@@ -9,10 +9,18 @@ Log in as root, install needed packages and add non-root user to sudoers file an
 IP address
 -/etc/network/
 -vim interfaces
--Create enp0s3 in interfaces.d
+-Create NAME in interfaces.d
 -sudo service networking restart
 
 Default SSH port
 -vim /etc/ssh/sshd_config
 -Locate "#port 22" remove comment and change it to whatever (ex 42 or 69)
 -service sshd restart
+
+Firewall stuff
+-sudo ufw status to see current status
+-sudo ufw enable to enable firewall
+-sudo ufw allow XXX
+-80/tcp to enable HTTP
+-54269/tcp to enable SSH
+-443/tcp to enable HTTPS

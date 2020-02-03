@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:18:02 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/30 15:33:03 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:25:25 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_image	*init_image(t_fractol *frc)
 
 void			set_default(t_fractol *frc)
 {
-	frc->threads = 10;
+	frc->threads = 100;
 	frc->min = set_complex(-2.0, -2.0);
 	frc->max.re = 2.0;
 	frc->max.im = frc->min.im + (frc->max.re - frc->min.re) *

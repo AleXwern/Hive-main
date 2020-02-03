@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:52:31 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/24 14:27:26 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:24:09 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void		frc_draw(t_fractol *frc)
 {
 	int			x;
 
-	frc->factor = set_complex((frc->max.re - frc->min.re) / (WINX - 1),
-			(frc->max.im - frc->min.im) / (WINY - 1));
-	while (frc->start < frc->end)
+	frc->factor = set_complex((frc->max.re - frc->min.re) / WINX,
+			(frc->max.im - frc->min.im) / WINY);
+	while (frc->start < WINY)
 	{
 		x = 0;
 		frc->c.im = frc->max.im - frc->start * frc->factor.im;
@@ -66,7 +66,7 @@ static void		frc_draw(t_fractol *frc)
 			set_pixel(frc, x, frc->start);
 			x++;
 		}
-		frc->start++;
+		frc->start += frc->threads;
 	}
 }
 
@@ -92,8 +92,7 @@ void			thread_core(t_fractol *frc)
 	while (i < frc->threads)
 	{
 		frac[i] = *frc;
-		frac[i].start = i * (WINY / frc->threads);
-		frac[i].end = (i + 1) * (WINY / frc->threads);
+		frac[i].start = i;
 		if (pthread_create(&thread[i], NULL, (void *(*)(void *))frc_draw,
 				(void*)&frac[i]))
 			error_out(T_ERROR, frc);

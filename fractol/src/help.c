@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:33:27 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/24 14:27:27 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:30:17 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void		help_window(t_fractol *frc)
 	int		x;
 	int		y;
 
-	x = WINX / 25;
-	y = WINY / 25;
 	if (frc->ishelp)
 	{
+		x = WINX / 25;
+		y = WINY / 25;
 		mlx_string_put(frc->mlx, frc->win, x, y, HL, HLP);
 		mlx_string_put(frc->mlx, frc->win, x, y + 20, HL, HLP_A);
 		mlx_string_put(frc->mlx, frc->win, x, y + 40, HL, HLP_B);
