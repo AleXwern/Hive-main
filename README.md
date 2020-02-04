@@ -9,7 +9,9 @@ This is a README file for AleX Nyström *AleXwern*'s Hive Helsinki personal git 
   * Participants:		pkuussaa
 * Init				- cleared on 05.12.2019 at 16:03
 * FDF					- cleared on 06.01.2020 at 17:40
-* Fract'ol    - cleared on
+* Fract'ol    - cleared on 04.02.2020 at 15:30
+* Wolf3D      - cleared on
+* Roger Skyline 1   - cleared on 
 
 *Milestones:*
 
