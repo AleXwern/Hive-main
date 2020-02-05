@@ -16,7 +16,7 @@
 # include "../libft/get_next_line.h"
 # include "value.h"
 # include <math.h>
-# include "../../minilibx/mlx.h"
+# include "/usr/X11/include/mlx.h"
 # include <fcntl.h>
 
 /*

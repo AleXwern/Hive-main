@@ -20,9 +20,9 @@ OBJS = $(SRC:.c=.o)
 OBJ = $(addprefix ./obj/,$(SRCFILE:.c=.o))
 OBJDIR = ./obj/
 SRCDIR = ./src/
-INCL = -I /usr/local/include -I ./libft -I ./includes
-MLXLIB = ../minilibx/libmlx.a
-FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
+INCL = -I /X11/Xlib.h -I /usr/X11/include -I ./libft -I ./includes
+MLXLIB = /usr/X11/lib/libmlx.a
+FRAMEWORK = -framework OpenGL -framework AppKit
 RED = \033[0;31m
 STOP = \033[0m
 
