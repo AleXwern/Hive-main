@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:12:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/01/22 16:21:56 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:27:54 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ typedef struct		s_fractol
 	void			*mlx;
 	void			*win;
 	int				winbool;
+	int				imgbool;
 	int				threads;
 	int				start;
-	int				end;
 	t_image			*img;
 	t_color			color;
 	int				fractol;

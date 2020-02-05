@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/02/03 11:28:47 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/01/24 15:57:37 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 /*
 ** Window size.
 */
-# define WINX		700
-# define WINY		700
+# define WINX		1080
+# define WINY		720
 
 /*
 ** Tagged keys.
