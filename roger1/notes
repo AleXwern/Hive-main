@@ -1,16 +1,22 @@
 Log in as root, install needed packages and add non-root user to sudoers file and log off from root.
+-su -> apt install sudo vim -y
+-sudo apt-get update
+-sudo adduser alexwern sudo
+-exit
 
 4.2G partition
--Install sudo (if not already there)
--sudo fdisk /dev/sda
+-separate /home partition
+-sudo cfdisk
 -d to delete n to create new t to chaange ID
 -w to save changes
 
 IP address
+-Host Network manager
+-tamper with values
+-port forward lo to enp0s8
 -/etc/network/
 -vim interfaces
--Create NAME in interfaces.d
--sudo service networking restart
+->Discord
 
 Default SSH port
 -vim /etc/ssh/sshd_config
