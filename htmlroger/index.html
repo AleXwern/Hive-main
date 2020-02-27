@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<title>
+	Hive Projects
+</title>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial;
+	background-image: url('back.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+.tab {
+	overflow: hidden;
+	border: 1px solid #773000;
+	background-color: #c45104;
+}
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+}
+.tab button:hover {
+	background-color: #ca5d41;
+}
+.tab button.active {
+	background-color: #c42a04;
+}
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #773000;
+	border-top: none;
+	background-image: url('backtab.png');
+	background-size: 100% 100%;
+}
+</style>
+</head>
+<body>
+
+<h2>Hive Projects</h2>
+
+<a href="index.html">
+	<img alt="HiveHel" src="hive.png" width="50" height="50">
+</a>
+<a href="index2.html">
+	<img alt="AleXwern" src="xeno.png" width="50" height="50">
+</a>
+
+<div class="tab">
+  <button class="tablinks" onclick="Project(event, 'libft')">Libft</button>
+  <button class="tablinks" onclick="Project(event, 'gnl')">GNL</button>
+  <button class="tablinks" onclick="Project(event, 'fillit')">Fillit</button>
+  <button class="tablinks" onclick="Project(event, 'init')">Init</button>
+  <button class="tablinks" onclick="Project(event, 'fdf')">FDF</button>
+  <button class="tablinks" onclick="Project(event, 'fractol')">Fract'ol</button>
+  <button class="tablinks" onclick="Project(event, 'roger')">Roger</button>
+  <button class="tablinks" onclick="Project(event, 'notes')">Roger Notes</button>
+  <button class="tablinks" onclick="Project(event, 'wolf')">Wolf3D</button>
+</div>
+
+<div id="libft" class="tabcontent">
+	<h3>Libft</h3>
+	<p>First real Hive project. Recode part of standard C library.</p>
+	<p>Despite having previous experience with coding (Piscine/Uni) I struggled with this quite hard. Made through the blackhole the very last day.</p>
+	<p>I didn't do the bonus part and memory allocation and linked list were hebrew to me and so I had to resort to external sources A LOT.</p>
+	<img src="libft.png" alt="Libft">
+</div>
+
+<div id="gnl" class="tabcontent">
+	<h3>GNL</h3>
+	<p>With use of Libft, this is first proper "own" project. It's a function that returns one line from given file.</p>
+	<p>Some stuff like static variables were difficult at first, but turned out I was overthingking a lot (this will be a trend btw).</p>
+	<p>Once I got the hang of the basic stuff needed the rest of the project built up quite organically.</p>
+	<img src="gnl.png" alt="GNL"> 
+</div>
+
+<div id="fillit" class="tabcontent">
+	<h3>Fillit</h3>
+	<p>First group project. Make an algorithm that fits Tetris pieces in smallest area possible.</p>
+	<p>I'm not very social person but I had a lot of fun with this one. Partially or mostly because my pair was easy to work with.</p>
+	<p>We didn't know how to approach this at first so we just did something and eventually we got few good ideas and it all added up until we got our final result.</p>
+	<p>Finally understood how to use linked lists and I've been using them very aggressively ever since.</p>
+	<img src="fillit.png" alt="Fillit">
+</div>
+
+<div id="init" class="tabcontent">
+	<h3>Init</h3>
+	<p>I quess I made this. 2 days of scrabling around and then passed. There's not really anything noteworthy here.</p>
+	<p>Here's image of my current progress, I quess.</p>
+	<img src="init.png" alt="Init">
+</div>
+
+<div id="fdf" class="tabcontent">
+	<h3>FDF</h3>
+	<p>Graphics project that utilized in-house made "Minilibx" library. Idea was to take a file and render a peudo 3D wireframe.</p>
+	<p>Yeah, I was overthinking the complexity of MLX. Just use a function and be done with it. EZ PZ. Memed around for a week and the I got good rythm going on for the project.</p>
+	<p>There was a lot of mathematics involved which was fine because of my background. As mathematician I was numbers to be exact and not almost so my topmost priority was not to repocess values multiple times.</p>
+	<p>I had a roadmap on how I wanted to implement this which made my life easier when I wanted to implement some cool feature or just anything in general.</p>
+	<p>Cool ideas btw, 3D objects! Took me entire 4 hours to implement extra layers. Behind the scenes it was just adding one extra integer type value to check layer #. Had to change the input file structure though.</p>
+	<p>"I want this to be perfect. Almost perfect is not enough" -me to my evaluator</p>
+	<p>End up taking 4 weeks to do this because of how obsessed I was.</p>
+	<img src="temp.png" alt="FDF">
+</div>
+
+<div id="fractol" class="tabcontent">
+	<h3>Fract'ol</h3>
+	<p>A bit of continuation to FDF. Idea was to generate seemingly endlessly zoomable images. Fractals are heavy to calculate so the aim was to optimize it as much as possible.</p>
+	<p>Felt a bit letdown after FDF. There wasn't that much interesting bonuses to go after. I made it look nice but that's about it.</p>
+	<p>My biggest pitfall was overusing math.h libary which took absolutely massive chuck of processing power. If I can do math, I'll do it myself.</p>
+	<img src="fractol.png" alt="Fractol">
+</div>
+
+<div id="wolf" class="tabcontent">
+	<h3>Wolf3D</h3>
+	<p>Beginning of the end. Create a simple game like "Wolfenstein 3D". My current WIP project.</p>
+	<p>Alright, so I haven't really started yet but I have a plan. 3D eviroinment with cubic objects - tiles.</p>
+	<p>When you walk around -> from tile to another -> you'll build up aggro and eventually get and random encounter when you have enough aggro.</p>
+	<p>I'm and avid fan of Etrian Odyssey which is 1st person dungeon crawler so that's inspiring the idea.</p>
+	<img src="wolf.png" alt="Wolf3D">
+</div>
+
+<div id="roger" class="tabcontent">
+	<h3>Roger Skyline 1</h3>
+	<p>This project (Yea, no kidding). Not my favourite project. Let this be done so I can do my actual preferred projects like Wolf.</p>
+	<img src="roger.png" alt="Roger">
+</div>
+
+<div id="notes" class="tabcontent">
+	<h3>Roger Skyline 1 notes</h3>
+	<p>Log in as root, install needed packages and add non-root user to sudoers file and log off from root.<br>-su -> apt install sudo vim ufw fail2ban portsentry apache2 mailutils -y<br>-sudo apt-get update && sudo apt-get upgrade<br>-sudo adduser alexwern sudo<br>-exit<br>
+		<br>4.2G partition<br>-separate /home partition<br>-sudo cfdisk<br>-d to delete n to create new t to chaange ID<br>-w to save changes<br>
+		<br>IP address<br>-Host Network manager<br>-tamper with values<br>-port forward lo to enp0s3<br>-/etc/network/<br>-vim interfaces<br>->Discord<br>
+		<br>Default SSH port<br>-vim /etc/ssh/sshd_config<br>-Locate "#port 22" remove comment and change it to whatever (ex 42 or 69)<br>-password off<br>-pubkey on<br>-service sshd restart<br>
+		<br>Firewall stuff<br>-sudo ufw status verbose to see current status<br>-sudo ufw enable to enable firewall<br>-sudo ufw allow XXX<br>-80/tcp to enable HTTP<br>-54269/tcp to enable SSH<br>-443/tcp to enable HTTPS<br>-sudo ufw default allow outgoing<br>-sudo ufw default deny incoming<br>
+		<br>Disable redundant services<br>-sudo systemctl list-unit-files | grep enabled<br>-sudo systemctl disable XXXX<br>
+		<br>Crontab<br>-sudo apt-get XXXX -y >> /var/log/update_script.log<br>-DIFF into new file<br>-Check diff and make decicions based on that<br>-chown root<br>-chmod 755</p>
+</div>
+
+<p>Rando links</p>
+<a href="https://profile.intra.42.fr/users/anystrom">
+	<img alt="HiveHel" src="hive.png" width="75" height="75">
+</a>
+<a href="https://www.fflogs.com/character/id/12300183">
+	<img alt="FFLogs" src="fflogs.png" width="75" height="75">
+</a>
+<a href="https://github.com/AleXwern">
+	<img alt="Github" src="github.png" width="75" height="75">
+</a>
+<a href="https://ucobsales.com/">
+	<img alt="ucob" src="mentor.png" width="75" height="75">
+</a>
+
+<script>
+function Project(evt, cityName) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+    	tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+    	tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+	document.getElementById(cityName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+</script>
+   
+</body>

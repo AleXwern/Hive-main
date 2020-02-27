@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<title>
+	Own Projects
+</title>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial;
+	background-image: url('back.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+.tab {
+	overflow: hidden;
+	border: 1px solid #773000;
+	background-color: #c45104;
+}
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+}
+.tab button:hover {
+	background-color: #ca5d41;
+}
+.tab button.active {
+	background-color: #c42a04;
+}
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #773000;
+	border-top: none;
+	background-image: url('backtab.png');
+	background-size: 100% 100%;
+}
+</style>
+</head>
+<body>
+
+<h2>Own Projects</h2>
+
+<a href="index.html">
+	<img alt="HiveHel" src="hive.png" width="50" height="50">
+</a>
+<a href="index2.html">
+	<img alt="AleXwern" src="xeno.png" width="50" height="50">
+</a>
+
+<div class="tab">
+	<button class="tablinks" onclick="Project(event, 'xeno')">Xenosaga12</button>
+	<button class="tablinks" onclick="Project(event, 'nds')">NDS</button>
+	<button class="tablinks" onclick="Project(event, 'gol')">Game of life</button>
+	<button class="tablinks" onclick="Project(event, 'act')">ACT Overlay</button>
+	<button class="tablinks" onclick="Project(event, 'discord')">Discord bot</button>
+</div>
+
+<div id="xeno" class="tabcontent">
+	<h3>Xenosaga 1&2</h3>
+	<p>As of currently, a basic menu translation to NDS game Xenosaga 1&2 which was only released in Japan.</p>
+	<p>Shift-JIS encoding. Translation needs to be exactly the length of original or text will break. Luckily JP characters are 2 bytes long so コスモス can be changed to KOS-MOS with extra character at end.</p>
+	<p>Unfortunately, like picture below, I need to make compromises if original is way too short.</p>
+	<p>The text is no problem (although the story is high in volume) but the format of graphics remain a mystery so far. Because of this I can't translate the menu itself.</p>
+	<p>Instead of text, the menu is a graphic layer consisting multiple images. When you hover over a option, the palette changes every frame which creates the flashing effect.</p>
+	<img src="xeno2.png" alt="Xeno2">
+</div>
+
+<div id="nds" class="tabcontent">
+	<h3>NDS Graphics Project</h3>
+	<p>Using libary called "libnds" this is somewhat a testrun to make game/program for Nintendo DS. Ultimate aim would be to port FDF/Fract'ol/Wolf3D to NDS using this library.</p>
+	<p>So far it's been like walking leg deep swamp. It doesn't help a lot of emulators have issue with self signed code so I need to physically transfer files to my 3DS to test things. This process takes over 2 minutes everytime I need to do it.</p>
+	<img src="nds.png" alt="NDS"> 
+</div>
+
+<div id="gol" class="tabcontent">
+	<h3>Game of life</h3>
+	<p>Just a small fun project making a version of "Game of life" using Minilibx.</p>
+	<p>I did this in Java back when I was in Uni. I saw a random YouTube video about the matter not too long ago and that inspired me to do this.</p>
+	<p>Basically I'd have 250x250 tileset in 1000x1000 screen and everything can be alive or dead and I's just slap MLX images to screen depending on character state.</p>
+	<p>Output below is not result of my own code but it's something it should look like when it's done.</p>
+	<p>Can I not be lazy thanks?</p>
+	<img src="gol.png" alt="GoL">
+</div>
+
+<div id="act" class="tabcontent">
+	<h3>ACT Overlay</h3>
+	<p>Toxic parser :^)</p>
+	<p>An attempt of making my own overlay for ACT for Final Fantasy XIV. Currently uses RandbowMage as base but I'd like to make my own standalone version at some point.</p>
+	<p>Javascript is not very nice tbh, but HTML/JS is what I need to use for this.</p>
+	<p>Currently I'm trying to implement a feature which tracks the last hit taken. XIVplugin doen't do this so I'm using the data I have available.</p>
+	<p>Issue is that I need to track # of player amount of instances of data and I don't know which player is which so I need to find a proper way to get around that.</p>
+	<img src="act.png" alt="ACT">
+</div>
+
+<div id="discord" class="tabcontent">
+	<h3>Discord Bot</h3>
+	<p>A simple general purpose bot for variety of uses. Can check if Minecraft server is up and output playercount to it's own status or chat as reply.</p>
+	<img src="discord.png" alt="Discord">
+</div>
+
+<p>Rando links</p>
+<a href="https://profile.intra.42.fr/users/anystrom">
+	<img alt="HiveHel" src="hive.png" width="75" height="75">
+</a>
+<a href="https://www.fflogs.com/character/id/12300183">
+	<img alt="FFLogs" src="fflogs.png" width="75" height="75">
+</a>
+<a href="https://github.com/AleXwern">
+	<img alt="Github" src="github.png" width="75" height="75">
+</a>
+<a href="https://ucobsales.com/">
+	<img alt="ucob" src="mentor.png" width="75" height="75">
+</a>
+
+<script>
+function Project(evt, cityName) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+    	tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+    	tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+	document.getElementById(cityName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+</script>
+   
+</body>
