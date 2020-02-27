@@ -24,6 +24,9 @@ Default SSH port
 -password off
 -pubkey on
 -service sshd restart
+-ssh-keygen to create a key
+-chmod 600 FILE
+-ssh-copy-id -i FILE.pub alexwern@IP -p PORT
 
 Firewall stuff
 -sudo ufw status verbose to see current status
@@ -45,3 +48,9 @@ Crontab
 -Check diff and make decicions based on that
 -chown root
 -chmod 755
+
+SSL websoite diidleduudle
+-openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+-openssl x509 -text -noout -in certificate.pem
+-openssl pkcs12 -inkey key.pem -in certificate.pem -export -out certificate.p12
+-openssl pkcs12 -in certificate.p12 -noout -info
