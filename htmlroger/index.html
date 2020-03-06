@@ -108,7 +108,7 @@ body {
 	<p>Cool ideas btw, 3D objects! Took me entire 4 hours to implement extra layers. Behind the scenes it was just adding one extra integer type value to check layer #. Had to change the input file structure though.</p>
 	<p>"I want this to be perfect. Almost perfect is not enough" -me to my evaluator</p>
 	<p>End up taking 4 weeks to do this because of how obsessed I was.</p>
-	<img src="temp.png" alt="FDF">
+	<img src="fdf.png" alt="FDF">
 </div>
 
 <div id="fractol" class="tabcontent">
@@ -160,7 +160,7 @@ body {
 </a>
 
 <script>
-function Project(evt, cityName) {
+function Project(evt, prj) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
@@ -170,7 +170,7 @@ function Project(evt, cityName) {
 	for (i = 0; i < tablinks.length; i++) {
     	tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}
-	document.getElementById(cityName).style.display = "block";
+	document.getElementById(prj).style.display = "block";
 	evt.currentTarget.className += " active";
 }
 </script>

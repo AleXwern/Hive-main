@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/04 13:53:16 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:35:00 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "../libft/libft.h"
+# include "../libft/get_next_line.h"
 
 typedef struct	s_chara
 {
@@ -25,6 +27,11 @@ typedef struct	s_chara
 	int			defend;
 	int			row;
 }				t_chara;
+
+/*
+** GFX library
+** 0 = Skybox
+*/
 
 typedef struct	s_gfx
 {
@@ -52,11 +59,25 @@ typedef struct	s_wolf
 	t_gfx		menugfx[5];
 	t_chara		chara[5];
 	int			spawn[2];
+	int			hold;
+	int			flr;
+	int			mapset;
+	int			map[5][25][25];
 	int			winb;
 	int			rng;
 	int			aggro;
 	int			iscombat;
 	int			ismenu;
 }				t_wolf;
+
+int				key_press(int key, t_wolf *wolf);
+int				key_release(int key, t_wolf *wolf);
+int				x_press(t_wolf *wolf);
+
+
+void			comp_gfx(t_wolf *wolf);
+void			comp_map(t_wolf *wolf, char *av);
+void			error_out(char *msg, t_wolf *wolf);
+void			free_memory(char **arr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/04 12:49:01 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:44:59 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 # define G_ERROR	"General error happened. Exiting program."
 # define B_ARG		"Error: Bad argument."
-# define USAGE		"Usage:	./wolf3d [tileset, 1-6] [FOLDER name]"
+# define USAGE		"Usage:	./wolf3d [tileset, 1-6] [FOLDER name, ex. map/]"
 # define MEM_ERROR	"Not enough memory to allocate space for ./wolf3d."
 # define T_ERROR	"There was a threading problem."
 # define OOPS		"This should never be shown. Everyone panic!"
@@ -29,6 +29,7 @@
 # define GFX_ERROR	"GFX doesn't exist. Put it back!"
 # define FLR_ERROR	"Not enough floors in given folder."
 # define STR_ERROR	"Stairs don't lead anywhere. Dest need to have same XY pos"
+# define FIL_ERROR	"File incorrectly formated."
 
 /*
 ** Window size.
