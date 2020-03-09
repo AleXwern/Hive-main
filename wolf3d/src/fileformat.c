@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/06 14:31:14 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:31:05 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	comp_map(t_wolf *wolf, char *av)
 	char	*flrfl;
 	int		fd;
 
+	if (wolf->flr > 5)
+		return ;
 	wolf->flr += 49;
 	flrfl = ft_strjoin(av, (char*)&(wolf->flr));
 	ft_putendl(flrfl);

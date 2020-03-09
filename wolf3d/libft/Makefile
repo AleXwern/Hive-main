@@ -6,7 +6,7 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 16:09:13 by anystrom          #+#    #+#              #
-#    Updated: 2020/01/21 15:19:32 by anystrom         ###   ########.fr        #
+#    Updated: 2020/03/09 13:52:31 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = ft_memalloc.c ft_putendl.c ft_strcpy.c ft_strmapi.c ft_strsub.c \
 	ft_strlcat.c ft_strrchr.c ft_isprint.c ft_putchar.c ft_strclr.c \
 	ft_strlen.c ft_strsplit.c ft_itoa.c ft_putchar_fd.c ft_strcmp.c \
 	ft_strmap.c ft_strstr.c ft_wordlen.c ft_isblank.c ft_isnegative.c \
-	ft_intsize.c ft_isextascii.c get_next_line.c ft_puthex.c ft_lcm.c
+	ft_intsize.c ft_isextascii.c get_next_line.c ft_puthex.c ft_lcm.c \
+	ft_abs.c
 OBJS = $(SRCS:.c=.o)
 INCLS = ./
 OBJFLD = ../obj/
