@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 11:50:15 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/09 16:12:01 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/10 12:53:56 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		ft_strnequ(char const *s1, char const *s2, size_t n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_wordlen(char const *str, char del);
+
+double	ft_fabs(double num);
 
 char	*ft_itoa(int n);
 char	*ft_setword(char const *s, int len);

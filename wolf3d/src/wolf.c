@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/09 16:01:50 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/10 15:23:09 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 
 void	wolf_default(t_wolf *wolf)
 {
+	wolf->flr = 0;
 	wolf->posx = 2;
 	wolf->posy = 2;
 	wolf->dirx = -1;
 	wolf->diry = 0;
 	wolf->planex = 0;
-	wolf->planey = 0.66;
+	wolf->planey = 0.9;
+	wolf->rotsp = 0.1;
+	wolf->movsp = 0.1;
 }
 
 void	error_out(char *msg, t_wolf *wolf)
@@ -50,7 +53,9 @@ void	setup(t_wolf *wolf)
 	mlx_hook(wolf->win, 2, 0, key_press, wolf);
 	mlx_hook(wolf->win, 3, 0, key_release, wolf);
 	mlx_hook(wolf->win, 17, 0, x_press, wolf);
+	ft_putendl("Begin render");
 	render(wolf);
+	ft_putendl("Success");
 	mlx_loop(wolf->mlx);
 }
 

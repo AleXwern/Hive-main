@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/09 14:44:41 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/10 15:23:13 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void	comp_gfx(t_wolf *wolf)
 
 	wolf->tile += 48;
 	bpath = ft_strjoin("gfx/", (char*)&(wolf->tile));
-	wolf->img = init_image(wolf, WINX, WINY);
 	wolf->gfx[0] = gfx_get(wolf, ft_strjoin(bpath, "/sky.xpm"), 1080, 360);
 	wolf->gfx[1] = gfx_get(wolf, ft_strjoin(bpath, "/floor.xpm"), 1080, 360);
-	mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[0].img, 0, 0);
-	mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[1].img, 0, 360);
+	//mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[0].img, 0, 0);
+	//mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[1].img, 0, 360);
 	ft_putendl("GFX compiled");
 }

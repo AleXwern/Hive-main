@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/09 16:05:42 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/10 14:23:00 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 
@@ -110,6 +111,16 @@ typedef struct	s_wolf
 	int			aggro;
 	int			iscombat;
 	int			ismenu;
+	int			mapx;
+	int			mapy;
+	int			stepx;
+	int			stepy;
+	int			hit;
+	int			side;
+	int			lineh;
+	int			start;
+	int			end;
+	int			testcolor;
 	double		posx;
 	double		posy;
 	double		dirx;
@@ -119,12 +130,21 @@ typedef struct	s_wolf
 	double		camx;
 	double		raydx;
 	double		raydy;
+	double		sidedx;
+	double		sidedy;
+	double		deltadx;
+	double		deltady;
+	double		walldist;
+	double		movsp;
+	double		rotsp;
 }				t_wolf;
 
 t_gfx			init_image(t_wolf *wolf, int x, int y);
 
 int				key_press(int key, t_wolf *wolf);
-int				key_release(int key, t_wolf *wolf);
+int				key_release(int key, t_wolf *wolf);			
+int				move_fb(int key, t_wolf *wlf);
+int				move_lr(int key, t_wolf *wlf);
 int				x_press(t_wolf *wolf);
 
 void			comp_gfx(t_wolf *wolf);
@@ -132,5 +152,6 @@ void			comp_map(t_wolf *wolf, char *av);
 void			error_out(char *msg, t_wolf *wolf);
 void			free_memory(char **arr);
 void			render(t_wolf *wlf);
+void			wall_stripe(t_wolf *wlf);
 
 #endif
