@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/18 16:35:36 by anystrom          #+#    #+#             */
+/*   Updated: 2019/10/30 12:41:25 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+size_t	ft_strlen(const char *str)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	int		size;
 
-	if (dst == NULL || src == NULL)
-		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
-	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
-	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	size = 0;
+	while (str[size])
+		size++;
+	return (size);
 }

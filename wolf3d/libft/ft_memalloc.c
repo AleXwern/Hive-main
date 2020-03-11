@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/25 15:43:13 by anystrom          #+#    #+#             */
+/*   Updated: 2019/10/30 13:07:34 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memalloc(size_t size)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	void	*array;
 
-	if (dst == NULL || src == NULL)
+	if (!(array = malloc(size)))
 		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
-	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
-	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	ft_bzero(array, size);
+	return (array);
 }

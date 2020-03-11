@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/25 13:38:12 by anystrom          #+#    #+#             */
+/*   Updated: 2019/10/30 13:06:41 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_putendl(char const *s)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	int				i;
+	unsigned char	c;
 
-	if (dst == NULL || src == NULL)
-		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
+		c = (unsigned char)s[i];
+		write(1, &c, 1);
+		i++;
 	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	write(1, "\n", 1);
 }

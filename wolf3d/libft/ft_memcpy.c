@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/23 14:22:49 by anystrom          #+#    #+#             */
+/*   Updated: 2019/11/02 13:36:22 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	size_t			i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
 
-	if (dst == NULL || src == NULL)
-		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
+	i = 0;
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	while (i < n)
 	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
+		dst2[i] = src2[i];
+		i++;
 	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	return (dst2);
 }

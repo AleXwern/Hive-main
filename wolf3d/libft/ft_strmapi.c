@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/28 12:31:08 by anystrom          #+#    #+#             */
+/*   Updated: 2019/11/01 14:18:56 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	unsigned int	i;
+	char			*array;
+	char			*str;
 
-	if (dst == NULL || src == NULL)
+	str = (char *)s;
+	if (!(array = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1))))
 		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
+		array[i] = f(i, str[i]);
+		i++;
 	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	array[i] = '\0';
+	return (array);
 }

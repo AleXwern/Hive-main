@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/21 12:48:51 by anystrom          #+#    #+#             */
+/*   Updated: 2019/10/30 12:39:33 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	char	*dup;
+	int		i;
+	int		size;
 
-	if (dst == NULL || src == NULL)
+	size = 0;
+	while (s1[size])
+		size++;
+	if (!(dup = malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
+	i = 0;
+	while (s1[i])
 	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
+		dup[i] = s1[i];
+		i++;
 	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	dup[i] = '\0';
+	return (dup);
 }

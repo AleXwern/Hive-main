@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/30 13:08:34 by anystrom          #+#    #+#             */
+/*   Updated: 2019/11/02 15:20:12 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strtrim(char const *s)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	size_t	i;
+	size_t	e;
 
-	if (dst == NULL || src == NULL)
-		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
-	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
-	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	if (!s)
+		return ((char *)s);
+	i = 0;
+	e = ft_strlen(s);
+	while ((s[i] == ' ' || s[i] == '\n' || s[i] == '\t') && s[i])
+		i++;
+	while ((s[e - 1] == ' ' || s[e - 1] == '\n' || s[e - 1] == '\t') && i < e)
+		e--;
+	if (i == e)
+		return (ft_strnew(1));
+	return (ft_strsub(s, i, (e - i)));
 }

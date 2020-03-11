@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/28 15:42:30 by anystrom          #+#    #+#             */
+/*   Updated: 2019/11/01 14:23:37 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	char	*array;
+	int		i;
+	int		a;
 
-	if (dst == NULL || src == NULL)
+	a = 0;
+	if (!(array = (char *)malloc(sizeof(char) *
+			(ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
+		array[a] = (char)s1[i];
+		a++;
+		i++;
 	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		array[a] = (char)s2[i];
+		a++;
+		i++;
+	}
+	array[a] = '\0';
+	return (array);
 }

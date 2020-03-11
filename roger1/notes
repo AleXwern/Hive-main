@@ -1,26 +1,57 @@
 Log in as root, install needed packages and add non-root user to sudoers file and log off from root.
+-su -> apt install sudo vim ufw fail2ban portsentry apache2 mailutils sendmail -y
+-sudo apt-get update && sudo apt-get upgrade
+-sudo adduser alexwern sudo
+-exit
 
 4.2G partition
--Install sudo (if not already there)
--sudo fdisk /dev/sda
+-separate /home partition
+-sudo cfdisk
 -d to delete n to create new t to chaange ID
 -w to save changes
 
 IP address
+-NAT to bridged
+-Host Network manager
+-tamper with values
+-port forward lo to enp0s3
 -/etc/network/
 -vim interfaces
--Create NAME in interfaces.d
--sudo service networking restart
+->Discord
 
 Default SSH port
 -vim /etc/ssh/sshd_config
 -Locate "#port 22" remove comment and change it to whatever (ex 42 or 69)
+-password off
+-pubkey on
 -service sshd restart
+-ssh-keygen to create a key
+-chmod 600 FILE
+-ssh-copy-id -i FILE.pub alexwern@IP -p PORT
 
 Firewall stuff
--sudo ufw status to see current status
+-sudo ufw status verbose to see current status
 -sudo ufw enable to enable firewall
 -sudo ufw allow XXX
 -80/tcp to enable HTTP
 -54269/tcp to enable SSH
 -443/tcp to enable HTTPS
+-sudo ufw default allow outgoing
+-sudo ufw default deny incoming
+
+Disable redundant services
+-sudo systemctl list-unit-files | grep enabled
+-sudo systemctl disable XXXX
+
+Crontab
+-sudo apt-get XXXX -y >> /var/log/update_script.log
+-DIFF into new file
+-Check diff and make decicions based on that
+-chown root
+-chmod 755
+
+SSL websoite diidleduudle
+-openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+-openssl x509 -text -noout -in certificate.pem
+-openssl pkcs12 -inkey key.pem -in certificate.pem -export -out certificate.p12
+-openssl pkcs12 -in certificate.p12 -noout -info

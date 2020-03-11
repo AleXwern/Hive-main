@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 13:57:56 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:06:51 by anystrom         ###   ########.fr       */
+/*   Created: 2019/10/21 14:15:19 by anystrom          #+#    #+#             */
+/*   Updated: 2019/11/01 11:28:16 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strcat(char *dest, const char *src)
 {
-	unsigned char	*ret;
-	unsigned char	*mov;
+	int		d;
+	int		s;
 
-	if (dst == NULL || src == NULL)
-		return (NULL);
-	ret = (unsigned char *)dst;
-	mov = (unsigned char *)src;
-	if (ret > mov)
+	d = 0;
+	s = 0;
+	while (dest[d] != '\0')
+		d++;
+	while (src[s] != '\0' && dest)
 	{
-		while (len > 0)
-		{
-			ret[len - 1] = mov[len - 1];
-			len--;
-		}
+		dest[d] = src[s];
+		d++;
+		s++;
 	}
-	else
-		ft_memcpy(ret, mov, len);
-	return ((void *)ret);
+	dest[d] = '\0';
+	return (dest);
 }
