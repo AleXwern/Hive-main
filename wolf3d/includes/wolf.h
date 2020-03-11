@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/10 14:23:00 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:19:56 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_wolf
 	int			mapset;
 	int			map[5][25][25];
 	int			winb;
-	int			rng;
+	double		rng;
 	int			fcomb;
 	int			aggro;
 	int			iscombat;
@@ -120,6 +120,9 @@ typedef struct	s_wolf
 	int			lineh;
 	int			start;
 	int			end;
+	int			texnum;
+	int			texx;
+	int			texy;
 	int			testcolor;
 	double		posx;
 	double		posy;
@@ -137,6 +140,9 @@ typedef struct	s_wolf
 	double		walldist;
 	double		movsp;
 	double		rotsp;
+	double		step;
+	double		wallx;
+	double		texpos;
 }				t_wolf;
 
 t_gfx			init_image(t_wolf *wolf, int x, int y);

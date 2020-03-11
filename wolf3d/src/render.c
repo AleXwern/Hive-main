@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/10 15:23:06 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:05:18 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	dda_sys(t_wolf *wlf)
 
 void	dda_prep(t_wolf *wlf)
 {
+	wlf->deltadx = fabs(1 / wlf->raydx);
+	wlf->deltady = fabs(1 / wlf->raydy);
 	if (wlf->raydx < 0)
 	{
 		wlf->stepx = -1;
@@ -62,27 +64,34 @@ void	dda_prep(t_wolf *wlf)
 
 void	rc_init(t_wolf *wlf)
 {
-	wlf->camx = 2 * wlf->x / (double)(WINY) - 1;
+	wlf->camx = 2 * wlf->x / (double)(WINX) - 1.0;
 	wlf->raydx = wlf->dirx + wlf->planex * wlf->camx; //Check 0 div
-	wlf->raydx = wlf->diry + wlf->planey * wlf->camx; //Check 0 div
+	wlf->raydy = wlf->diry + wlf->planey * wlf->camx; //Check 0 div
 	wlf->mapx = (int)wlf->posx;
 	wlf->mapy = (int)wlf->posy;
-	wlf->deltadx = sqrt(1 + (wlf->raydy * wlf->raydy) / (wlf->raydx * wlf->raydx));
-	wlf->deltady = sqrt(1 + (wlf->raydx * wlf->raydx) / (wlf->raydy * wlf->raydy));
 	dda_prep(wlf);
 	dda_sys(wlf);
 	if (wlf->side == 0)
 		wlf->walldist = (wlf->mapx - wlf->posx + (1 - wlf->stepx) / 2) / wlf->raydx;
 	else
 		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) / wlf->raydy;
+	wlf->rng += (wlf->posx - wlf->posy) * 10;
+	if (wlf->rng < 0)
+		wlf->rng = 35565;
+	else if (wlf->rng > 35565)
+		wlf->rng = 0;
 }
 
 void	render(t_wolf *wlf)
 {
 	wlf->img = init_image(wlf, WINX, WINY);
 	wlf->x = -1;
-	printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
-	printf("Current pos %f %f\n", wlf->posx, wlf->posy);
+	//printf("Rot %f %f Pln %f %f ", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
+	//printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
+	//printf("Current pos %f %f\n", wlf->posx, wlf->posy);
+	//printf("Test %f %d\n", wlf->posx, (int)wlf->posx);
+	//print_map(wlf->map[wlf->flr]);
+	printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
 	while (++wlf->x < WINX)
 	{
 		rc_init(wlf);

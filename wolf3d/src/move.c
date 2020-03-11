@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/10 15:23:10 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:53:28 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->planex = wlf->planex * cos(wlf->rotsp) - wlf->planey * sin(wlf->rotsp);
 		wlf->planey = oldplanex * sin(wlf->rotsp) + wlf->planey * cos(wlf->rotsp);
 	}
-	ft_putendl("Rotated LR");
 	mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
@@ -58,7 +57,6 @@ int		move_fb(int key, t_wolf *wlf)
 		if (wlf->map[wlf->flr][(int)wlf->posx][(int)(wlf->posy - wlf->diry * wlf->movsp)] == 1)
 			wlf->posy -= wlf->diry * wlf->movsp;
 	}
-	ft_putendl("Moved FB");
 	mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
