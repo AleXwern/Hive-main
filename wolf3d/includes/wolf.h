@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 14:19:56 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:05:51 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include <pthread.h>
 
 /*
 ** Party member info
@@ -98,6 +99,7 @@ typedef struct	s_wolf
 	t_gfx		menugfx[5];
 	t_gfx		img;
 	t_chara		chara[5];
+	pthread_t	entity;
 	int			x;
 	int			y;
 	int			spawn[2];
@@ -159,5 +161,7 @@ void			error_out(char *msg, t_wolf *wolf);
 void			free_memory(char **arr);
 void			render(t_wolf *wlf);
 void			wall_stripe(t_wolf *wlf);
+
+void	testfunc(t_wolf *wlf);
 
 #endif

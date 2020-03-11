@@ -1,5 +1,5 @@
 Log in as root, install needed packages and add non-root user to sudoers file and log off from root.
--su -> apt install sudo vim ufw fail2ban portsentry apache2 mailutils -y
+-su -> apt install sudo vim ufw fail2ban portsentry apache2 mailutils sendmail -y
 -sudo apt-get update && sudo apt-get upgrade
 -sudo adduser alexwern sudo
 -exit
@@ -11,6 +11,7 @@ Log in as root, install needed packages and add non-root user to sudoers file an
 -w to save changes
 
 IP address
+-NAT to bridged
 -Host Network manager
 -tamper with values
 -port forward lo to enp0s3

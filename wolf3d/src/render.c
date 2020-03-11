@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 14:05:18 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:38:59 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,8 @@ void	render(t_wolf *wlf)
 	//printf("Rot %f %f Pln %f %f ", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
 	//printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
 	//printf("Current pos %f %f\n", wlf->posx, wlf->posy);
-	//printf("Test %f %d\n", wlf->posx, (int)wlf->posx);
-	//print_map(wlf->map[wlf->flr]);
-	printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
+	//printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
+	//printf("RNG test %d %d\n", (int)wlf->rng % 7, wlf->aggro);
 	while (++wlf->x < WINX)
 	{
 		rc_init(wlf);

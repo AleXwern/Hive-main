@@ -6,14 +6,14 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/10 14:23:10 by anystrom         ###   ########.fr        #
+#    Updated: 2020/03/11 15:09:58 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = wolf3d
 FLG =
-SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c
+SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a
 OBJS = $(SRC:.c=.o)

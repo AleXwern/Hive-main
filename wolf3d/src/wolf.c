@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 14:53:23 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:12:17 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ void	wolf_default(t_wolf *wlf)
 	wlf->rng = 0.0;
 	if (wlf->map[0][(int)wlf->posx][(int)wlf->posy] != 1)
 		error_out(FIL_ERROR, wlf);
+	pthread_create(&wlf->entity, NULL, (void *(*)(void *))testfunc,
+				(void*)wlf);
 }
 
 void	error_out(char *msg, t_wolf *wolf)
 {
 	ft_putendl(msg);
+	wolf->fcomb = 1;
 	if (wolf->winb == 1)
 		mlx_destroy_window(wolf->mlx, wolf->win);
+	pthread_join(wolf->entity, NULL);
 	system("leaks wolf3d");
 	exit(0);
 }

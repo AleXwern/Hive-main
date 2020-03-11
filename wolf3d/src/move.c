@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 14:53:28 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:36:38 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int		move_fb(int key, t_wolf *wlf)
 		if (wlf->map[wlf->flr][(int)wlf->posx][(int)(wlf->posy - wlf->diry * wlf->movsp)] == 1)
 			wlf->posy -= wlf->diry * wlf->movsp;
 	}
+	wlf->aggro += (int)wlf->rng % 7;
 	mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
