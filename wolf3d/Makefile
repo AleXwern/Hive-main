@@ -6,7 +6,7 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/11 15:09:58 by anystrom         ###   ########.fr        #
+#    Updated: 2020/03/13 11:20:43 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 	@gcc $(FLG) -I ./includes -o $@ -c $<
 
 $(NAME): $(OBJ) $(LIBFT)
-	@gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
+	gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
 	@echo Done.
 
 clean:
