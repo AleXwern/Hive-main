@@ -6,11 +6,7 @@
 #    By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2020/03/12 00:28:06 by JessicaNyst      ###   ########.fr        #
-=======
-#    Updated: 2020/03/13 11:20:43 by anystrom         ###   ########.fr        #
->>>>>>> db09c323c6bdad2db5fc819938529f70066835aa
+#    Updated: 2020/03/13 12:18:30 by JessicaNyst      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
