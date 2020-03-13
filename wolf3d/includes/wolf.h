@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 15:05:51 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/12 00:23:02 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_H
 # define WOLF_H
 
-# include <mlx.h>
+# include "/usr/X11/include/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
