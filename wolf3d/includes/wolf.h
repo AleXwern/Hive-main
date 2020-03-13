@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 15:05:51 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/13 13:02:06 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_chara
 typedef struct	s_gfx
 {
 	void		*img;
-	char		*data;
+	int			*data;
 	int			sizel;
 	int			bpp;
 	int			endn;
@@ -108,6 +108,7 @@ typedef struct	s_wolf
 	int			mapset;
 	int			map[5][25][25];
 	int			winb;
+	int			texbool;
 	double		rng;
 	int			fcomb;
 	int			aggro;
