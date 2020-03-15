@@ -39,7 +39,8 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 	@gcc $(FLG) -I ./includes -o $@ -c $<
 
 $(NAME): $(OBJ) $(LIBFT)
-	@gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
+	@gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) 
+	#$(FRAMEWORK)
 	@echo Done.
 
 clean:
