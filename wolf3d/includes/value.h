@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/12 00:36:54 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/13 12:19:48 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@
 # define KEY_FOU	21
 # define SPACE		49
 # define UP			65362
-# define DOWN		65361
-# define LEFT		65364
-# define RIGHT		65364
+# define DOWN		65364
+# define LEFT		65361
+# define RIGHT		65363
 # define SCR_UPH	4
 # define SCR_DOWN	5
 # define NUM_PLU	69
