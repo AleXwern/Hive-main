@@ -106,7 +106,6 @@ void	render(t_wolf *wlf)
 		wall_stripe(wlf);
 		ft_putendl("Hello");
 	}
-	printf("Length of the image data %zu expected %d\n", ft_strlen((char*)wlf->img.data), WINY * WINX);
 	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
 	mlx_destroy_image(wlf->mlx, wlf->img.img);
 }
