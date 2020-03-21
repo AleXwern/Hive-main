@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:20:10 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/02/09 15:00:02 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,8 @@ void	vectorize(t_matrix fir, t_matrix sec, t_fdf *fdf, int colour)
 	temp = (fabs(deltax) > fabs(deltay) ? deltax : deltay);
 	deltax /= fabs(temp);
 	deltay /= fabs(temp);
-<<<<<<< HEAD
-	while (mult <= fdf->pad * 2 && deltax * mult != temp && deltay * mult != temp)
-=======
 	while (mult <= fdf->pad * fabs(temp) * (fdf->top + 1) &&
 			deltax * mult != temp && deltay * mult != temp)
->>>>>>> 9589b57d19ad7cd30e0059a4b781ca8830b426c3
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->posx + sec.sx + (deltax * mult),
 				fdf->posy + sec.sy + (deltay * mult), colour);
@@ -86,13 +82,6 @@ void	draw_image(t_fdf *fdf, int c, char *av)
 		rotation(fdf, i);
 		c = fdf->matrix[i].left;
 		if (c != -1)
-<<<<<<< HEAD
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xff0000);
-		c = fdf->matrix[i].up;
-		if (c != -1)
-			vectorize(fdf->matrix[i], fdf->matrix[c], fdf, 0xffffff);
-		i++;
-=======
 			vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
 					colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
 		c = fdf->matrix[i].up;
@@ -106,6 +95,5 @@ void	draw_image(t_fdf *fdf, int c, char *av)
 				vectorize(fdf->matrix[i], fdf->matrix[c], fdf,
 						colour(fdf->matrix[i], fdf->matrix[c], fdf->top));
 		}
->>>>>>> 9589b57d19ad7cd30e0059a4b781ca8830b426c3
 	}
 }

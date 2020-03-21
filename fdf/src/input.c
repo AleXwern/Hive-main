@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:20:10 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/02/09 14:59:20 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ int		camera_main(int key, t_fdf *fdf)
 
 int		key_main(int key, t_fdf *fdf)
 {
-<<<<<<< HEAD
-	printf("Koy: %d\n", key);
-=======
->>>>>>> 9589b57d19ad7cd30e0059a4b781ca8830b426c3
 	if (key == ESC)
 		error_out(FINE, fdf);
 	if (key == UP)

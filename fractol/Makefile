@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
+#    By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/02/03 11:23:22 by anystrom         ###   ########.fr        #
+#    Updated: 2020/03/13 12:09:29 by JessicaNyst      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ OBJS = $(SRC:.c=.o)
 OBJ = $(addprefix ./obj/,$(SRCFILE:.c=.o))
 OBJDIR = ./obj/
 SRCDIR = ./src/
-INCL = -I /X11/Xlib.h -I /usr/X11/include -I ./libft -I ./includes
-MLXLIB = /usr/X11/lib/libmlx.a
-FRAMEWORK = -framework OpenGL -framework AppKit
+INCL = -I /usr/X11/include -I ./libft -I ./includes -I /usr/local/include
+MLXLIB = -L /usr/X11/lib
+FRAMEWORK = -lX11 -lmlx -lXext -framework OpenGL -framework AppKit
 RED = \033[0;31m
 STOP = \033[0m
 

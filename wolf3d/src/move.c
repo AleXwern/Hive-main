@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/12 00:42:05 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/15 12:42:33 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->planex = wlf->planex * cos(wlf->rotsp) - wlf->planey * sin(wlf->rotsp);
 		wlf->planey = oldplanex * sin(wlf->rotsp) + wlf->planey * cos(wlf->rotsp);
 	}
-	ft_putendl("LR");
-	mlx_clear_window(wlf->mlx, wlf->win);
+	//mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
 }
@@ -60,7 +59,7 @@ int		move_fb(int key, t_wolf *wlf)
 	}
 	ft_putendl("FB");
 	wlf->aggro += (int)wlf->rng % 7;
-	mlx_clear_window(wlf->mlx, wlf->win);
+	//mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
 }

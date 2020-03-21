@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/12 00:38:15 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/15 12:42:36 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,6 @@ void	rc_init(t_wolf *wlf)
 		wlf->walldist = (wlf->mapx - wlf->posx + (1 - wlf->stepx) / 2) / wlf->raydx;
 	else
 		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) / wlf->raydy;
-	wlf->rng += (wlf->posx - wlf->posy) * 10;
-	if (wlf->rng < 0)
-		wlf->rng = 35565;
-	else if (wlf->rng > 35565)
-		wlf->rng = 0;
 }
 
 void	render(t_wolf *wlf)

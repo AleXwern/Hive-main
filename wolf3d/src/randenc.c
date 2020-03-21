@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 15:35:16 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/13 12:06:15 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 void	testfunc(t_wolf *wlf)
 {
-	unsigned long	i;
-	i = 0;
-	while (wlf->fcomb)
+	while (wlf->fcomb == 0)
 	{
-		ft_putnbr(i);
-		ft_putendl(" ");
-		i++;
-		if (i == 73709551615)
-			i = 0;
+		wlf->rng += (wlf->posx - wlf->posy) * 10;
+		if (wlf->rng < 0)
+			wlf->rng = 35565;
+		else if (wlf->rng > 35565)
+			wlf->rng = 0;
 	}
 }
