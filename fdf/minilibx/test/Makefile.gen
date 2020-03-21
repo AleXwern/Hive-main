@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+INC=/usr/X11/include
+HT=x86_64
+=======
 INC=/usr/X11R6/include
 HT=OpenBSD
+>>>>>>> 3b98b46650b82e1cdf553bd747913b70d4c3ca6b
 DOCP=do_cp
 
 

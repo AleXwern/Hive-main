@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gfx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/13 13:42:20 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/21 18:05:39 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ t_gfx	init_image(t_wolf *wlf, int x, int y)
 {
 	t_gfx		img;
 
-	img.img = mlx_xpm_file_to_image(wlf->mlx, "gfx/img.xpm", &x, &y);
+	//img.img = mlx_xpm_file_to_image(wlf->mlx, "gfx/img.xpm", &x, &y);
+	img.img = mlx_new_image(wlf->mlx, WINX, WINY);
 	img.data = (int*)mlx_get_data_addr(img.img, &(img.bpp), &(img.sizel),
 			&(img.endn));
-	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[0].img, 0, 0);
-	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[1].img, 0, 360);
+	//mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[0].img, 0, 0);
+	//mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[1].img, 0, 360);
 	return (img);
 }
 

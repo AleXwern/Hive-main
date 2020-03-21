@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/13 12:56:45 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/21 18:16:13 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 
 int				key_press(int key, t_wolf *wlf)
 {
+	ft_putnbr(key);
+	ft_putendl(" ");
 	if (key == ESC)
 		error_out(FINE, wlf);
 	if (key == LEFT || key == RIGHT)
 		move_lr(key, wlf);
 	if (key == UP || key == DOWN)
 		move_fb(key, wlf);
+	if (key == KEY_T)
+		wlf->texbool = (wlf->texbool * wlf->texbool) - 1;
 	return (0);
 }
 

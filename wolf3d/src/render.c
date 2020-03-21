@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/13 13:10:38 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/21 18:01:39 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,18 @@ void	render(t_wolf *wlf)
 {
 	wlf->img = init_image(wlf, WINX, WINY);
 	wlf->x = -1;
-	//printf("Rot %f %f Pln %f %f ", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
-	//printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
-	//printf("Current pos %f %f\n", wlf->posx, wlf->posy);
-	//printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
-	//printf("RNG test %d %d\n", (int)wlf->rng % 7, wlf->aggro);
+	/*
+	printf("Rot %f %f Pln %f %f ", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
+	printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
+	printf("Current pos %f %f\n", wlf->posx, wlf->posy);
+	printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
+	printf("RNG test %d %d\n", (int)wlf->rng % 7, wlf->aggro);
+	*/
 	while (++wlf->x < WINX)
 	{
 		rc_init(wlf);
 		wlf->lineh = (int)(WINY / wlf->walldist);
-		wlf->start = -wlf->lineh / 2 + WINY / 2;
+		wlf->start = -wlf->lineh / 2 - WINY / 2;
 		if (wlf->start < 0)
 			wlf->start = 0;
 		wlf->end = wlf->lineh / 2 + WINY / 2;
@@ -100,8 +102,11 @@ void	render(t_wolf *wlf)
 			wlf->testcolor = 0x3679ff;
 		else
 			wlf->testcolor = 0xb01cff;
+		//printf("X%d Start%d End%d Lineh%d\n", wlf->x, wlf->start, wlf->end, wlf->lineh);
 		wall_stripe(wlf);
+		ft_putendl("Hello");
 	}
+	printf("Length of the image data %zu expected %d\n", ft_strlen((char*)wlf->img.data), WINY * WINX);
 	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
 	mlx_destroy_image(wlf->mlx, wlf->img.img);
 }

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
+#    By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/13 12:39:30 by anystrom         ###   ########.fr        #
+#    Updated: 2020/03/21 17:27:57 by JessicaNyst      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = wolf3d
-FLG =
+FLG = -O2
 SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c
 TESTFILE = testkey.c
 SRC = $(addprefix ./src/,$(SRCFILE))
@@ -21,9 +21,9 @@ OBJS = $(SRC:.c=.o)
 OBJ = $(addprefix ./obj/,$(SRCFILE:.c=.o))
 OBJDIR = ./obj/
 SRCDIR = ./src/
-INCL = -I /usr/local/include -I ./libft -I ./includes
-MLXLIB = -L /usr/local/lib/
-FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
+INCL = -I /usr/X11/include -I ./libft -I ./includes -I /usr/local/include
+MLXLIB = -L /usr/X11/lib
+FRAMEWORK = -lX11 -lmlx -lXext -framework OpenGL -framework AppKit
 RED = \033[0;31m
 STOP = \033[0m
 

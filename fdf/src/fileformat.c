@@ -32,7 +32,7 @@ int		addpoint(t_fdf *fdf, int x, int y, char *temp)
 	int			t;
 
 	t = 0;
-	while (temp[t] != '\0')
+	while (temp[t])
 	{
 		if (ft_isdigit(temp[t]) || (temp[t] == '-' && t == 0))
 			t++;

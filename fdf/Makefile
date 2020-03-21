@@ -16,9 +16,9 @@ SRCFILE = fdfmain.c fileformat.c main.c input.c draw_image.c dim_fileformat.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./libft/libft.a
 OBJ = $(SRC:.c=.o)
-INCL = -I /usr/local/include -I ./libft -I ./includes
-MLXLIB = -L /usr/local/lib/
-FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
+INCL = -I /usr/X11/include -I ./libft -I ./includes
+MLXLIB = -L /usr/X11/lib/
+FRAMEWORK = -lmlx -lXext -lX11 -framework OpenGL -framework AppKit
 
 .PHONY: all clean fclean re git gitrm testcomp
 

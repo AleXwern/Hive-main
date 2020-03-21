@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/13 13:32:23 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/21 18:11:36 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->flr = 0;
 	wlf->posx = 3.5;
 	wlf->posy = 3.5;
-	wlf->dirx = -1.0;
+	wlf->dirx = 1.0;
 	wlf->diry = 0.0;
 	wlf->planex = 0.0;
 	wlf->planey = 0.66;
@@ -60,9 +60,10 @@ void	free_memory(char **arr)
 void	setup(t_wolf *wolf)
 {
 	wolf_default(wolf);
-	mlx_hook(wolf->win, 2, 0, key_press, wolf);
-	mlx_hook(wolf->win, 3, 0, key_release, wolf);
-	mlx_hook(wolf->win, 17, 0, x_press, wolf);
+	mlx_key_hook(wolf->win, key_press, wolf);
+	//mlx_hook(wolf->win, 2, 0, key_press, wolf);
+	//mlx_hook(wolf->win, 3, 0, key_release, wolf);
+	//mlx_hook(wolf->win, 17, 0, x_press, wolf);
 	render(wolf);
 	mlx_loop(wolf->mlx);
 }
