@@ -6,7 +6,7 @@
 #    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/11 15:09:58 by anystrom         ###   ########.fr        #
+#    Updated: 2020/03/13 12:39:30 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 NAME = wolf3d
 FLG =
 SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c
+TESTFILE = testkey.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a
 OBJS = $(SRC:.c=.o)
@@ -39,9 +40,16 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 	@gcc $(FLG) -I ./includes -o $@ -c $<
 
 $(NAME): $(OBJ) $(LIBFT)
+<<<<<<< HEAD
 	@gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) 
 	#$(FRAMEWORK)
+=======
+	gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
+>>>>>>> 255dcf0bea777fca518d421aaf2a5929441c3e28
 	@echo Done.
+
+test: $(LIBFT)
+	gcc $(INCL) -o $(NAME) testkey.c $(LIBFT) $(MLXLIB) $(FRAMEWORK)
 
 clean:
 	@echo "Removing Wolf3D libraries."

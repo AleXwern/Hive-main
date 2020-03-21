@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 15:36:38 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/13 13:09:27 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->planex = wlf->planex * cos(wlf->rotsp) - wlf->planey * sin(wlf->rotsp);
 		wlf->planey = oldplanex * sin(wlf->rotsp) + wlf->planey * cos(wlf->rotsp);
 	}
-	mlx_clear_window(wlf->mlx, wlf->win);
+	//mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
 }
@@ -58,7 +58,7 @@ int		move_fb(int key, t_wolf *wlf)
 			wlf->posy -= wlf->diry * wlf->movsp;
 	}
 	wlf->aggro += (int)wlf->rng % 7;
-	mlx_clear_window(wlf->mlx, wlf->win);
+	//mlx_clear_window(wlf->mlx, wlf->win);
 	render(wlf);
 	return (0);
 }

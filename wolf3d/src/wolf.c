@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/11 15:12:17 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/03/13 13:32:23 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->movsp = 0.1;
 	wlf->fcomb = 0;
 	wlf->rng = 0.0;
+	wlf->texbool = 1;
 	if (wlf->map[0][(int)wlf->posx][(int)wlf->posy] != 1)
 		error_out(FIL_ERROR, wlf);
 	pthread_create(&wlf->entity, NULL, (void *(*)(void *))testfunc,
