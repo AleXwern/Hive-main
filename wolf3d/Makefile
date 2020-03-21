@@ -6,13 +6,13 @@
 #    By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/13 12:43:25 by JessicaNyst      ###   ########.fr        #
+#    Updated: 2020/03/21 17:27:57 by JessicaNyst      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = wolf3d
-FLG =
+FLG = -O2
 SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c
 TESTFILE = testkey.c
 SRC = $(addprefix ./src/,$(SRCFILE))

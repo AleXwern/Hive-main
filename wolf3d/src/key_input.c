@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/15 12:42:39 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/21 18:16:13 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int				key_press(int key, t_wolf *wlf)
 		move_lr(key, wlf);
 	if (key == UP || key == DOWN)
 		move_fb(key, wlf);
+	if (key == KEY_T)
+		wlf->texbool = (wlf->texbool * wlf->texbool) - 1;
 	return (0);
 }
 
