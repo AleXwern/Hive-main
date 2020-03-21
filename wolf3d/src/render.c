@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/21 18:01:39 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/21 18:29:50 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	render(t_wolf *wlf)
 	{
 		rc_init(wlf);
 		wlf->lineh = (int)(WINY / wlf->walldist);
-		wlf->start = -wlf->lineh / 2 - WINY / 2;
+		wlf->start = -wlf->lineh / 2 + WINY / 2;
 		if (wlf->start < 0)
 			wlf->start = 0;
 		wlf->end = wlf->lineh / 2 + WINY / 2;
