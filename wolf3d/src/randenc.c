@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/21 18:22:25 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/22 16:28:27 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	testfunc(t_wolf *wlf)
 			wlf->rng = 35565;
 		else if (wlf->rng > 35565)
 			wlf->rng = 0;
-		ft_putnbr((int)wlf->rng);
-		ft_putendl("");
+		//ft_putnbr((int)wlf->rng);
+		//ft_putendl("");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/21 18:16:13 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/22 16:28:25 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int				key_press(int key, t_wolf *wlf)
 		move_fb(key, wlf);
 	if (key == KEY_T)
 		wlf->texbool = (wlf->texbool * wlf->texbool) - 1;
+	if (key == SPACE)
+		interact(wlf);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/21 18:14:11 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/22 12:30:29 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 # define KEY_TWO	19
 # define KEY_TRE	20
 # define KEY_FOU	21
-# define SPACE		49
+# define SPACE		32
 # define UP			65362
 # define DOWN		65364
 # define LEFT		65363

@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/15 12:42:12 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/22 14:44:25 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct	s_wolf
 	int			texx;
 	int			texy;
 	int			testcolor;
+	int			sbox;
 	double		posx;
 	double		posy;
 	double		dirx;
@@ -150,6 +151,7 @@ typedef struct	s_wolf
 
 t_gfx			init_image(t_wolf *wolf, int x, int y);
 
+int				interact(t_wolf *wlf);
 int				key_press(int key, t_wolf *wolf);
 int				key_release(int key, t_wolf *wolf);			
 int				move_fb(int key, t_wolf *wlf);
@@ -158,6 +160,7 @@ int				x_press(t_wolf *wolf);
 
 void			comp_gfx(t_wolf *wolf);
 void			comp_map(t_wolf *wolf, char *av);
+void			draw_floor(t_wolf *wlf);
 void			error_out(char *msg, t_wolf *wolf);
 void			free_memory(char **arr);
 void			render(t_wolf *wlf);

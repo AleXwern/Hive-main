@@ -6,7 +6,7 @@
 #    By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/21 18:41:16 by JessicaNyst      ###   ########.fr        #
+#    Updated: 2020/03/21 18:46:14 by JessicaNyst      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,7 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 	@gcc $(FLG) -I ./includes -o $@ -c $<
 
 $(NAME): $(OBJ) $(LIBFT)
-	@gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) 
-	#$(FRAMEWORK)
+	gcc $(FLG) $(INCL) -o $(NAME) $(OBJ) $(LIBFT) $(MLXLIB) $(FRAMEWORK)
 	@echo Done.
 
 test: $(LIBFT)

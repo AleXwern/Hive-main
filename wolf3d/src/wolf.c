@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/21 18:11:36 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/22 16:28:30 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->fcomb = 0;
 	wlf->rng = 0.0;
 	wlf->texbool = 1;
+	wlf->sbox = WINX / 2;
 	if (wlf->map[0][(int)wlf->posx][(int)wlf->posy] != 1)
 		error_out(FIL_ERROR, wlf);
 	pthread_create(&wlf->entity, NULL, (void *(*)(void *))testfunc,
@@ -39,7 +40,7 @@ void	error_out(char *msg, t_wolf *wolf)
 	wolf->fcomb = 1;
 	if (wolf->winb == 1)
 		mlx_destroy_window(wolf->mlx, wolf->win);
-	pthread_join(wolf->entity, NULL);
+	//pthread_join(wolf->entity, NULL);
 	system("leaks wolf3d");
 	exit(0);
 }
@@ -63,7 +64,7 @@ void	setup(t_wolf *wolf)
 	mlx_key_hook(wolf->win, key_press, wolf);
 	//mlx_hook(wolf->win, 2, 0, key_press, wolf);
 	//mlx_hook(wolf->win, 3, 0, key_release, wolf);
-	//mlx_hook(wolf->win, 17, 0, x_press, wolf);
+	mlx_hook(wolf->win, 17, 0, x_press, wolf);
 	render(wolf);
 	mlx_loop(wolf->mlx);
 }
