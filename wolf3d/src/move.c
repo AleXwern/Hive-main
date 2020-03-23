@@ -6,7 +6,7 @@
 /*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 21:31:06 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/23 18:23:02 by JessicaNyst      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->planey = oldplanex * sin(wlf->rotsp) + wlf->planey * cos(wlf->rotsp);
 		wlf->sbox += WINX / 64;
 	}
-	//mlx_clear_window(wlf->mlx, wlf->win);
-	//move_skybox(wlf);
+	if (wlf->sbox < 0)
+		wlf->sbox += WINX;
+	if (wlf->sbox > WINX)
+		wlf->sbox -= WINX;
 	render(wlf);
 	return (0);
 }
