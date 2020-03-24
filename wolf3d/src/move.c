@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/23 18:23:02 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/24 14:19:10 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,13 @@ int		interact(t_wolf *wlf)
 {
 	double	tarposx;
 	double	tarposy;
+	int		obj;
 
 	tarposx = wlf->posx + wlf->dirx * 0.9;
 	tarposy = wlf->posy + wlf->diry * 0.9;
-	if (wlf->map[wlf->flr][(int)tarposx][(int)tarposy] == 3 && wlf->flr < 4
-			&& wlf->map[wlf->flr + 1][(int)wlf->posx][(int)wlf->posy] == 1)
-	{
-		wlf->flr++;
-		render(wlf);
-		mlx_string_put(wlf->mlx, wlf->win, 20, 20, 0xe80c0c, "Moved up a floor.");
-	}
-	else if (wlf->map[wlf->flr][(int)tarposx][(int)tarposy] == 4 && wlf->flr > 0
-			&& wlf->map[wlf->flr - 1][(int)wlf->posx][(int)wlf->posy] == 1)
-	{
-		wlf->flr--;
-		render(wlf);
-		mlx_string_put(wlf->mlx, wlf->win, 20, 20, 0xe80c0c, "Moved down a floor.");
-	}
+	obj = wlf->map[wlf->flr][(int)tarposx][(int)tarposy];
+	if (obj == 3 || obj == 4)
+		lab_move(wlf, obj);
 	printf("Interacted with %d at %f %f\n", wlf->map[wlf->flr][(int)tarposx][(int)tarposy], tarposx, tarposy);
 	return (0);
 }

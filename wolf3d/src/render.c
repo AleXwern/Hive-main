@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 16:28:28 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/24 13:29:58 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	render(t_wolf *wlf)
 	printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
 	printf("RNG test %d %d\n", (int)wlf->rng % 7, wlf->aggro);
 	*/
+	render_floor(wlf, 0);
 	while (++wlf->x < WINX)
 	{
 		rc_init(wlf);
@@ -102,9 +103,7 @@ void	render(t_wolf *wlf)
 			wlf->testcolor = 0x3679ff;
 		else
 			wlf->testcolor = 0xb01cff;
-		//printf("X%d Start%d End%d Lineh%d\n", wlf->x, wlf->start, wlf->end, wlf->lineh);
 		wall_stripe(wlf);
-		draw_floor(wlf);
 	}
 	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
 	mlx_destroy_image(wlf->mlx, wlf->img.img);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gfx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/23 00:22:46 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/24 01:52:20 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	comp_gfx(t_wolf *wolf)
 	wolf->tile += 48;
 	bpath = ft_strjoin("gfx/", (char*)&(wolf->tile));
 	wolf->gfx[0] = gfx_get(wolf, ft_strjoin(bpath, "/sky.xpm"), 1080, 360);
-	//wolf->gfx[1] = gfx_get(wolf, ft_strjoin(bpath, "/floor.xpm"), 1080, 360);
+	wolf->gfx[1] = gfx_get(wolf, ft_strjoin(bpath, "/floor.xpm"), 128, 128);
 	wolf->gfx[2] = gfx_get(wolf, ft_strjoin(bpath, "/wall.xpm"), 64, 64);
 	//mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[0].img, 0, 0);
 	//mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[1].img, 0, 360);

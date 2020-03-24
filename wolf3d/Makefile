@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+         #
+#    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/21 18:46:14 by JessicaNyst      ###   ########.fr        #
+#    Updated: 2020/03/24 14:17:15 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = wolf3d
 FLG = -O2
-SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c
+SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c floor.c interact.c
 TESTFILE = testkey.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a

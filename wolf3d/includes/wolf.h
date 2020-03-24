@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 14:44:25 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/24 14:09:08 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ typedef struct	s_chara
 ** GFX library
 ** 0 = Skybox
 ** 1 = Floor
+** 2 = Wall
+** 3 = Stairs up
+** 4 = Stairs down
+** 5 = Door
+** 6 = Secret warp
 */
 
 typedef struct	s_gfx
@@ -102,6 +107,7 @@ typedef struct	s_wolf
 	pthread_t	entity;
 	int			x;
 	int			y;
+	int			pos;
 	int			spawn[2];
 	int			hold;
 	int			flr;
@@ -128,8 +134,13 @@ typedef struct	s_wolf
 	int			texy;
 	int			testcolor;
 	int			sbox;
+	int			cellx;
+	int			celly;
+	int			tx;
+	int			ty;
 	double		posx;
 	double		posy;
+	double		posz;
 	double		dirx;
 	double		diry;
 	double		planex;
@@ -137,11 +148,20 @@ typedef struct	s_wolf
 	double		camx;
 	double		raydx;
 	double		raydy;
+	double		raydx0;
+	double		raydy0;
+	double		raydx1;
+	double		raydy1;
 	double		sidedx;
 	double		sidedy;
 	double		deltadx;
 	double		deltady;
 	double		walldist;
+	double		rowdist;
+	double		flstepx;
+	double		flstepy;
+	double		floorx;
+	double		floory;
 	double		movsp;
 	double		rotsp;
 	double		step;
@@ -160,10 +180,11 @@ int				x_press(t_wolf *wolf);
 
 void			comp_gfx(t_wolf *wolf);
 void			comp_map(t_wolf *wolf, char *av);
-void			draw_floor(t_wolf *wlf);
 void			error_out(char *msg, t_wolf *wolf);
 void			free_memory(char **arr);
+void			lab_move(t_wolf *wlf, int obj);
 void			render(t_wolf *wlf);
+void			render_floor(t_wolf *wlf, int y);
 void			wall_stripe(t_wolf *wlf);
 
 void	testfunc(t_wolf *wlf);

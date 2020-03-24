@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:38:13 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 21:23:17 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/03/24 14:26:53 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,10 @@ void	draw_stripe(t_wolf *wlf)
 		{
 			wlf->texy = abs((((wlf->start * 256 - WINY * 128 + wlf->lineh * 128) * 64)
 						/ wlf->lineh) / 256);
-			wlf->img.data[WINX * wlf->start + wlf->x] = wlf->gfx[2].data[wlf->texy % 64 * wlf->gfx[2].sizel / 4 + wlf->texx % 64 * wlf->gfx[2].bpp / 32];
+			wlf->img.data[WINX * wlf->start + wlf->x] = wlf->gfx[wlf->texnum].data[wlf->texy % 64 * wlf->gfx[2].sizel / 4 + wlf->texx % 64 * wlf->gfx[2].bpp / 32];
 		}
 		else
-		{
-			//printf("Pixel coords %d %d\n", wlf->x, wlf->start);
 			wlf->img.data[WINX * wlf->start + wlf->x] = wlf->testcolor;
-			//mlx_pixel_put(wlf->mlx, wlf->win, wlf->x, wlf->start, wlf->testcolor);
-			//printf("Set pixel at Y%d X%d\n", wlf->start, wlf->x);
-			//mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
-		}
 		wlf->start++;
 	}
 }
@@ -71,13 +65,4 @@ void	wall_stripe(t_wolf *wlf)
 	}
 	draw_sky(wlf, wlf->sbox + wlf->x);
 	draw_stripe(wlf);
-}
-
-void	draw_floor(t_wolf *wlf)
-{
-	while (wlf->end < WINY)
-	{
-		wlf->img.data[WINX * wlf->end + wlf->x] = 0x0f9926;
-		wlf->end++;
-	}
 }
