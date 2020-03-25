@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:38:13 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/24 14:26:53 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/03/25 12:56:42 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	wall_stripe(t_wolf *wlf)
 		wlf->texx = (int)(wlf->wallx * 64.0);
 		if (wlf->side == 0 && wlf->raydx > 0)
 			wlf->texx = 64 - wlf->texx - 1;
-		if (wlf->side == 1 && wlf->raydx < 0)
+		if (wlf->side == 1 && wlf->raydy < 0)
 			wlf->texx = 64 - wlf->texx - 1;
 	}
 	draw_sky(wlf, wlf->sbox + wlf->x);
