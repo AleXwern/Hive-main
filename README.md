@@ -10,11 +10,11 @@ This is a README file for AleX Nyström *AleXwern*'s Hive Helsinki personal git 
 * Init				- cleared on 05.12.2019 at 16:03
 * FDF					- cleared on 06.01.2020 at 17:40
 * Fract'ol    - cleared on 04.02.2020 at 15:30
+* Roger Skyline 1   - cleared on 02.03.2020 at 15:49
 * Wolf3D      - cleared on
-* Roger Skyline 1   - cleared on 
 
 *Milestones:*
 
 * Level 1     - achieved on 03.11.2019 at 15:30
 * Level 3     - achieved on 05.12.2019 at 17:30
-* Level 5     - achieved on
+* Level 5     - achieved on 18.02.2020 at 16:30
