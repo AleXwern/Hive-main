@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fileformat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/10 15:23:14 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/04/01 13:18:04 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	comp_map(t_wolf *wolf, char *av)
 	char	*flrfl;
 	int		fd;
 
-	if (wolf->flr > 5)
+	if (wolf->flr > wolf->mxflr)
 		return ;
 	wolf->flr += 49;
 	flrfl = ft_strjoin(av, (char*)&(wolf->flr));

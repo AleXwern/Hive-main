@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/24 14:09:08 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/01 14:14:11 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,16 @@ typedef struct	s_wolf
 	t_gfx		img;
 	t_chara		chara[5];
 	pthread_t	entity;
+	void		(*cycle)(struct s_wolf*);
 	int			x;
 	int			y;
 	int			pos;
 	int			spawn[2];
 	int			hold;
 	int			flr;
+	int			mxflr;
 	int			mapset;
-	int			map[5][25][25];
+	int			map[9][25][25];
 	int			winb;
 	int			texbool;
 	double		rng;
@@ -180,6 +182,7 @@ int				x_press(t_wolf *wolf);
 
 void			comp_gfx(t_wolf *wolf);
 void			comp_map(t_wolf *wolf, char *av);
+void			encounter(t_wolf *wlf);
 void			error_out(char *msg, t_wolf *wolf);
 void			free_memory(char **arr);
 void			lab_move(t_wolf *wlf, int obj);

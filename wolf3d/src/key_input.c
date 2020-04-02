@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 16:28:25 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/04/02 14:03:56 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ int				key_press(int key, t_wolf *wlf)
 {
 	ft_putnbr(key);
 	ft_putendl(" ");
+	if (key == KEY_T && wlf->aggro > 500)
+	{
+		wlf->aggro = 0;
+		wlf->cycle = &render;
+		return (0);
+	}
 	if (key == ESC)
 		error_out(FINE, wlf);
 	if (key == LEFT || key == RIGHT)

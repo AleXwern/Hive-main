@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 16:28:30 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/04/01 16:24:52 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	wolf_default(t_wolf *wlf)
 	wlf->rng = 0.0;
 	wlf->texbool = 1;
 	wlf->sbox = WINX / 2;
+	wlf->mxflr--;
+	wlf->cycle = &render;
 	if (wlf->map[0][(int)wlf->posx][(int)wlf->posy] != 1)
 		error_out(FIL_ERROR, wlf);
 	pthread_create(&wlf->entity, NULL, (void *(*)(void *))testfunc,
@@ -65,7 +67,7 @@ void	setup(t_wolf *wolf)
 	//mlx_hook(wolf->win, 2, 0, key_press, wolf);
 	//mlx_hook(wolf->win, 3, 0, key_release, wolf);
 	mlx_hook(wolf->win, 17, 0, x_press, wolf);
-	render(wolf);
+	wolf->cycle(wolf);
 	mlx_loop(wolf->mlx);
 }
 
@@ -80,18 +82,21 @@ int		main(int ac, char **av)
 	}
 	wolf->winb = 0;
 	wolf->flr = 0;
-	if (ac != 3)
+	if (ac != 4)
 		error_out(USAGE, wolf);
 	wolf->tile = ft_atoi(av[1]);
 	if (wolf->tile < 1 || wolf->tile > 6)
+		error_out(USAGE, wolf);
+	wolf->mxflr = ft_atoi(av[2]);
+	if (wolf->mxflr < 1 || wolf->mxflr > 9)
 		error_out(USAGE, wolf);
 	if (!(wolf->mlx = mlx_init()))
 		error_out(MLX_ERROR, wolf);
 	if (!(wolf->win = mlx_new_window(wolf->mlx, WINX, WINY, "Wolf3D")))
 		error_out(WIN_ERROR, wolf);
 	wolf->winb = 1;
-	while (wolf->flr < 5)
-		comp_map(wolf, av[2]);
+	while (wolf->flr < wolf->mxflr)
+		comp_map(wolf, av[3]);
 	comp_gfx(wolf);
 	setup(wolf);
 	return (0);

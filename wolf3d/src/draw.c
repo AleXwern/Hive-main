@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:38:13 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/25 12:56:42 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/01 15:41:58 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ void	draw_stripe(t_wolf *wlf)
 		{
 			wlf->texy = abs((((wlf->start * 256 - WINY * 128 + wlf->lineh * 128) * 64)
 						/ wlf->lineh) / 256);
-			wlf->img.data[WINX * wlf->start + wlf->x] = wlf->gfx[wlf->texnum].data[wlf->texy % 64 * wlf->gfx[2].sizel / 4 + wlf->texx % 64 * wlf->gfx[2].bpp / 32];
+			wlf->testcolor = wlf->gfx[wlf->texnum].data[wlf->texy % 64 * wlf->gfx[2].sizel / 4 + wlf->texx % 64 * wlf->gfx[2].bpp / 32];
 		}
-		else
-			wlf->img.data[WINX * wlf->start + wlf->x] = wlf->testcolor;
+		wlf->img.data[WINX * wlf->start + wlf->x] = wlf->testcolor;
 		wlf->start++;
 	}
 }

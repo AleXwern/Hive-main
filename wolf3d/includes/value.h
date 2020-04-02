@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: JessicaNystrom <JessicaNystrom@student.    +#+  +:+       +#+        */
+/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/22 12:30:29 by JessicaNyst      ###   ########.fr       */
+/*   Updated: 2020/04/01 13:34:04 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 # define G_ERROR	"General error happened. Exiting program."
 # define B_ARG		"Error: Bad argument."
-# define USAGE		"Usage:	./wolf3d [tileset, 1-6] [FOLDER name, ex. map/]"
+# define USAGE		"Usage:	./wolf3d [tileset] [floors] [FOLDER name]"
 # define MEM_ERROR	"Not enough memory to allocate space for ./wolf3d."
 # define T_ERROR	"There was a threading problem."
 # define OOPS		"This should never be shown. Everyone panic!"
@@ -30,6 +30,7 @@
 # define FLR_ERROR	"Not enough floors in given folder."
 # define STR_ERROR	"Stairs don't lead anywhere. Dest need to have same XY pos"
 # define FIL_ERROR	"File incorrectly formated."
+# define LAB_OUT	"Reached the end of the labyrinth. Clap clap!"
 
 /*
 ** Window size.

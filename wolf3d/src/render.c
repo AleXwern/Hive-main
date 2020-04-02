@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/24 13:29:58 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/01 16:29:32 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	dda_sys(t_wolf *wlf)
 			wlf->mapy += wlf->stepy;
 			wlf->side = 1;
 		}
-		if (wlf->map[wlf->flr][wlf->mapx][wlf->mapy] != 1)
+		if (wlf->map[wlf->flr][wlf->mapx][wlf->mapy] > 1)
 			wlf->hit = 1;
 	}
 }
@@ -75,13 +75,15 @@ void	rc_init(t_wolf *wlf)
 		wlf->walldist = (wlf->mapx - wlf->posx + (1 - wlf->stepx) / 2) / wlf->raydx;
 	else
 		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) / wlf->raydy;
+	if (wlf->walldist < 0.0001)
+		wlf->walldist += 0.01;
 }
 
 void	render(t_wolf *wlf)
 {
 	wlf->img = init_image(wlf, WINX, WINY);
 	wlf->x = -1;
-	printf("Rot %f %f Pln %f %f\n", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
+	//printf("Rot %f %f Pln %f %f\n", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
 	/*
 	printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
 	printf("Current pos %f %f\n", wlf->posx, wlf->posy);

@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/24 14:19:10 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/01 16:35:49 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ int		interact(t_wolf *wlf)
 	obj = wlf->map[wlf->flr][(int)tarposx][(int)tarposy];
 	if (obj == 3 || obj == 4)
 		lab_move(wlf, obj);
+	else if (obj == 5)
+		wlf->map[wlf->flr][(int)tarposx][(int)tarposy] = 0;
+	else if (obj == 0)
+		wlf->map[wlf->flr][(int)tarposx][(int)tarposy] = 5;
+	if (obj == 5 || obj == 0)
+		wlf->cycle(wlf);
 	printf("Interacted with %d at %f %f\n", wlf->map[wlf->flr][(int)tarposx][(int)tarposy], tarposx, tarposy);
 	return (0);
 }
@@ -75,7 +81,7 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->sbox += WINX;
 	if (wlf->sbox > WINX)
 		wlf->sbox -= WINX;
-	render(wlf);
+	wlf->cycle(wlf);
 	return (0);
 }
 
@@ -83,21 +89,21 @@ int		move_fb(int key, t_wolf *wlf)
 {
 	if (key == UP)
 	{
-		if (wlf->map[wlf->flr][(int)(wlf->posx + wlf->dirx * wlf->movsp)][(int)wlf->posy] == 1)
+		if (wlf->map[wlf->flr][(int)(wlf->posx + wlf->dirx * wlf->movsp)][(int)wlf->posy] <= 1)
 			wlf->posx += wlf->dirx * wlf->movsp;
-		if (wlf->map[wlf->flr][(int)wlf->posx][(int)(wlf->posy + wlf->diry * wlf->movsp)] == 1)
+		if (wlf->map[wlf->flr][(int)wlf->posx][(int)(wlf->posy + wlf->diry * wlf->movsp)] <= 1)
 			wlf->posy += wlf->diry * wlf->movsp;
 	}
 	if (key == DOWN)
 	{
-		if (wlf->map[wlf->flr][(int)(wlf->posx - wlf->dirx * wlf->movsp)][(int)wlf->posy] == 1)
+		if (wlf->map[wlf->flr][(int)(wlf->posx - wlf->dirx * wlf->movsp)][(int)wlf->posy] <= 1)
 			wlf->posx -= wlf->dirx * wlf->movsp;
-		if (wlf->map[wlf->flr][(int)wlf->posx][(int)(wlf->posy - wlf->diry * wlf->movsp)] == 1)
+		if (wlf->map[wlf->flr][(int)wlf->posx][(int)(wlf->posy - wlf->diry * wlf->movsp)] <= 1)
 			wlf->posy -= wlf->diry * wlf->movsp;
 	}
-	ft_putendl("FB");
 	wlf->aggro += (int)wlf->rng % 7;
-	//mlx_clear_window(wlf->mlx, wlf->win);
-	render(wlf);
+	if (wlf->aggro > 500)
+		wlf->cycle = &encounter;
+	wlf->cycle(wlf);
 	return (0);
 }

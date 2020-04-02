@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/03/25 00:53:22 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/01 14:27:55 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	comp_gfx(t_wolf *wolf)
 	wolf->gfx[4] = gfx_get(wolf, ft_strjoin(bpath, "/staird.xpm"), 64, 64);
 	wolf->gfx[5] = gfx_get(wolf, ft_strjoin(bpath, "/door.xpm"), 64, 64);
 	wolf->gfx[6] = gfx_get(wolf, ft_strjoin(bpath, "/warp.xpm"), 64, 64);
+	wolf->gfx[7] = gfx_get(wolf, ft_strjoin("gfx/", "notifup.xpm"), 540, 64);
+	wolf->gfx[8] = gfx_get(wolf, ft_strjoin("gfx/", "notifdown.xpm"), 540, 64);
+	wolf->gfx[9] = gfx_get(wolf, ft_strjoin("gfx/", "battlebgcm.xpm"), WINX, WINY);
+	wolf->gfx[10] = gfx_get(wolf, ft_strjoin(bpath, "/battlebg.xpm"), WINX, WINY);
 	//mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[0].img, 0, 0);
 	//mlx_put_image_to_window(wolf->mlx, wolf->win, wolf->gfx[1].img, 0, 360);
 	free(bpath);
