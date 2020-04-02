@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/01 13:34:04 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/02 19:31:06 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@
 */
 # define ESC		65307
 # define KEY_R		15
-# define KEY_C		8
+# define KEY_C		99
 # define KEY_T		116
 # define KEY_ONE	18
 # define KEY_TWO	19

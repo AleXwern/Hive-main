@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/01 16:29:32 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/02 20:10:38 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	dda_sys(t_wolf *wlf)
 			wlf->mapy += wlf->stepy;
 			wlf->side = 1;
 		}
-		if (wlf->map[wlf->flr][wlf->mapx][wlf->mapy] > 1)
+		if (wlf->map[wlf->flr][wlf->mapy][wlf->mapx] > 1)
 			wlf->hit = 1;
 	}
 }
@@ -77,6 +77,7 @@ void	rc_init(t_wolf *wlf)
 		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) / wlf->raydy;
 	if (wlf->walldist < 0.0001)
 		wlf->walldist += 0.01;
+	wlf->wdarr[wlf->x] = wlf->walldist;
 }
 
 void	render(t_wolf *wlf)

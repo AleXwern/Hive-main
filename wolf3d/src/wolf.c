@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/01 16:24:52 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/02 20:01:15 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->sbox = WINX / 2;
 	wlf->mxflr--;
 	wlf->cycle = &render;
-	if (wlf->map[0][(int)wlf->posx][(int)wlf->posy] != 1)
+	if (wlf->map[0][(int)wlf->posy][(int)wlf->posx] != 1)
 		error_out(FIL_ERROR, wlf);
 	pthread_create(&wlf->entity, NULL, (void *(*)(void *))testfunc,
 				(void*)wlf);
@@ -43,7 +43,7 @@ void	error_out(char *msg, t_wolf *wolf)
 	if (wolf->winb == 1)
 		mlx_destroy_window(wolf->mlx, wolf->win);
 	//pthread_join(wolf->entity, NULL);
-	system("leaks wolf3d");
+	//system("leaks wolf3d");
 	exit(0);
 }
 

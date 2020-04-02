@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/01 16:37:26 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/02 19:53:25 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	testfunc(t_wolf *wlf)
 	while (wlf->fcomb == 0)
 	{
 		i = 0;
+		ft_sleep(10000);
 		while (i++ < 10000)
 		{
 			wlf->rng += (wlf->posx - wlf->posy) * 10;

@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/01 14:14:11 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/02 19:43:32 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct	s_chara
 	char		*name;
 	int			maxhp;
 	int			hp;
-	int			defend;
 	int			row;
+	int			action;
 }				t_chara;
 
 /*
@@ -61,12 +61,6 @@ typedef struct	s_gfx
 	int			bpp;
 	int			endn;
 }				t_gfx;
-
-typedef struct	s_player
-{
-	double		posx;
-	double		posy;
-}				t_player;
 
 /*
 ** mlx	= MLX pointer
@@ -97,15 +91,15 @@ typedef struct	s_wolf
 {
 	void		*mlx;
 	void		*win;
-	t_player	pc;
 	int			tile;
 	t_gfx		gfx[256];
-	int			menucur;
-	t_gfx		menugfx[5];
 	t_gfx		img;
 	t_chara		chara[5];
 	pthread_t	entity;
 	void		(*cycle)(struct s_wolf*);
+	int			phase;
+	int			cur;
+	int			plr;
 	int			x;
 	int			y;
 	int			pos;
@@ -159,6 +153,7 @@ typedef struct	s_wolf
 	double		deltadx;
 	double		deltady;
 	double		walldist;
+	double		wdarr[1080];
 	double		rowdist;
 	double		flstepx;
 	double		flstepy;
