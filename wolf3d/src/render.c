@@ -65,8 +65,8 @@ void	dda_prep(t_wolf *wlf)
 void	rc_init(t_wolf *wlf)
 {
 	wlf->camx = 2 * wlf->x / (double)(WINX) - 1.0;
-	wlf->raydx = wlf->dirx + wlf->planex * wlf->camx; //Check 0 div
-	wlf->raydy = wlf->diry + wlf->planey * wlf->camx; //Check 0 div
+	wlf->raydx = wlf->dirx + wlf->planex * wlf->camx;
+	wlf->raydy = wlf->diry + wlf->planey * wlf->camx;
 	wlf->mapx = (int)wlf->posx;
 	wlf->mapy = (int)wlf->posy;
 	dda_prep(wlf);
@@ -84,13 +84,6 @@ void	render(t_wolf *wlf)
 {
 	wlf->img = init_image(wlf, WINX, WINY);
 	wlf->x = -1;
-	//printf("Rot %f %f Pln %f %f\n", wlf->dirx, wlf->diry, wlf->planex, wlf->planey);
-	/*
-	printf("Tile in current pos %d\n", wlf->map[wlf->flr][(int)wlf->posx][(int)wlf->posy]);
-	printf("Current pos %f %f\n", wlf->posx, wlf->posy);
-	printf("RNG seed %f with %f %f\n", wlf->rng, wlf->posx, wlf->posy);
-	printf("RNG test %d %d\n", (int)wlf->rng % 7, wlf->aggro);
-	*/
 	render_floor(wlf, 0);
 	while (++wlf->x < WINX)
 	{
