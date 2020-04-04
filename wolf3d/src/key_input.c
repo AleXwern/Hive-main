@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 20:18:46 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/04 13:39:00 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,38 @@
 
 void				combat_key(int	key, t_wolf *wlf)
 {
-	if (key == KEY_T)
+	if (key == UP)
 	{
-		wlf->aggro = 0;
-		wlf->cycle = &render;
-		wlf->cycle(wlf);
+		wlf->cur--;
+		if (wlf->cur < 0)
+			wlf->cur = 5;
+		else if (wlf->cur == 3)
+			wlf->cur = 2;
 	}
+	else if (key == DOWN)
+	{
+		wlf->cur++;
+		if (wlf->cur > 5)
+			wlf->cur = 0;
+		else if (wlf->cur == 3)
+			wlf->cur = 4;
+	}
+	else if (key == SPACE)
+	{
+		if (wlf->cur == 5)
+		{
+			wlf->aggro = 0;
+			wlf->cycle = &render;
+		}
+		wlf->cur = 0;
+	}
+	//ft_sleep(300000);
+	wlf->cycle(wlf);
 }
 
 int				key_press(int key, t_wolf *wlf)
 {
-	ft_putnbr(key);
-	ft_putendl(" ");
+	//ft_putnbrln(key);
 	if (key == ESC)
 		error_out(FINE, wlf);
 	else if (wlf->aggro > 500)
@@ -40,7 +60,7 @@ int				key_press(int key, t_wolf *wlf)
 	else if (key == SPACE)
 		interact(wlf);
 	else if (key == KEY_C)
-		wlf->aggro += 100;
+		wlf->aggro = 499;
 	return (0);
 }
 

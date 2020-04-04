@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 19:43:32 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/04 12:56:03 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct	s_gfx
 	int			sizel;
 	int			bpp;
 	int			endn;
+	int			wid;
+	int			hgt;
 }				t_gfx;
 
 /*
@@ -97,7 +99,6 @@ typedef struct	s_wolf
 	t_chara		chara[5];
 	pthread_t	entity;
 	void		(*cycle)(struct s_wolf*);
-	int			phase;
 	int			cur;
 	int			plr;
 	int			x;

@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 20:01:15 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/04 13:07:03 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->texbool = 1;
 	wlf->sbox = WINX / 2;
 	wlf->mxflr--;
+	wlf->cur = 0;
 	wlf->cycle = &render;
 	if (wlf->map[0][(int)wlf->posy][(int)wlf->posx] != 1)
 		error_out(FIL_ERROR, wlf);

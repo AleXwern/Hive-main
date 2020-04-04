@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:38:13 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 20:03:54 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/03 20:58:26 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	draw_stripe(t_wolf *wlf)
 	{
 		if (wlf->texbool)
 		{
-			wlf->texy = abs((((wlf->start * 256 - WINY * 128 + wlf->lineh * 128) * 64)
+			wlf->texy = abs((((wlf->start * 256 - WINY * 128 + wlf->lineh * 128) * 128)
 						/ wlf->lineh) / 256);
-			wlf->testcolor = wlf->gfx[wlf->texnum].data[wlf->texy % 64 * wlf->gfx[2].sizel / 4 + wlf->texx % 64 * wlf->gfx[2].bpp / 32];
+			wlf->testcolor = wlf->gfx[wlf->texnum].data[wlf->texy % 128 * wlf->gfx[2].sizel / 4 + wlf->texx % 128 * wlf->gfx[2].bpp / 32];
 		}
 		wlf->img.data[WINX * wlf->start + wlf->x] = wlf->testcolor;
 		wlf->start++;
@@ -56,11 +56,11 @@ void	wall_stripe(t_wolf *wlf)
 		else
 			wlf->wallx = wlf->posx + wlf->walldist * wlf->raydx;
 		wlf->wallx -= floor(wlf->wallx);
-		wlf->texx = (int)(wlf->wallx * 64.0);
+		wlf->texx = (int)(wlf->wallx * 128.0);
 		if (wlf->side == 0 && wlf->raydx > 0)
-			wlf->texx = 64 - wlf->texx - 1;
+			wlf->texx = 128 - wlf->texx - 1;
 		if (wlf->side == 1 && wlf->raydy < 0)
-			wlf->texx = 64 - wlf->texx - 1;
+			wlf->texx = 128 - wlf->texx - 1;
 	}
 	else if (wlf->map[wlf->flr][wlf->mapy][wlf->mapx] != 2)
 		wlf->testcolor = 0x22a800;
