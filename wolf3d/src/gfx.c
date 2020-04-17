@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/04 13:44:03 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:23:44 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void	comp_gfx(t_wolf *wolf)
 	wolf->gfx[7] = gfx_get(wolf, ft_strjoin("gfx/hud/", "notifup.xpm"), 441, 57);
 	wolf->gfx[8] = gfx_get(wolf, ft_strjoin("gfx/hud/", "notifdown.xpm"), 441, 57);
 	wolf->gfx[9] = gfx_get(wolf, ft_strjoin(bpath, "/battlebg.xpm"), WINX, WINY);
-	wolf->gfx[10] = gfx_get(wolf, ft_strjoin("gfx/foe/", "foe3.xpm"), 188, 132);
+	wolf->gfx[10] = gfx_get(wolf, ft_strjoin("gfx/foe/", "foe3.xpm"), 564, 396);
 	wolf->gfx[11] = gfx_get(wolf, ft_strjoin("gfx/hud/", "btlmenu.xpm"), 221, 312);
 	wolf->gfx[12] = gfx_get(wolf, ft_strjoin("gfx/hud/", "btlsel.xpm"), 221, 312);
+	wolf->gfx[13] = gfx_get(wolf, ft_strjoin("gfx/hud/", "pcturn.xpm"), 354, 95);
+	wolf->gfx[14] = gfx_get(wolf, ft_strjoin("gfx/hud/", "pcsel.xpm"), 354, 95);
 	free(bpath);
 	ft_putendl("GFX compiled");
 }

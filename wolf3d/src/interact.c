@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 14:03:32 by AleXwern          #+#    #+#             */
-/*   Updated: 2020/04/02 20:04:56 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/15 11:55:37 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,5 @@ void	lab_move(t_wolf *wlf, int obj)
 	wlf->planex *= -1.0;
 	wlf->planey *= -1.0;
 	wlf->cycle(wlf);
-	if (obj == 3)
-		mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[7].img, 0, 0);
-	else
-		mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[8].img, 0, 0);
+	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->gfx[obj + 4].img, 0, 0);
 }

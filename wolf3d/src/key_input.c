@@ -6,7 +6,7 @@
 /*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/04 13:39:00 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:31:04 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void				combat_key(int	key, t_wolf *wlf)
 {
-	if (key == UP)
+	if (key == UP && wlf->sel == -1)
 	{
 		wlf->cur--;
 		if (wlf->cur < 0)
@@ -23,7 +23,7 @@ void				combat_key(int	key, t_wolf *wlf)
 		else if (wlf->cur == 3)
 			wlf->cur = 2;
 	}
-	else if (key == DOWN)
+	else if (key == DOWN && wlf->sel == -1)
 	{
 		wlf->cur++;
 		if (wlf->cur > 5)
@@ -31,14 +31,33 @@ void				combat_key(int	key, t_wolf *wlf)
 		else if (wlf->cur == 3)
 			wlf->cur = 4;
 	}
-	else if (key == SPACE)
+	else if (key == SPACE && wlf->cur != -1)
 	{
-		if (wlf->cur == 5)
+		if (wlf->cur == 4)
+			wlf->sel = 0;
+		else if (wlf->cur == 5)
 		{
 			wlf->aggro = 0;
 			wlf->cycle = &render;
 		}
-		wlf->cur = 0;
+		else
+			wlf->plr++;
+		if (wlf->plr > 4)
+			wlf->plr = 0;
+	}
+	else if (key == KEY_C && wlf->sel > -1)
+		wlf->sel = -1;
+	else if (key == LEFT && wlf->sel != -1)
+	{
+		wlf->sel++;
+		if (wlf->sel > 4)
+			wlf->sel = 0;
+	}
+	else if (key == RIGHT && wlf->sel != -1)
+	{
+		wlf->sel--;
+		if (wlf->sel < 0)
+			wlf->sel = 4;
 	}
 	//ft_sleep(300000);
 	wlf->cycle(wlf);
