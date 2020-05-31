@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/15 12:09:26 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:54:59 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ int		main(int ac, char **av)
 	if (!(wolf->win = mlx_new_window(wolf->mlx, WINX, WINY, "Wolf3D")))
 		error_out(WIN_ERROR, wolf);
 	wolf->winb = 1;
-	while (wolf->flr < wolf->mxflr)
-		comp_map(wolf, av[3]);
+	comp_map(wolf, av[3]);
 	comp_gfx(wolf);
 	setup(wolf);
 	return (0);

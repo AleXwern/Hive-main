@@ -3,65 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   key_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/17 15:31:04 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/05/28 00:38:04 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/value.h"
 #include "../includes/wolf.h"
-
-void				combat_key(int	key, t_wolf *wlf)
-{
-	if (key == UP && wlf->sel == -1)
-	{
-		wlf->cur--;
-		if (wlf->cur < 0)
-			wlf->cur = 5;
-		else if (wlf->cur == 3)
-			wlf->cur = 2;
-	}
-	else if (key == DOWN && wlf->sel == -1)
-	{
-		wlf->cur++;
-		if (wlf->cur > 5)
-			wlf->cur = 0;
-		else if (wlf->cur == 3)
-			wlf->cur = 4;
-	}
-	else if (key == SPACE && wlf->cur != -1)
-	{
-		if (wlf->cur == 4)
-			wlf->sel = 0;
-		else if (wlf->cur == 5)
-		{
-			wlf->aggro = 0;
-			wlf->cycle = &render;
-		}
-		else
-			wlf->plr++;
-		if (wlf->plr > 4)
-			wlf->plr = 0;
-	}
-	else if (key == KEY_C && wlf->sel > -1)
-		wlf->sel = -1;
-	else if (key == LEFT && wlf->sel != -1)
-	{
-		wlf->sel++;
-		if (wlf->sel > 4)
-			wlf->sel = 0;
-	}
-	else if (key == RIGHT && wlf->sel != -1)
-	{
-		wlf->sel--;
-		if (wlf->sel < 0)
-			wlf->sel = 4;
-	}
-	//ft_sleep(300000);
-	wlf->cycle(wlf);
-}
 
 int				key_press(int key, t_wolf *wlf)
 {
@@ -83,8 +33,48 @@ int				key_press(int key, t_wolf *wlf)
 	return (0);
 }
 
+int				key_hold(int key, t_wolf *wlf)
+{
+	if (wlf->aggro > 500 && wlf->isclick)
+		combat_key(key, wlf);
+	if (wlf->aggro > 500)
+		return (0);
+	if (key == ESC)
+		error_out(FINE, wlf);
+	if (key == LEFT)
+		wlf->keyleft = 1;
+	if (key == RIGHT)
+		wlf->keyright = 1;
+	if (key == UP)
+		wlf->keyup = 1;
+	if (key == DOWN)
+		wlf->keydown = 1;
+	if (key == KEY_T)
+		wlf->keyt = 1;
+	if (key == SPACE)
+		wlf->keyspace = 1;
+	if (key == KEY_C)
+		wlf->keyc = 1;
+	return (0);
+}
+
 int				key_release(int key, t_wolf *wlf)
 {
+	wlf->isclick = 1;
+	if (key == LEFT)
+		wlf->keyleft = 0;
+	if (key == RIGHT)
+		wlf->keyright = 0;
+	if (key == UP)
+		wlf->keyup = 0;
+	if (key == DOWN)
+		wlf->keydown = 0;
+	if (key == KEY_T)
+		wlf->keyt = 0;
+	if (key == SPACE)
+		wlf->keyspace = 0;
+	if (key == KEY_C)
+		wlf->keyc = 0;
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/15 12:03:43 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/05/31 22:26:27 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct	s_wolf
 	t_gfx		img;
 	t_chara		chara[5];
 	pthread_t	entity;
+	int			height;
+	int			width;
 	void		(*cycle)(struct s_wolf*);
 	int			cur;
 	int			sel;
@@ -110,7 +112,7 @@ typedef struct	s_wolf
 	int			flr;
 	int			mxflr;
 	int			mapset;
-	int			map[9][25][25];
+	int			map[9][35][35];
 	int			winb;
 	int			texbool;
 	double		rng;
@@ -166,6 +168,14 @@ typedef struct	s_wolf
 	double		step;
 	double		wallx;
 	double		texpos;
+	int			isclick;
+	int			keyleft;
+	int			keyright;
+	int			keyup;
+	int			keydown;
+	int			keyt;
+	int			keyspace;
+	int			keyc;
 }				t_wolf;
 
 t_gfx			init_image(t_wolf *wolf, int x, int y);
@@ -177,6 +187,7 @@ int				move_fb(int key, t_wolf *wlf);
 int				move_lr(int key, t_wolf *wlf);
 int				x_press(t_wolf *wolf);
 
+void			combat_key(int	key, t_wolf *wlf);
 void			comp_gfx(t_wolf *wolf);
 void			comp_map(t_wolf *wolf, char *av);
 void			draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y);
