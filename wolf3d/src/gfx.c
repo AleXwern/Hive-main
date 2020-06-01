@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gfx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/17 15:23:44 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/01 13:32:13 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	comp_gfx(t_wolf *wolf)
 
 	wolf->tile += 48;
 	bpath = ft_strjoin("gfx/", (char*)&(wolf->tile));
+	wolf->gfx = (t_gfx*)malloc(sizeof(t_gfx) * 14);
 	wolf->gfx[0] = gfx_get(wolf, ft_strjoin(bpath, "/sky.xpm"), 1080, 360);
 	wolf->gfx[1] = gfx_get(wolf, ft_strjoin(bpath, "/floor.xpm"), 128, 128);
 	wolf->gfx[2] = gfx_get(wolf, ft_strjoin(bpath, "/wall.xpm"), 128, 128);

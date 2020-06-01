@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 20:10:38 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/01 13:32:34 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	rc_init(t_wolf *wlf)
 		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) / wlf->raydy;
 	if (wlf->walldist < 0.0001)
 		wlf->walldist += 0.01;
-	wlf->wdarr[wlf->x] = wlf->walldist;
 }
 
 void	render(t_wolf *wlf)

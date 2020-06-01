@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+         #
+#    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/03/25 00:57:42 by AleXwern         ###   ########.fr        #
+#    Updated: 2020/06/01 12:23:48 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = wolf3d
 FLG =
-SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c floor.c interact.c
+SRCFILE = wolf.c fileformat.c gfx.c key_input.c render.c draw.c move.c randenc.c floor.c randkey.c interact.c
 TESTFILE = testkey.c
 SRC = $(addprefix ./src/,$(SRCFILE))
 LIBFT = ./obj/libft.a
@@ -21,9 +21,9 @@ OBJS = $(SRC:.c=.o)
 OBJ = $(addprefix ./obj/,$(SRCFILE:.c=.o))
 OBJDIR = ./obj/
 SRCDIR = ./src/
-INCL = -I /usr/X11/include -I ./libft -I ./includes -I /usr/local/include
-MLXLIB = -L /usr/X11/lib
-FRAMEWORK = -lX11 -lmlx -lXext -framework OpenGL -framework AppKit
+INCL = -I /usr/local/include -I ./libft -I ./includes
+MLXLIB = -L /usr/local/lib
+FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 RED = \033[0;31m
 STOP = \033[0m
 

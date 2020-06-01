@@ -13,9 +13,8 @@
 #include "../includes/value.h"
 #include "../includes/wolf.h"
 
-void				combat_key(int	key, t_wolf *wlf)
+void				combat_key(int key, t_wolf *wlf)
 {
-	wlf->isclick = 0;
 	if (key == UP && wlf->sel == -1)
 	{
 		wlf->cur--;
@@ -40,6 +39,10 @@ void				combat_key(int	key, t_wolf *wlf)
 		{
 			wlf->aggro = 0;
 			wlf->cycle = &render;
+			wlf->keyup = 0;
+			wlf->keydown = 0;
+			wlf->keyright = 0;
+			wlf->keyleft = 0;
 		}
 		else
 			wlf->plr++;

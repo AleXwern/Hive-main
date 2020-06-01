@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 20:12:40 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/01 15:48:53 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int		interact(t_wolf *wlf)
 	return (0);
 }
 
-int		move_lr(int key, t_wolf *wlf)
+int		move_lr(t_wolf *wlf)
 {
 	double	olddirx;
 	double	oldplanex;
 
-	if (key == RIGHT)
+	if (wlf->keyright)
 	{
 		olddirx = wlf->dirx;
 		wlf->dirx = wlf->dirx * cos(-wlf->rotsp) - wlf->diry * sin(-wlf->rotsp);
@@ -66,7 +66,7 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->planey = oldplanex * sin(-wlf->rotsp) + wlf->planey * cos(-wlf->rotsp);
 		wlf->sbox -= WINX / 64;
 	}
-	if (key == LEFT)
+	if (wlf->keyleft)
 	{
 		olddirx = wlf->dirx;
 		wlf->dirx = wlf->dirx * cos(wlf->rotsp) - wlf->diry * sin(wlf->rotsp);
@@ -80,20 +80,19 @@ int		move_lr(int key, t_wolf *wlf)
 		wlf->sbox += WINX;
 	if (wlf->sbox > WINX)
 		wlf->sbox -= WINX;
-	wlf->cycle(wlf);
 	return (0);
 }
 
-int		move_fb(int key, t_wolf *wlf)
+int		move_fb(t_wolf *wlf)
 {
-	if (key == UP)
+	if (wlf->keyup)
 	{
 		if (wlf->map[wlf->flr][(int)(wlf->posy + wlf->diry * wlf->movsp)][(int)wlf->posx] <= 1)
 			wlf->posy += wlf->diry * wlf->movsp;
 		if (wlf->map[wlf->flr][(int)wlf->posy][(int)(wlf->posx + wlf->dirx * wlf->movsp)] <= 1)
 			wlf->posx += wlf->dirx * wlf->movsp;
 	}
-	if (key == DOWN)
+	if (wlf->keydown)
 	{
 		if (wlf->map[wlf->flr][(int)(wlf->posy - wlf->diry * wlf->movsp)][(int)wlf->posx] <= 1)
 			wlf->posy -= wlf->diry * wlf->movsp;
@@ -101,8 +100,5 @@ int		move_fb(int key, t_wolf *wlf)
 			wlf->posx -= wlf->dirx * wlf->movsp;
 	}
 	wlf->aggro += (int)wlf->rng % 7;
-	if (wlf->aggro > 500)
-		wlf->cycle = &encounter;
-	wlf->cycle(wlf);
 	return (0);
 }

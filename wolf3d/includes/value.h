@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/02 19:31:06 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/01 15:54:14 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,21 @@
 # define STR_ERROR	"Stairs don't lead anywhere. Dest need to have same XY pos"
 # define FIL_ERROR	"File incorrectly formated."
 # define LAB_OUT	"Reached the end of the labyrinth. Clap clap!"
+# define SPW_ERROR	"Spawn point is blocked."
 
 /*
 ** Window size.
 */
 # define WINX		1080
 # define WINY		720
+# define MAXAGGRO	1600
 /*
-
 ** Tagged keys.
+*/
 # define ESC		53
 # define KEY_R		15
 # define KEY_C		8
+# define KEY_T		17
 # define KEY_ONE	18
 # define KEY_TWO	19
 # define KEY_TRE	20
@@ -50,15 +53,15 @@
 # define SPACE		49
 # define UP			126
 # define DOWN		125
-# define LEFT		123
-# define RIGHT		124
+# define LEFT		124
+# define RIGHT		123
 # define SCR_UPH	4
 # define SCR_DOWN	5
 # define NUM_PLU	69
 # define NUM_MIN	78
 # define SLASH		75
 # define STAR		67
-*/
+/*
 # define ESC		65307
 # define KEY_R		15
 # define KEY_C		99
@@ -78,4 +81,5 @@
 # define NUM_MIN	78
 # define SLASH		75
 # define STAR		67
+*/
 #endif

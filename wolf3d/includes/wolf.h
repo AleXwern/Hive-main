@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/05/31 22:26:27 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/01 15:37:57 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_H
 # define WOLF_H
 
-# include "/usr/X11/include/mlx.h"
+# include "/usr/local/include/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -94,9 +94,9 @@ typedef struct	s_wolf
 	void		*mlx;
 	void		*win;
 	int			tile;
-	t_gfx		gfx[256];
+	t_gfx		*gfx;
 	t_gfx		img;
-	t_chara		chara[5];
+	t_chara		*chara;
 	pthread_t	entity;
 	int			height;
 	int			width;
@@ -107,12 +107,11 @@ typedef struct	s_wolf
 	int			x;
 	int			y;
 	int			pos;
-	int			spawn[2];
 	int			hold;
 	int			flr;
 	int			mxflr;
 	int			mapset;
-	int			map[9][35][35];
+	int			***map;
 	int			winb;
 	int			texbool;
 	double		rng;
@@ -157,7 +156,6 @@ typedef struct	s_wolf
 	double		deltadx;
 	double		deltady;
 	double		walldist;
-	double		wdarr[1080];
 	double		rowdist;
 	double		flstepx;
 	double		flstepy;
@@ -173,21 +171,20 @@ typedef struct	s_wolf
 	int			keyright;
 	int			keyup;
 	int			keydown;
-	int			keyt;
-	int			keyspace;
-	int			keyc;
 }				t_wolf;
 
 t_gfx			init_image(t_wolf *wolf, int x, int y);
 
 int				interact(t_wolf *wlf);
+int				key_hold(int key, t_wolf *wlf);
 int				key_press(int key, t_wolf *wolf);
-int				key_release(int key, t_wolf *wolf);			
-int				move_fb(int key, t_wolf *wlf);
-int				move_lr(int key, t_wolf *wlf);
+int				key_release(int key, t_wolf *wolf);	
+int				move(t_wolf *wlf);		
+int				move_fb(t_wolf *wlf);
+int				move_lr(t_wolf *wlf);
 int				x_press(t_wolf *wolf);
 
-void			combat_key(int	key, t_wolf *wlf);
+void			combat_key(int key, t_wolf *wlf);
 void			comp_gfx(t_wolf *wolf);
 void			comp_map(t_wolf *wolf, char *av);
 void			draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y);
