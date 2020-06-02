@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 15:55:14 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:20:40 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_chara
 	int			hp;
 	int			row;
 	int			action;
+	int			target;
 }				t_chara;
 
 /*

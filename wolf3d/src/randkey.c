@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:29:44 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 14:47:04 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:35:22 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 void				combat_key(int key, t_wolf *wlf)
 {
-	if (key == UP && wlf->sel == -1)
+	if (wlf->plr >= 5)
+		wlf->plr = 0;
+	else if (key == UP && wlf->sel == -1)
 	{
 		wlf->cur--;
 		if (wlf->cur < 0)
@@ -39,8 +41,6 @@ void				combat_key(int key, t_wolf *wlf)
 			exit_combat(wlf);
 		else
 			wlf->plr++;
-		if (wlf->plr > 4)
-			wlf->plr = 0;
 	}
 	else if (key == KEY_C && wlf->sel > -1)
 		wlf->sel = -1;
