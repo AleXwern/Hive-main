@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 11:50:15 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/04 12:48:09 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:09:57 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		ft_wordlen(char const *str, char del);
 double	ft_fabs(double num);
 
 char	*ft_itoa(int n);
+char	*ft_quadjoin(char *s1, char *s2, char *s3, char *s4);
 char	*ft_setword(char const *s, int len);
 char	*ft_strcat(char *dest, const char *src);
 char	*ft_strchr(const char *str, int c);

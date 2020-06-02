@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/01 15:54:14 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:01:38 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,23 @@
 # define MLX_ERROR	"Could not cleate MLX pointer."
 # define GFX_ERROR	"GFX doesn't exist. Put it back!"
 # define FLR_ERROR	"Not enough floors in given folder."
-# define STR_ERROR	"Stairs don't lead anywhere. Dest need to have same XY pos"
+# define STR_ERROR	"Stairs don't lead anywhere."
 # define FIL_ERROR	"File incorrectly formated."
 # define LAB_OUT	"Reached the end of the labyrinth. Clap clap!"
 # define SPW_ERROR	"Spawn point is blocked."
+# define WLF_ERROR	"Cannot create corestruct."
+
+# define HIT_OPP	" dealt damage to "
+# define LOST_HP	"Damage taken: "
 
 /*
-** Window size.
+** Static values.
 */
 # define WINX		1080
 # define WINY		720
 # define MAXAGGRO	1600
+# define GFXCOUNT	15
+
 /*
 ** Tagged keys.
 */
@@ -61,25 +67,27 @@
 # define NUM_MIN	78
 # define SLASH		75
 # define STAR		67
+
 /*
-# define ESC		65307
-# define KEY_R		15
-# define KEY_C		99
-# define KEY_T		116
-# define KEY_ONE	18
-# define KEY_TWO	19
-# define KEY_TRE	20
-# define KEY_FOU	21
-# define SPACE		32
-# define UP			65362
-# define DOWN		65364
-# define LEFT		65363
-# define RIGHT		65361
-# define SCR_UPH	4
-# define SCR_DOWN	5
-# define NUM_PLU	69
-# define NUM_MIN	78
-# define SLASH		75
-# define STAR		67
+** Keys for laptop if needed.
+** # define ESC		65307
+** # define KEY_R		15
+** # define KEY_C		99
+** # define KEY_T		116
+** # define KEY_ONE	18
+** # define KEY_TWO	19
+** # define KEY_TRE	20
+** # define KEY_FOU	21
+** # define SPACE		32
+** # define UP			65362
+** # define DOWN		65364
+** # define LEFT		65363
+** # define RIGHT		65361
+** # define SCR_UPH	4
+** # define SCR_DOWN	5
+** # define NUM_PLU	69
+** # define NUM_MIN	78
+** # define SLASH		75
+** # define STAR		67
 */
 #endif

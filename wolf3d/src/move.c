@@ -6,49 +6,27 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:01:53 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/01 15:48:53 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 14:32:50 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/value.h"
 #include "../includes/wolf.h"
-#include <stdio.h> //DELETE
 
-void	move_skybox(t_wolf *wlf)
+void	move_l(t_wolf *wlf, double olddirx, double oldplanex)
 {
-	double	adjy;
-
-	wlf->sbox = 0;
-	adjy = (wlf->diry + 1.0) / 2;
-	if (wlf->dirx > 0)
+	if (wlf->keyleft)
 	{
-		wlf->sbox = WINX * adjy;
+		olddirx = wlf->dirx;
+		wlf->dirx = wlf->dirx * cos(wlf->rotsp) - wlf->diry * sin(wlf->rotsp);
+		wlf->diry = olddirx * sin(wlf->rotsp) + wlf->diry * cos(wlf->rotsp);
+		oldplanex = wlf->planex;
+		wlf->planex = wlf->planex * cos(wlf->rotsp) - wlf->planey *
+				sin(wlf->rotsp);
+		wlf->planey = oldplanex * sin(wlf->rotsp) + wlf->planey *
+				cos(wlf->rotsp);
+		wlf->sbox += WINX / 64;
 	}
-	else
-	{
-		wlf->sbox = WINX - WINX * adjy;
-	}
-	printf("Skybox mod %d\n", wlf->sbox);
-}
-
-int		interact(t_wolf *wlf)
-{
-	double	tarposx;
-	double	tarposy;
-	int		obj;
-
-	tarposx = wlf->posx + wlf->dirx * 0.9;
-	tarposy = wlf->posy + wlf->diry * 0.9;
-	obj = wlf->map[wlf->flr][(int)tarposy][(int)tarposx];
-	if (obj == 3 || obj == 4)
-		lab_move(wlf, obj);
-	else if (obj == 5)
-		wlf->map[wlf->flr][(int)tarposy][(int)tarposx] = 0;
-	else if (obj == 0)
-		wlf->map[wlf->flr][(int)tarposy][(int)tarposx] = 5;
-	if (obj == 5 || obj == 0)
-		wlf->cycle(wlf);
-	return (0);
 }
 
 int		move_lr(t_wolf *wlf)
@@ -62,20 +40,13 @@ int		move_lr(t_wolf *wlf)
 		wlf->dirx = wlf->dirx * cos(-wlf->rotsp) - wlf->diry * sin(-wlf->rotsp);
 		wlf->diry = olddirx * sin(-wlf->rotsp) + wlf->diry * cos(-wlf->rotsp);
 		oldplanex = wlf->planex;
-		wlf->planex = wlf->planex * cos(-wlf->rotsp) - wlf->planey * sin(-wlf->rotsp);
-		wlf->planey = oldplanex * sin(-wlf->rotsp) + wlf->planey * cos(-wlf->rotsp);
+		wlf->planex = wlf->planex * cos(-wlf->rotsp) - wlf->planey *
+				sin(-wlf->rotsp);
+		wlf->planey = oldplanex * sin(-wlf->rotsp) + wlf->planey *
+				cos(-wlf->rotsp);
 		wlf->sbox -= WINX / 64;
 	}
-	if (wlf->keyleft)
-	{
-		olddirx = wlf->dirx;
-		wlf->dirx = wlf->dirx * cos(wlf->rotsp) - wlf->diry * sin(wlf->rotsp);
-		wlf->diry = olddirx * sin(wlf->rotsp) + wlf->diry * cos(wlf->rotsp);
-		oldplanex = wlf->planex;
-		wlf->planex = wlf->planex * cos(wlf->rotsp) - wlf->planey * sin(wlf->rotsp);
-		wlf->planey = oldplanex * sin(wlf->rotsp) + wlf->planey * cos(wlf->rotsp);
-		wlf->sbox += WINX / 64;
-	}
+	move_l(wlf, olddirx, oldplanex);
 	if (wlf->sbox < 0)
 		wlf->sbox += WINX;
 	if (wlf->sbox > WINX)
@@ -87,16 +58,20 @@ int		move_fb(t_wolf *wlf)
 {
 	if (wlf->keyup)
 	{
-		if (wlf->map[wlf->flr][(int)(wlf->posy + wlf->diry * wlf->movsp)][(int)wlf->posx] <= 1)
+		if (wlf->map[wlf->flr][(int)(wlf->posy + wlf->diry
+				* wlf->movsp)][(int)wlf->posx] <= 1)
 			wlf->posy += wlf->diry * wlf->movsp;
-		if (wlf->map[wlf->flr][(int)wlf->posy][(int)(wlf->posx + wlf->dirx * wlf->movsp)] <= 1)
+		if (wlf->map[wlf->flr][(int)wlf->posy][(int)(wlf->posx
+				+ wlf->dirx * wlf->movsp)] <= 1)
 			wlf->posx += wlf->dirx * wlf->movsp;
 	}
 	if (wlf->keydown)
 	{
-		if (wlf->map[wlf->flr][(int)(wlf->posy - wlf->diry * wlf->movsp)][(int)wlf->posx] <= 1)
+		if (wlf->map[wlf->flr][(int)(wlf->posy - wlf->diry
+				* wlf->movsp)][(int)wlf->posx] <= 1)
 			wlf->posy -= wlf->diry * wlf->movsp;
-		if (wlf->map[wlf->flr][(int)wlf->posy][(int)(wlf->posx - wlf->dirx * wlf->movsp)] <= 1)
+		if (wlf->map[wlf->flr][(int)wlf->posy][(int)(wlf->posx
+				- wlf->dirx * wlf->movsp)] <= 1)
 			wlf->posx -= wlf->dirx * wlf->movsp;
 	}
 	wlf->aggro += (int)wlf->rng % 7;

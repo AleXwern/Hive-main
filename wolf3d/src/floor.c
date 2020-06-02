@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 01:20:40 by AleXwern          #+#    #+#             */
-/*   Updated: 2020/03/24 02:14:28 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/02 14:37:49 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	draw_floor(t_wolf *wlf, int y)
 {
 	int		x;
+
 	x = 0;
 	while (x < WINX)
 	{
@@ -27,7 +28,8 @@ void	draw_floor(t_wolf *wlf, int y)
 			wlf->ty = (int)(128 * (wlf->floory - wlf->celly)) & (128 - 1);
 			wlf->floorx += wlf->flstepx;
 			wlf->floory += wlf->flstepy;
-			wlf->img.data[WINX * y + x] = wlf->gfx[1].data[128 * wlf->ty + wlf->tx];
+			wlf->img.data[WINX * y + x] = wlf->gfx[1].data[128 *
+					wlf->ty + wlf->tx];
 		}
 		else
 			wlf->img.data[WINX * y + x] = 0x0f9926;
@@ -53,5 +55,21 @@ void	render_floor(t_wolf *wlf, int y)
 		wlf->floory = wlf->posy + wlf->rowdist * wlf->raydy0;
 		draw_floor(wlf, y);
 		y++;
+	}
+}
+
+void	move_skybox(t_wolf *wlf)
+{
+	double	adjy;
+
+	wlf->sbox = 0;
+	adjy = (wlf->diry + 1.0) / 2;
+	if (wlf->dirx > 0)
+	{
+		wlf->sbox = WINX * adjy;
+	}
+	else
+	{
+		wlf->sbox = WINX - WINX * adjy;
 	}
 }

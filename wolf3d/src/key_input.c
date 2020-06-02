@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/01 15:49:04 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 13:49:49 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,14 @@ int				move(t_wolf *wlf)
 		return (0);
 	}
 	if (wlf->keydown || wlf->keyup)
+	{
 		move_fb(wlf);
+		wlf->rng += (wlf->posx + wlf->posy) * 10;
+		if (wlf->rng < 0)
+			wlf->rng = 35565;
+		else if (wlf->rng > 35565)
+			wlf->rng = 0;
+	}
 	if (wlf->keyleft || wlf->keyright)
 		move_lr(wlf);
 	wlf->cycle(wlf);

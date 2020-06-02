@@ -6,13 +6,12 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/01 13:32:34 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 14:19:29 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
-#include <stdio.h> //DELETE
 
 void	dda_sys(t_wolf *wlf)
 {
@@ -72,9 +71,11 @@ void	rc_init(t_wolf *wlf)
 	dda_prep(wlf);
 	dda_sys(wlf);
 	if (wlf->side == 0)
-		wlf->walldist = (wlf->mapx - wlf->posx + (1 - wlf->stepx) / 2) / wlf->raydx;
+		wlf->walldist = (wlf->mapx - wlf->posx + (1 - wlf->stepx) / 2) /
+				wlf->raydx;
 	else
-		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) / wlf->raydy;
+		wlf->walldist = (wlf->mapy - wlf->posy + (1 - wlf->stepy) / 2) /
+				wlf->raydy;
 	if (wlf->walldist < 0.0001)
 		wlf->walldist += 0.01;
 }

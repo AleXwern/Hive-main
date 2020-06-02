@@ -3,34 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   randenc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <alex.nystrom5@gmail.com>         +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/04/17 15:23:42 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/02 14:25:47 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
-
-void	testfunc(t_wolf *wlf)
-{
-	int		i;
-
-	while (wlf->fcomb == 0)
-	{
-		i = 0;
-		ft_sleep(10000);
-		while (i++ < 10000)
-		{
-			wlf->rng += (wlf->posx - wlf->posy) * 10;
-			if (wlf->rng < 0)
-				wlf->rng = 35565;
-			else if (wlf->rng > 35565)
-				wlf->rng = 0;
-		}
-	}
-}
 
 void	draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y)
 {
@@ -44,7 +25,8 @@ void	draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y)
 		while (gx < gfx.wid)
 		{
 			if (gfx.data[gfx.wid * gy + gx] != 0xff00ff)
-				wlf->img.data[WINX * (y + gy) + (x + gx)] = gfx.data[gfx.wid * gy + gx];
+				wlf->img.data[WINX * (y + gy) + (x + gx)] = gfx.data[gfx.wid *
+						gy + gx];
 			gx++;
 		}
 		gy++;
@@ -92,9 +74,11 @@ void	draw_menu(t_wolf *wlf, int x, int y)
 			if (wlf->gfx[12].data[wlf->gfx[12].wid * gy + gx] == 0xff00ff)
 				gx += 0;
 			else if (gy > 7 + (wlf->cur * 50) && gy < 7 + ((wlf->cur + 1) * 50))
-				wlf->img.data[WINX * (y + gy) + (x + gx)] = wlf->gfx[12].data[wlf->gfx[12].wid * gy + gx];
+				wlf->img.data[WINX * (y + gy) + (x + gx)] =
+						wlf->gfx[12].data[wlf->gfx[12].wid * gy + gx];
 			else
-				wlf->img.data[WINX * (y + gy) + (x + gx)] = wlf->gfx[11].data[wlf->gfx[11].wid * gy + gx];
+				wlf->img.data[WINX * (y + gy) + (x + gx)] =
+						wlf->gfx[11].data[wlf->gfx[11].wid * gy + gx];
 			gx++;
 		}
 		gy++;

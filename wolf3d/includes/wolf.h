@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/01 15:37:57 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 15:55:14 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
-# include <pthread.h>
 
 /*
 ** Party member info
@@ -95,15 +94,17 @@ typedef struct	s_wolf
 	void		*win;
 	int			tile;
 	t_gfx		*gfx;
+	int			gfxcount;
 	t_gfx		img;
 	t_chara		*chara;
-	pthread_t	entity;
 	int			height;
 	int			width;
 	void		(*cycle)(struct s_wolf*);
+	char		*syssmg[2];
 	int			cur;
 	int			sel;
 	int			plr;
+	int			plrck;
 	int			x;
 	int			y;
 	int			pos;
@@ -174,28 +175,30 @@ typedef struct	s_wolf
 }				t_wolf;
 
 t_gfx			init_image(t_wolf *wolf, int x, int y);
+t_chara			*generate_party(t_wolf *wlf);
 
 int				interact(t_wolf *wlf);
 int				key_hold(int key, t_wolf *wlf);
 int				key_press(int key, t_wolf *wolf);
-int				key_release(int key, t_wolf *wolf);	
-int				move(t_wolf *wlf);		
+int				key_release(int key, t_wolf *wolf);
+int				move(t_wolf *wlf);
 int				move_fb(t_wolf *wlf);
 int				move_lr(t_wolf *wlf);
 int				x_press(t_wolf *wolf);
 
 void			combat_key(int key, t_wolf *wlf);
-void			comp_gfx(t_wolf *wolf);
+void			comp_gfx(t_wolf *wolf, int i);
 void			comp_map(t_wolf *wolf, char *av);
+void			destroy_gfx(t_wolf *wlf, int i);
 void			draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y);
 void			encounter(t_wolf *wlf);
 void			error_out(char *msg, t_wolf *wolf);
+void			exit_combat(t_wolf *wlf);
+void			free_map(t_wolf *wlf, int f, int y);
 void			free_memory(char **arr);
 void			lab_move(t_wolf *wlf, int obj);
 void			render(t_wolf *wlf);
 void			render_floor(t_wolf *wlf, int y);
 void			wall_stripe(t_wolf *wlf);
-
-void	testfunc(t_wolf *wlf);
 
 #endif

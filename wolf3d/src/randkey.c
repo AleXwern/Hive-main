@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randkey.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/25 14:48:24 by AleXwern          #+#    #+#             */
-/*   Updated: 2020/05/25 14:48:24 by AleXwern         ###   ########.fr       */
+/*   Created: 2020/06/02 14:29:44 by anystrom          #+#    #+#             */
+/*   Updated: 2020/06/02 14:47:04 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@ void				combat_key(int key, t_wolf *wlf)
 		if (wlf->cur == 4)
 			wlf->sel = 0;
 		else if (wlf->cur == 5)
-		{
-			wlf->aggro = 0;
-			wlf->cycle = &render;
-			wlf->keyup = 0;
-			wlf->keydown = 0;
-			wlf->keyright = 0;
-			wlf->keyleft = 0;
-		}
+			exit_combat(wlf);
 		else
 			wlf->plr++;
 		if (wlf->plr > 4)

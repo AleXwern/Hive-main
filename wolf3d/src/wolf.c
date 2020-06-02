@@ -6,14 +6,12 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/01 15:47:46 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/02 15:19:08 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
-
-#include <stdio.h>
 
 void	wolf_default(t_wolf *wlf)
 {
@@ -33,28 +31,26 @@ void	wolf_default(t_wolf *wlf)
 	wlf->mxflr--;
 	wlf->cur = 0;
 	wlf->sel = -1;
+	wlf->plr = 0;
+	wlf->plrck = 0;
 	wlf->cycle = &render;
-	ft_putendl("Defaults set");
-	printf("Checking spawn with %d %d %d\n", 0, (int)wlf->posy, (int)wlf->posx);
-	if (wlf->map[0][(int)wlf->posy][(int)wlf->posx] != 1)
-	{
-		ft_putnbr(wlf->map[0][(int)wlf->posy][(int)wlf->posx]);
-		error_out(SPW_ERROR, wlf);
-	}
-	ft_putendl("Spawn fine.");
-	pthread_create(&wlf->entity, NULL, (void *(*)(void *))testfunc,
-				(void*)wlf);
-	ft_putendl("Defaults set");
 }
 
 void	error_out(char *msg, t_wolf *wolf)
 {
 	ft_putendl(msg);
+	if (!ft_strcmp(msg, WLF_ERROR))
+		exit(0);
+	if (!ft_strcmp(msg, FLR_ERROR))
+		wolf->mxflr = wolf->flr - 49;
 	wolf->fcomb = 1;
+	if (wolf->gfx)
+		destroy_gfx(wolf, -1);
+	if (wolf->map)
+		free_map(wolf, -1, -1);
 	if (wolf->winb == 1)
 		mlx_destroy_window(wolf->mlx, wolf->win);
-	//pthread_join(wolf->entity, NULL);
-	//system("leaks wolf3d");
+	system("leaks wolf3d");
 	exit(0);
 }
 
@@ -74,12 +70,14 @@ void	free_memory(char **arr)
 void	setup(t_wolf *wolf)
 {
 	wolf_default(wolf);
+	if (wolf->map[0][(int)wolf->posy][(int)wolf->posx] != 1)
+		error_out(SPW_ERROR, wolf);
 	mlx_hook(wolf->win, 2, 0, key_hold, wolf);
 	mlx_hook(wolf->win, 3, 0, key_release, wolf);
 	mlx_hook(wolf->win, 17, 0, x_press, wolf);
 	mlx_loop_hook(wolf->mlx, move, wolf);
-	printf("Hello\n");
 	wolf->cycle(wolf);
+	ft_putendl("hello");
 	mlx_loop(wolf->mlx);
 }
 
@@ -88,10 +86,7 @@ int		main(int ac, char **av)
 	t_wolf	*wolf;
 
 	if (!(wolf = (t_wolf*)malloc(sizeof(t_wolf))))
-	{
-		ft_putendl(MEM_ERROR);
-		exit (0);
-	}
+		error_out(WLF_ERROR, wolf);
 	wolf->winb = 0;
 	wolf->flr = 0;
 	if (ac != 4)
@@ -107,10 +102,8 @@ int		main(int ac, char **av)
 	if (!(wolf->win = mlx_new_window(wolf->mlx, WINX, WINY, "Wolf3D")))
 		error_out(WIN_ERROR, wolf);
 	wolf->winb = 1;
-	printf("Floors: %d Palette: %d CurFloor: %d\n", wolf->mxflr, wolf->tile, wolf->flr);
 	comp_map(wolf, av[3]);
-	comp_gfx(wolf);
-	printf("Floors: %d Palette: %d CurFloor: %d\n", wolf->mxflr, wolf->tile, wolf->flr);
+	comp_gfx(wolf, 0);
 	setup(wolf);
 	return (0);
 }
