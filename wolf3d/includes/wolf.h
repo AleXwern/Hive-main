@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 16:20:40 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/03 14:33:02 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ typedef struct	s_chara
 	int			hp;
 	int			row;
 	int			action;
+	int			defend;
 	int			target;
+	int			gfxid;
 }				t_chara;
 
 /*
@@ -187,6 +189,10 @@ int				move_fb(t_wolf *wlf);
 int				move_lr(t_wolf *wlf);
 int				x_press(t_wolf *wolf);
 
+char			*get_syssmgone(t_wolf *wlf, int pc);
+char			*get_syssmgtwo(t_wolf *wlf, int pc);
+
+void			anim_shift(t_wolf *wlf, int frame);
 void			combat_key(int key, t_wolf *wlf);
 void			comp_gfx(t_wolf *wolf, int i);
 void			comp_map(t_wolf *wolf, char *av);
@@ -197,7 +203,9 @@ void			error_out(char *msg, t_wolf *wolf);
 void			exit_combat(t_wolf *wlf);
 void			free_map(t_wolf *wlf, int f, int y);
 void			free_memory(char **arr);
+void			gen_att_ai(t_wolf *wlf);
 void			lab_move(t_wolf *wlf, int obj);
+void			place_pc(t_wolf *wlf, int frame, int pc);
 void			render(t_wolf *wlf);
 void			render_floor(t_wolf *wlf, int y);
 void			wall_stripe(t_wolf *wlf);

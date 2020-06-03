@@ -6,22 +6,52 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 16:23:24 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 16:33:00 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/03 15:27:01 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
 
+void	foe_ai(t_wolf *wlf, int tar)
+{
+	ft_putnbrln((int)wlf->rng % 1000);
+	if ((int)wlf->rng % 1000 < 600)
+	{
+		wlf->chara[wlf->plr].action = 1;
+		tar = wlf->chara[wlf->plr].target;
+		wlf->chara[wlf->chara[wlf->plr].target].hp -= 20 * wlf->chara[tar].row * wlf->chara[tar].defend;
+		wlf->chara[wlf->plr].defend = 2;
+	}
+	else if ((int)wlf->rng % 1000 < 850)
+	{
+		wlf->chara[wlf->plr].action = 3;
+		tar = wlf->chara[wlf->plr].target;
+		wlf->chara[wlf->chara[wlf->plr].target].hp -= 30 * wlf->chara[tar].row * wlf->chara[tar].defend;
+		wlf->chara[wlf->plr].defend = 4;
+	}
+	else
+	{
+		wlf->chara[wlf->plr].action = 4;
+		wlf->chara[wlf->plr].defend = 1;
+	}
+}
+
 void	gen_att_ai(t_wolf *wlf)
 {
 	if (wlf->plrck < 5)
-		wlf->chara[wlf->plrck].target = 5;
+		wlf->chara[wlf->plr].target = 5;
 	else
 	{
-		if ((int)wlf->rng % 99 < 66)
-			wlf->chara[wlf->plrck].target = (int)wlf->rng % 3;
+		if ((int)wlf->rng % 100 < 66)
+			wlf->chara[wlf->plr].target = (int)wlf->rng % 3;
 		else
-			wlf->chara[wlf->plrck].target = (int)wlf->rng % 2 + 3;
+			wlf->chara[wlf->plr].target = (int)wlf->rng % 2 + 3;
+		foe_ai(wlf, 0);
 	}
+	wlf->rng += (wlf->posx + wlf->posy) * 17;
+	if (wlf->rng < 0)
+		wlf->rng = 35565;
+	else if (wlf->rng > 35565)
+		wlf->rng = 0;
 }

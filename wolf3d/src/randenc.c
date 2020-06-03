@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 14:25:47 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/03 14:07:20 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,21 @@ void	encounter(t_wolf *wlf)
 {
 	wlf->img = init_image(wlf, WINX, WINY);
 	draw_gfx(wlf, wlf->gfx[9], 0, 0);
-	draw_gfx(wlf, wlf->gfx[10], 258, 112);
+	draw_gfx(wlf, wlf->gfx[wlf->chara[5].gfxid], 258, 112);
 	draw_menu(wlf, 0, 150);
 	draw_cursor(wlf, wlf->gfx[13], wlf->plr);
 	draw_cursor(wlf, wlf->gfx[14], wlf->sel);
 	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
+	place_pc(wlf, 0, 0);
 	mlx_destroy_image(wlf->mlx, wlf->img.img);
+	if (wlf->plr != wlf->plrck)
+	{
+		wlf->syssmg[0] = get_syssmgone(wlf, wlf->plrck);
+		wlf->syssmg[1] = get_syssmgtwo(wlf, wlf->plrck);
+		mlx_string_put(wlf->mlx, wlf->win, 250, 30, 0, wlf->syssmg[0]);
+		mlx_string_put(wlf->mlx, wlf->win, 250, 50, 0, wlf->syssmg[1]);
+		free(wlf->syssmg[0]);
+		free(wlf->syssmg[1]);
+	}
+	wlf->plrck = wlf->plr;
 }

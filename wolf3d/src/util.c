@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:28:33 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 15:28:40 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/03 15:52:35 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	free_map(t_wolf *wlf, int f, int y)
 
 void	exit_combat(t_wolf *wlf)
 {
-	wlf->plr = 0;
+	wlf->plr = -1;
+	wlf->plrck = 0;
 	wlf->sel = -1;
 	wlf->cur = 0;
 	wlf->aggro = 0;

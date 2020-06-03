@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 16:01:38 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/03 15:53:38 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@
 # define WLF_ERROR	"Cannot create corestruct."
 
 # define HIT_OPP	" dealt damage to "
-# define LOST_HP	"Damage taken: "
+# define CHA_OPP	" charged at "
+# define HEAL_OPP	" healed "
+# define DEF_OPP	" defended"
+# define LOST_HP	"Damage dealt: "
+# define GET_HP		"Damage healed: "
+# define DEF_HP		"'s damage taken will be reduced"
 
 /*
 ** Static values.
 */
 # define WINX		1080
 # define WINY		720
-# define MAXAGGRO	1600
+# define MAXAGGRO	300
 # define GFXCOUNT	15
 
 /*

@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 15:19:08 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/03 12:45:32 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->plr = 0;
 	wlf->plrck = 0;
 	wlf->cycle = &render;
+	wlf->chara = generate_party(wlf);
 }
 
 void	error_out(char *msg, t_wolf *wolf)
