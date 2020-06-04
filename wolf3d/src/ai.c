@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 16:23:24 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/03 15:27:01 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 13:56:16 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	foe_ai(t_wolf *wlf, int tar)
 {
-	ft_putnbrln((int)wlf->rng % 1000);
 	if ((int)wlf->rng % 1000 < 600)
 	{
 		wlf->chara[wlf->plr].action = 1;
@@ -39,6 +38,8 @@ void	foe_ai(t_wolf *wlf, int tar)
 
 void	gen_att_ai(t_wolf *wlf)
 {
+	int		i;
+
 	if (wlf->plrck < 5)
 		wlf->chara[wlf->plr].target = 5;
 	else
@@ -47,6 +48,13 @@ void	gen_att_ai(t_wolf *wlf)
 			wlf->chara[wlf->plr].target = (int)wlf->rng % 3;
 		else
 			wlf->chara[wlf->plr].target = (int)wlf->rng % 2 + 3;
+		if (wlf->chara[wlf->chara[wlf->plr].target].hp <= 0)
+		{
+			i = 0;
+			while (wlf->chara[i].hp <= 0 && i < 4)
+				i++;
+			wlf->chara[wlf->plr].target = i;
+		}
 		foe_ai(wlf, 0);
 	}
 	wlf->rng += (wlf->posx + wlf->posy) * 17;

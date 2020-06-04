@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 14:36:02 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 13:00:50 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,7 @@ void	comp_hud_gfx(t_wolf *wolf, char *bpath, int i)
 			354, 95);
 	wolf->gfx[i++] = gfx_get(wolf, ft_strjoin("gfx/hud/", "pcsel.xpm"),
 			354, 95);
-	free(bpath);
-	wolf->gfxcount = i;
-	if (i != GFXCOUNT)
-		error_out(GFX_ERROR, wolf);
+	comp_foe(wolf, bpath, i);
 }
 
 void	comp_gfx(t_wolf *wolf, int i)
@@ -81,7 +78,7 @@ void	comp_gfx(t_wolf *wolf, int i)
 
 	wolf->tile += 48;
 	bpath = ft_strjoin("gfx/", (char*)&(wolf->tile));
-	if (!(wolf->gfx = (t_gfx*)malloc(sizeof(t_gfx) * 15)))
+	if (!(wolf->gfx = (t_gfx*)malloc(sizeof(t_gfx) * GFXCOUNT)))
 		error_out(MEM_ERROR, wolf);
 	wolf->gfx[i++] = gfx_get(wolf, ft_strjoin(bpath, "/sky.xpm"), 1080, 360);
 	wolf->gfx[i++] = gfx_get(wolf, ft_strjoin(bpath, "/floor.xpm"), 128, 128);

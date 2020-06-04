@@ -6,12 +6,35 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/03 14:07:20 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 15:31:07 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
+
+void	draw_bars(t_wolf *wlf, int y, int x, int pc)
+{
+	int		sy;
+	int		sx;
+	t_chara	chara;
+
+	while (++pc < 5)
+	{
+		chara = wlf->chara[pc];
+		sy = get_y(pc) + 50;
+		sx = get_x(pc) + 20;
+		y = -1;
+		while (++y < 10)
+		{
+			x = -1;
+			while (++x < 150 * ((double)chara.hp / (double)chara.maxhp))
+				wlf->img.data[WINX * (y + sy) + (x + sx)] = 0xffcd38;
+			while (++x < 150)
+				wlf->img.data[WINX * (y + sy) + (x + sx)] = 0;
+		}
+	}
+}
 
 void	draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y)
 {
@@ -93,17 +116,18 @@ void	encounter(t_wolf *wlf)
 	draw_menu(wlf, 0, 150);
 	draw_cursor(wlf, wlf->gfx[13], wlf->plr);
 	draw_cursor(wlf, wlf->gfx[14], wlf->sel);
+	draw_bars(wlf, -1, -1, -1);
 	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
-	place_pc(wlf, 0, 0);
+	place_pc(wlf, 0);
 	mlx_destroy_image(wlf->mlx, wlf->img.img);
 	if (wlf->plr != wlf->plrck)
 	{
-		wlf->syssmg[0] = get_syssmgone(wlf, wlf->plrck);
-		wlf->syssmg[1] = get_syssmgtwo(wlf, wlf->plrck);
-		mlx_string_put(wlf->mlx, wlf->win, 250, 30, 0, wlf->syssmg[0]);
-		mlx_string_put(wlf->mlx, wlf->win, 250, 50, 0, wlf->syssmg[1]);
 		free(wlf->syssmg[0]);
 		free(wlf->syssmg[1]);
+		wlf->syssmg[0] = get_syssmgone(wlf, wlf->plrck);
+		wlf->syssmg[1] = get_syssmgtwo(wlf, wlf->plrck);
 	}
+	mlx_string_put(wlf->mlx, wlf->win, 250, 30, 0, wlf->syssmg[0]);
+	mlx_string_put(wlf->mlx, wlf->win, 250, 50, 0, wlf->syssmg[1]);
 	wlf->plrck = wlf->plr;
 }

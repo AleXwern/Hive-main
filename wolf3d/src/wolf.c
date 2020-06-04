@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/03 12:45:32 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 15:47:20 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	wolf_default(t_wolf *wlf)
 	wlf->plrck = 0;
 	wlf->cycle = &render;
 	wlf->chara = generate_party(wlf);
+	wlf->syssmg[0] = ft_strdup("You encountered a strong beast!");
+	wlf->syssmg[1] = ft_strdup("What will you do?");
 }
 
 void	error_out(char *msg, t_wolf *wolf)
@@ -45,6 +47,11 @@ void	error_out(char *msg, t_wolf *wolf)
 	if (!ft_strcmp(msg, FLR_ERROR))
 		wolf->mxflr = wolf->flr - 49;
 	wolf->fcomb = 1;
+	if (wolf->syssmg[0])
+	{
+		free(wolf->syssmg[0]);
+		free(wolf->syssmg[1]);
+	}
 	if (wolf->gfx)
 		destroy_gfx(wolf, -1);
 	if (wolf->map)

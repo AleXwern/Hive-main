@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:28:33 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/03 15:52:35 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 15:47:17 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	free_map(t_wolf *wlf, int f, int y)
 
 void	exit_combat(t_wolf *wlf)
 {
-	wlf->plr = -1;
-	wlf->plrck = 0;
+	wlf->plr = 0;
 	wlf->sel = -1;
 	wlf->cur = 0;
 	wlf->aggro = 0;
@@ -50,5 +49,12 @@ void	exit_combat(t_wolf *wlf)
 	wlf->keydown = 0;
 	wlf->keyright = 0;
 	wlf->keyleft = 0;
-	//generate_foe(wlf);
+	wlf->chara[5] = generate_foe(wlf);
+	health_check(wlf, -1, 0);
+	wlf->plr--;
+	wlf->plrck = wlf->plr + 1;
+	free(wlf->syssmg[0]);
+	free(wlf->syssmg[1]);
+	wlf->syssmg[0] = ft_strdup("You encountered a strong beast!");
+	wlf->syssmg[1] = ft_strdup("What will you do?");
 }

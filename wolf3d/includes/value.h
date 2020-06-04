@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/03 15:53:38 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 14:50:20 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define LAB_OUT	"Reached the end of the labyrinth. Clap clap!"
 # define SPW_ERROR	"Spawn point is blocked."
 # define WLF_ERROR	"Cannot create corestruct."
+# define GAME_OVER	"Your party has fallen. Game over!"
 
 # define HIT_OPP	" dealt damage to "
 # define CHA_OPP	" charged at "
@@ -47,8 +48,8 @@
 */
 # define WINX		1080
 # define WINY		720
-# define MAXAGGRO	300
-# define GFXCOUNT	15
+# define MAXAGGRO	200
+# define GFXCOUNT	23
 
 /*
 ** Tagged keys.

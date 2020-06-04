@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 15:28:23 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/03 15:32:02 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/04 15:28:10 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ t_chara	generate_foe(t_wolf *wlf)
 	int		rand;
 	t_chara	foe;
 
-	rand = (int)wlf->rng % 9;
+	rand = (int)wlf->rng % 8;
 	if (rand == 0)
 		foe.gfxid = 10;
 	else
-		foe.gfxid = 10;
+		foe.gfxid = 14 + rand;
 	foe.name = "Beast";
-	foe.maxhp = 130 + ((int)wlf->rng % 20 - 10);
+	foe.maxhp = 450 + ((int)wlf->rng % 50 - 25) + (rand * 10);
 	foe.hp = foe.maxhp;
 	foe.row = 1;
 	foe.action = 0;
@@ -59,4 +59,20 @@ t_chara	*generate_party(t_wolf *wlf)
 	party[4] = set_chara("Brute Justice", 250, 1);
 	party[5] = generate_foe(wlf);
 	return (party);
+}
+
+void	comp_foe(t_wolf *wlf, char *bpath, int i)
+{
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe0.xpm"), 519, 300);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe1.xpm"), 270, 375);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe2.xpm"), 138, 288);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe4.xpm"), 504, 342);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe5.xpm"), 516, 342);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe6.xpm"), 448, 340);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe7.xpm"), 345, 280);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe8.xpm"), 300, 348);
+	free(bpath);
+	wlf->gfxcount = i;
+	if (i != GFXCOUNT)
+		error_out(GFX_ERROR, wlf);
 }
