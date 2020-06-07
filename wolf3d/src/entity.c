@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 15:28:23 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:28:10 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:08:32 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ t_chara	*generate_party(t_wolf *wlf)
 
 void	comp_foe(t_wolf *wlf, char *bpath, int i)
 {
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe0.xpm"), 519, 300);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe1.xpm"), 270, 375);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe2.xpm"), 138, 288);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe4.xpm"), 504, 342);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe5.xpm"), 516, 342);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe6.xpm"), 448, 340);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe7.xpm"), 345, 280);
-	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe8.xpm"), 300, 348);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe0.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe1.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe2.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe4.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe5.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe6.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe7.xpm"), 564, 396);
+	wlf->gfx[i++] = gfx_get(wlf, ft_strjoin("gfx/foe/", "foe8.xpm"), 564, 396);
 	free(bpath);
 	wlf->gfxcount = i;
 	if (i != GFXCOUNT)
