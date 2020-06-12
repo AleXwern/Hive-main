@@ -6,12 +6,20 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:47:20 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:25:39 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
+
+void	key_defaults(t_wolf *wlf)
+{
+	wlf->keydown = 0;
+	wlf->keyleft = 0;
+	wlf->keyright = 0;
+	wlf->keyup = 0;
+}
 
 void	wolf_default(t_wolf *wlf)
 {
@@ -22,9 +30,8 @@ void	wolf_default(t_wolf *wlf)
 	wlf->diry = 0.0;
 	wlf->planex = 0.0;
 	wlf->planey = 0.66;
-	wlf->rotsp = 0.05;
-	wlf->movsp = 0.06;
-	wlf->fcomb = 0;
+	wlf->rotsp = 0.03;
+	wlf->movsp = 0.04;
 	wlf->rng = 0.0;
 	wlf->texbool = 1;
 	wlf->sbox = WINX / 2;
@@ -37,6 +44,7 @@ void	wolf_default(t_wolf *wlf)
 	wlf->chara = generate_party(wlf);
 	wlf->syssmg[0] = ft_strdup("You encountered a strong beast!");
 	wlf->syssmg[1] = ft_strdup("What will you do?");
+	key_defaults(wlf);
 }
 
 void	error_out(char *msg, t_wolf *wolf)
@@ -46,7 +54,6 @@ void	error_out(char *msg, t_wolf *wolf)
 		exit(0);
 	if (!ft_strcmp(msg, FLR_ERROR))
 		wolf->mxflr = wolf->flr - 49;
-	wolf->fcomb = 1;
 	if (wolf->syssmg[0])
 	{
 		free(wolf->syssmg[0]);
@@ -58,21 +65,8 @@ void	error_out(char *msg, t_wolf *wolf)
 		free_map(wolf, -1, -1);
 	if (wolf->winb == 1)
 		mlx_destroy_window(wolf->mlx, wolf->win);
-	system("leaks wolf3d");
+	//system("leaks wolf3d");
 	exit(0);
-}
-
-void	free_memory(char **arr)
-{
-	int y;
-
-	y = 0;
-	while (arr[y])
-		y++;
-	while (y >= 0)
-		ft_strdel(&arr[y--]);
-	free(arr);
-	arr = NULL;
 }
 
 void	setup(t_wolf *wolf)
@@ -85,7 +79,6 @@ void	setup(t_wolf *wolf)
 	mlx_hook(wolf->win, 17, 0, x_press, wolf);
 	mlx_loop_hook(wolf->mlx, move, wolf);
 	wolf->cycle(wolf);
-	ft_putendl("hello");
 	mlx_loop(wolf->mlx);
 }
 

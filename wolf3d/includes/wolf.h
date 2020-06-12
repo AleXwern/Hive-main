@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:41:11 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:33:19 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 ** name		= party member name
 ** maxhp	= max HP
 ** hp		= current hp
-** defend	= 1 if defend option was chosen
-** row		= front or back row
+** defend	= 1 if defend option was chosen else 2
+** row		= front or back row. 2 front, 1 back
 ** DEFEND and BACK ROW reduce damage by half (stackable)
-** BACK ROW reduce damage dealt
+** target	= target that the action iis performed against
+** gfxid	= enemy only, what sprite should be used.
 */
 
 typedef struct	s_chara
@@ -109,20 +110,14 @@ typedef struct	s_wolf
 	int			plr;
 	int			plrck;
 	int			x;
-	int			y;
 	int			pos;
-	int			hold;
 	int			flr;
 	int			mxflr;
-	int			mapset;
 	int			***map;
 	int			winb;
 	int			texbool;
 	double		rng;
-	int			fcomb;
 	int			aggro;
-	int			iscombat;
-	int			ismenu;
 	int			mapx;
 	int			mapy;
 	int			stepx;

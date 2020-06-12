@@ -6,12 +6,25 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:28:33 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:47:17 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:44:29 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
+
+void	free_memory(char **arr)
+{
+	int y;
+
+	y = 0;
+	while (arr[y])
+		y++;
+	while (y >= 0)
+		ft_strdel(&arr[y--]);
+	free(arr);
+	arr = NULL;
+}
 
 int		arr_len(char **arr)
 {

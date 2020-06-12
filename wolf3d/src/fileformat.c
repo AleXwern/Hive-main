@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 14:33:22 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:41:27 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	comp_map(t_wolf *wolf, char *av)
 
 	wolf->height = -1;
 	wolf->width = -1;
-	if (!(wolf->map = (int***)malloc(sizeof(int**) * 9)))
+	if (!(wolf->map = (int***)malloc(sizeof(int**) * wolf->mxflr)))
 		error_out(MEM_ERROR, wolf);
 	while (wolf->flr < wolf->mxflr)
 	{

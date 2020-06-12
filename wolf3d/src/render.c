@@ -6,14 +6,14 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 16:18:46 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:47:19 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 #include "../includes/value.h"
 
-void	dda_sys(t_wolf *wlf)
+void	ray_check(t_wolf *wlf)
 {
 	wlf->hit = 0;
 	while (wlf->hit == 0)
@@ -35,7 +35,7 @@ void	dda_sys(t_wolf *wlf)
 	}
 }
 
-void	dda_prep(t_wolf *wlf)
+void	ray_prep(t_wolf *wlf)
 {
 	wlf->deltadx = fabs(1 / wlf->raydx);
 	wlf->deltady = fabs(1 / wlf->raydy);
@@ -68,8 +68,8 @@ void	rc_init(t_wolf *wlf)
 	wlf->raydy = wlf->diry + wlf->planey * wlf->camx;
 	wlf->mapx = (int)wlf->posx;
 	wlf->mapy = (int)wlf->posy;
-	dda_prep(wlf);
-	dda_sys(wlf);
+	ray_prep(wlf);
+	ray_check(wlf);
 	if (wlf->side == 0)
 		wlf->walldist = (wlf->mapx - wlf->posx + (1 - wlf->stepx) / 2) /
 				wlf->raydx;
