@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   anim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 12:00:44 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:16:50 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/14 14:12:46 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@ char	*get_syssmgone(t_wolf *wlf, int pc)
 
 	tar = wlf->chara[pc].target;
 	if (wlf->chara[pc].action == 1)
-		temp = ft_quadjoin(wlf->chara[pc].name, HIT_OPP, wlf->chara[tar].name, ".");
+		temp = ft_quadjoin(wlf->chara[pc].name,
+				HIT_OPP, wlf->chara[tar].name, ".");
 	else if (wlf->chara[pc].action == 2)
-		temp = ft_quadjoin(wlf->chara[pc].name, HEAL_OPP, wlf->chara[wlf->chara[pc].target].name, ".");
+		temp = ft_quadjoin(wlf->chara[pc].name, HEAL_OPP,
+				wlf->chara[wlf->chara[pc].target].name, ".");
 	else if (wlf->chara[pc].action == 3)
-		temp = ft_quadjoin(wlf->chara[pc].name, CHA_OPP, wlf->chara[tar].name, ".");
+		temp = ft_quadjoin(wlf->chara[pc].name, CHA_OPP,
+				wlf->chara[tar].name, ".");
 	else
 		temp = ft_strjoin(wlf->chara[pc].name, DEF_OPP);
 	return (temp);
@@ -39,7 +42,8 @@ char	*get_syssmgtwo(t_wolf *wlf, int pc)
 	tar = wlf->chara[pc].target;
 	if (wlf->chara[pc].action == 1)
 	{
-		temp = ft_itoa(20 * wlf->chara[tar].row * wlf->chara[tar].defend + ((int)wlf->rng % 12 - 6));
+		temp = ft_itoa(20 * wlf->chara[tar].row * wlf->chara[tar].defend
+				+ ((int)wlf->rng % 12 - 6));
 		ret = ft_strjoin(LOST_HP, temp);
 		free(temp);
 	}
@@ -47,7 +51,8 @@ char	*get_syssmgtwo(t_wolf *wlf, int pc)
 		ret = ft_strjoin(GET_HP, "45");
 	else if (wlf->chara[pc].action == 3)
 	{
-		temp = ft_itoa(30 * wlf->chara[tar].row * wlf->chara[tar].defend + ((int)wlf->rng % 14 - 7));
+		temp = ft_itoa(30 * wlf->chara[tar].row * wlf->chara[tar].defend
+				+ ((int)wlf->rng % 14 - 7));
 		ret = ft_strjoin(LOST_HP, temp);
 		free(temp);
 	}
@@ -87,7 +92,8 @@ void	place_pc(t_wolf *wlf, int pc)
 	{
 		x = get_x(pc);
 		y = get_y(pc);
-		mlx_string_put(wlf->mlx, wlf->win, get_x(pc), get_y(pc), 0, wlf->chara[pc].name);
+		mlx_string_put(wlf->mlx, wlf->win, get_x(pc), get_y(pc), 0,
+				wlf->chara[pc].name);
 		pc++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/09 15:33:19 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/14 13:53:00 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ void			combat_key(int key, t_wolf *wlf);
 void			comp_foe(t_wolf *wlf, char *bpath, int i);
 void			comp_gfx(t_wolf *wolf, int i);
 void			comp_map(t_wolf *wolf, char *av);
+void			cur_two(t_wolf *wlf, int tar);
+void			cur_zero(t_wolf *wlf, int tar);
 void			destroy_gfx(t_wolf *wlf, int i);
 void			draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y);
 void			encounter(t_wolf *wlf);

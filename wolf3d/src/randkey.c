@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randkey.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:29:44 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:34:50 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/14 14:11:34 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,9 @@ void				health_check(t_wolf *wlf, int pc, int thp)
 		wlf->plr++;
 }
 
-void				combat_key_exttwo(int key, t_wolf *wlf)
+void				combat_key_exttre(int key, t_wolf *wlf)
 {
-	if (key == SPACE && wlf->sel != -1)
-	{
-		wlf->chara[wlf->plr].action = 2;
-		wlf->chara[wlf->plr].defend = 2;
-		wlf->chara[wlf->plr].target = wlf->sel;
-		wlf->chara[wlf->chara[wlf->plr].target].hp += 45;
-		if (wlf->chara[wlf->chara[wlf->plr].target].hp > wlf->chara[wlf->chara[wlf->plr].target].maxhp)
-			wlf->chara[wlf->chara[wlf->plr].target].hp = wlf->chara[wlf->chara[wlf->plr].target].maxhp;
-		wlf->sel = -1;
-		wlf->cur = 0;
-		wlf->plr++;
-	}
-	else if (key == RIGHT && wlf->sel != -1)
+	if (key == RIGHT && wlf->sel != -1)
 	{
 		wlf->sel--;
 		if (wlf->sel < 0)
@@ -62,31 +50,43 @@ void				combat_key_exttwo(int key, t_wolf *wlf)
 		wlf->sel = -1;
 }
 
+void				combat_key_exttwo(int key, t_wolf *wlf)
+{
+	int		hp;
+
+	if (key == SPACE && wlf->sel != -1)
+	{
+		wlf->chara[wlf->plr].action = 2;
+		wlf->chara[wlf->plr].defend = 2;
+		wlf->chara[wlf->plr].target = wlf->sel;
+		wlf->chara[wlf->chara[wlf->plr].target].hp += 45;
+		hp = wlf->chara[wlf->chara[wlf->plr].target].hp;
+		if (hp > wlf->chara[wlf->chara[wlf->plr].target].maxhp)
+		{
+			hp = wlf->chara[wlf->chara[wlf->plr].target].maxhp;
+			wlf->chara[wlf->chara[wlf->plr].target].hp = hp;
+		}
+		wlf->sel = -1;
+		wlf->cur = 0;
+		wlf->plr++;
+	}
+	else
+		combat_key_exttre(key, wlf);
+}
+
 void				combat_key_ext(int key, t_wolf *wlf, int tar)
 {
 	if (key == SPACE && wlf->sel == -1)
 	{
 		if (wlf->cur == 0)
-		{
-			wlf->chara[wlf->plr].action = 1;
-			gen_att_ai(wlf);
-			tar = wlf->chara[wlf->plr].target;
-			wlf->chara[wlf->chara[wlf->plr].target].hp -= 20 * wlf->chara[tar].row * wlf->chara[tar].defend;
-			wlf->chara[wlf->plr].defend = 2;
-		}
+			cur_zero(wlf, tar);
 		else if (wlf->cur == 1)
 		{
 			wlf->chara[wlf->plr].action = 4;
 			wlf->chara[wlf->plr].defend = 1;
 		}
 		else if (wlf->cur == 2)
-		{
-			wlf->chara[wlf->plr].action = 3;
-			gen_att_ai(wlf);
-			tar = wlf->chara[wlf->plr].target;
-			wlf->chara[wlf->chara[wlf->plr].target].hp -= 30 * wlf->chara[tar].row * wlf->chara[tar].defend;
-			wlf->chara[wlf->plr].defend = 4;
-		}
+			cur_two(wlf, tar);
 		else if (wlf->cur == 4)
 			wlf->sel = 0;
 		else if (wlf->cur == 5)

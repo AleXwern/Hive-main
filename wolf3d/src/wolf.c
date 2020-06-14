@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/10 15:25:39 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/14 13:45:09 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	error_out(char *msg, t_wolf *wolf)
 		free_map(wolf, -1, -1);
 	if (wolf->winb == 1)
 		mlx_destroy_window(wolf->mlx, wolf->win);
-	//system("leaks wolf3d");
 	exit(0);
 }
 
