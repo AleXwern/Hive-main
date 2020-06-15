@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:28:33 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/09 15:44:29 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 14:01:55 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ int		arr_len(char **arr)
 	while (arr[i][0] != '\0')
 		i++;
 	return (i);
+}
+
+void	free_layer(t_wolf *wlf, int f, int y, int mxy)
+{
+	wlf->mxflr = f - 1;
+	while (++y < mxy)
+	{
+		if (wlf->map[f][y])
+			free(wlf->map[f][y]);
+	}
+	if (wlf->map[f])
+		free(wlf->map[f]);
 }
 
 void	free_map(t_wolf *wlf, int f, int y)
@@ -66,6 +78,11 @@ void	exit_combat(t_wolf *wlf)
 	health_check(wlf, -1, 0);
 	wlf->plr--;
 	wlf->plrck = wlf->plr + 1;
+	if (wlf->plrck < 0)
+	{
+		wlf->plr++;
+		wlf->plrck++;
+	}
 	free(wlf->syssmg[0]);
 	free(wlf->syssmg[1]);
 	wlf->syssmg[0] = ft_strdup("You encountered a strong beast!");

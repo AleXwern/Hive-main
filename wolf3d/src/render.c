@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/09 15:47:19 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:17:40 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	render(t_wolf *wlf)
 			wlf->testcolor = 0xb01cff;
 		wall_stripe(wlf);
 	}
+	if (wlf->flrchange > 0)
+		draw_gfx(wlf, wlf->gfx[wlf->updown], 0, 0);
 	mlx_put_image_to_window(wlf->mlx, wlf->win, wlf->img.img, 0, 0);
 	mlx_destroy_image(wlf->mlx, wlf->img.img);
 }

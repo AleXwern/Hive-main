@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 14:03:32 by AleXwern          #+#    #+#             */
-/*   Updated: 2020/06/09 16:03:30 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:58:30 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 void	lab_move(t_wolf *wlf, int obj)
 {
+	int		flrcmp;
+
+	flrcmp = wlf->flr;
 	if (obj == 3 && wlf->flr < wlf->mxflr && wlf->map[wlf->flr +
 			1][(int)wlf->posy][(int)wlf->posx] == 1)
 		wlf->flr++;
@@ -23,11 +26,19 @@ void	lab_move(t_wolf *wlf, int obj)
 		wlf->flr--;
 	else if ((obj == 3 && wlf->flr == wlf->mxflr) ||
 			(obj == 4 && wlf->flr == 0))
-		error_out(LAB_OUT, wlf);
-	wlf->dirx *= -1.0;
-	wlf->diry *= -1.0;
-	wlf->planex *= -1.0;
-	wlf->planey *= -1.0;
+		error_out(LAB_OUT, wlf, 0);
+	if (flrcmp != wlf->flr)
+	{
+		wlf->dirx *= -1.0;
+		wlf->diry *= -1.0;
+		wlf->planex *= -1.0;
+		wlf->planey *= -1.0;
+		wlf->flrchange = 90;
+		if (flrcmp < wlf->flr)
+			wlf->updown = 8;
+		else
+			wlf->updown = 7;
+	}
 	wlf->cycle(wlf);
 }
 

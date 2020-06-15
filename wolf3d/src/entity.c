@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 15:28:23 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/05 14:08:32 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:59:48 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_chara	*generate_party(t_wolf *wlf)
 	t_chara		*party;
 
 	if (!(party = (t_chara*)malloc(sizeof(t_chara) * 6)))
-		error_out(MEM_ERROR, wlf);
+		error_out(MEM_ERROR, wlf, 0);
 	party[0] = set_chara("Aly", 250, 2);
 	party[1] = set_chara("AleXwern", 250, 2);
 	party[2] = set_chara("Aapeli", 250, 2);
@@ -74,5 +74,5 @@ void	comp_foe(t_wolf *wlf, char *bpath, int i)
 	free(bpath);
 	wlf->gfxcount = i;
 	if (i != GFXCOUNT)
-		error_out(GFX_ERROR, wlf);
+		error_out(GFX_ERROR, wlf, 0);
 }

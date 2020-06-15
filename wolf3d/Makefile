@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+         #
+#    By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 12:41:01 by anystrom          #+#    #+#              #
-#    Updated: 2020/06/14 14:32:37 by AleXwern         ###   ########.fr        #
+#    Updated: 2020/06/15 14:17:25 by anystrom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,5 +56,14 @@ clean:
 fclean: clean
 	@echo Removing binaries.
 	@/bin/rm -f $(NAME)
+
+git:
+	git clone https://github.com/AleXwern/fillit-tests.git tests
+	mv ./tests/map3d ./
+	rm -rf tests/
+
+gitclean:
+	/bin/rm -rf map3d
+	/bin/rm -rf tests
 
 re: fclean all

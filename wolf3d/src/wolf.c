@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/14 13:45:09 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/15 14:09:51 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	wolf_default(t_wolf *wlf)
 	key_defaults(wlf);
 }
 
-void	error_out(char *msg, t_wolf *wolf)
+void	error_out(char *msg, t_wolf *wolf, int y)
 {
 	ft_putendl(msg);
 	if (!ft_strcmp(msg, WLF_ERROR))
@@ -61,6 +61,8 @@ void	error_out(char *msg, t_wolf *wolf)
 	}
 	if (wolf->gfx)
 		destroy_gfx(wolf, -1);
+	if (y > 0)
+		free_layer(wolf, wolf->flr, -1, y);
 	if (wolf->map)
 		free_map(wolf, -1, -1);
 	if (wolf->winb == 1)
@@ -72,7 +74,7 @@ void	setup(t_wolf *wolf)
 {
 	wolf_default(wolf);
 	if (wolf->map[0][(int)wolf->posy][(int)wolf->posx] != 1)
-		error_out(SPW_ERROR, wolf);
+		error_out(SPW_ERROR, wolf, 0);
 	mlx_hook(wolf->win, 2, 0, key_hold, wolf);
 	mlx_hook(wolf->win, 3, 0, key_release, wolf);
 	mlx_hook(wolf->win, 17, 0, x_press, wolf);
@@ -86,21 +88,20 @@ int		main(int ac, char **av)
 	t_wolf	*wolf;
 
 	if (!(wolf = (t_wolf*)malloc(sizeof(t_wolf))))
-		error_out(WLF_ERROR, wolf);
-	wolf->winb = 0;
-	wolf->flr = 0;
+		error_out(WLF_ERROR, wolf, 0);
+	ft_bzero(wolf, sizeof(t_wolf));
 	if (ac != 4)
-		error_out(USAGE, wolf);
+		error_out(USAGE, wolf, 0);
 	wolf->tile = ft_atoi(av[1]);
 	if (wolf->tile < 1 || wolf->tile > 6)
-		error_out(USAGE, wolf);
+		error_out(USAGE, wolf, 0);
 	wolf->mxflr = ft_atoi(av[2]);
 	if (wolf->mxflr < 1 || wolf->mxflr > 9)
-		error_out(USAGE, wolf);
+		error_out(USAGE, wolf, 0);
 	if (!(wolf->mlx = mlx_init()))
-		error_out(MLX_ERROR, wolf);
+		error_out(MLX_ERROR, wolf, 0);
 	if (!(wolf->win = mlx_new_window(wolf->mlx, WINX, WINY, "Wolf3D")))
-		error_out(WIN_ERROR, wolf);
+		error_out(WIN_ERROR, wolf, 0);
 	wolf->winb = 1;
 	comp_map(wolf, av[3]);
 	comp_gfx(wolf, 0);

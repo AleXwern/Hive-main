@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:21 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/14 13:53:00 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:55:02 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ typedef struct	s_wolf
 	int			celly;
 	int			tx;
 	int			ty;
+	int			flrchange;
+	int			updown;
 	double		posx;
 	double		posy;
 	double		posz;
@@ -201,8 +203,9 @@ void			cur_zero(t_wolf *wlf, int tar);
 void			destroy_gfx(t_wolf *wlf, int i);
 void			draw_gfx(t_wolf *wlf, t_gfx gfx, int x, int y);
 void			encounter(t_wolf *wlf);
-void			error_out(char *msg, t_wolf *wolf);
+void			error_out(char *msg, t_wolf *wolf, int y);
 void			exit_combat(t_wolf *wlf);
+void			free_layer(t_wolf *wlf, int f, int y, int mxy);
 void			free_map(t_wolf *wlf, int f, int y);
 void			free_memory(char **arr);
 void			gen_att_ai(t_wolf *wlf);

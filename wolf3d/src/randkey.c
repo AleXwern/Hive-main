@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randkey.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:29:44 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/14 14:11:34 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:59:24 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void				health_check(t_wolf *wlf, int pc, int thp)
 		thp += wlf->chara[pc].hp;
 	}
 	if (thp <= 0)
-		error_out(GAME_OVER, wlf);
+		error_out(GAME_OVER, wlf, 0);
 	while (wlf->chara[wlf->plr].hp <= 0 && wlf->plr < 5)
 		wlf->plr++;
 }

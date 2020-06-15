@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 13:00:50 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:58:45 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_gfx	gfx_get(t_wolf *wolf, char *file, int x, int y)
 	fd = open(file, O_RDONLY);
 	ft_putendl(file);
 	if (fd == -1)
-		error_out(GFX_ERROR, wolf);
+		error_out(GFX_ERROR, wolf, 0);
 	gfx.img = mlx_xpm_file_to_image(wolf->mlx, file, &x, &y);
 	gfx.data = (int*)mlx_get_data_addr(gfx.img, &gfx.bpp,
 			&gfx.sizel, &gfx.endn);
@@ -79,7 +79,7 @@ void	comp_gfx(t_wolf *wolf, int i)
 	wolf->tile += 48;
 	bpath = ft_strjoin("gfx/", (char*)&(wolf->tile));
 	if (!(wolf->gfx = (t_gfx*)malloc(sizeof(t_gfx) * GFXCOUNT)))
-		error_out(MEM_ERROR, wolf);
+		error_out(MEM_ERROR, wolf, 0);
 	wolf->gfx[i++] = gfx_get(wolf, ft_strjoin(bpath, "/sky.xpm"), 1080, 360);
 	wolf->gfx[i++] = gfx_get(wolf, ft_strjoin(bpath, "/floor.xpm"), 128, 128);
 	wolf->gfx[i++] = gfx_get(wolf, ft_strjoin(bpath, "/wall.xpm"), 128, 128);

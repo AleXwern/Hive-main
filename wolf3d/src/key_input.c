@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 13:49:49 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:59:12 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int				key_hold(int key, t_wolf *wlf)
 {
 	if (key == ESC)
-		error_out(FINE, wlf);
+		error_out(FINE, wlf, 0);
 	if (key == LEFT)
 		wlf->keyleft = 1;
 	if (key == RIGHT)
@@ -39,7 +39,7 @@ int				key_release(int key, t_wolf *wlf)
 	if (key == SPACE)
 		interact(wlf);
 	if (key == KEY_C)
-		wlf->aggro = 499;
+		wlf->aggro = MAXAGGRO - 10;
 	if (key == LEFT)
 		wlf->keyleft = 0;
 	if (key == RIGHT)
@@ -53,12 +53,14 @@ int				key_release(int key, t_wolf *wlf)
 
 int				x_press(t_wolf *wolf)
 {
-	error_out(FINE, wolf);
+	error_out(FINE, wolf, 0);
 	return (0);
 }
 
 int				move(t_wolf *wlf)
 {
+	if (wlf->flrchange > 0)
+		wlf->flrchange--;
 	if (wlf->aggro > MAXAGGRO)
 	{
 		wlf->cycle = &encounter;
