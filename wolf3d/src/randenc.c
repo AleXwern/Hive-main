@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:06:28 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/04 15:31:07 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/07/06 14:15:27 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void	draw_menu(t_wolf *wlf, int x, int y)
 
 void	encounter(t_wolf *wlf)
 {
+	if (wlf->plrck < 0)
+		wlf->plrck = 0;
 	wlf->img = init_image(wlf, WINX, WINY);
 	draw_gfx(wlf, wlf->gfx[9], 0, 0);
 	draw_gfx(wlf, wlf->gfx[wlf->chara[5].gfxid], 258, 112);

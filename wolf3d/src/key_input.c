@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:07:30 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/15 13:59:12 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 14:30:17 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int				key_release(int key, t_wolf *wlf)
 	return (0);
 }
 
-int				x_press(t_wolf *wolf)
+int				x_press(t_wolf *wlf)
 {
-	error_out(FINE, wolf, 0);
+	error_out(FINE, wlf, 0);
 	return (0);
 }
 

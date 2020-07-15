@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:01:06 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/15 14:09:51 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/15 14:26:29 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,64 +47,64 @@ void	wolf_default(t_wolf *wlf)
 	key_defaults(wlf);
 }
 
-void	error_out(char *msg, t_wolf *wolf, int y)
+void	error_out(char *msg, t_wolf *wlf, int y)
 {
 	ft_putendl(msg);
 	if (!ft_strcmp(msg, WLF_ERROR))
 		exit(0);
 	if (!ft_strcmp(msg, FLR_ERROR))
-		wolf->mxflr = wolf->flr - 49;
-	if (wolf->syssmg[0])
+		wlf->mxflr = wlf->flr - 49;
+	if (wlf->syssmg[0])
 	{
-		free(wolf->syssmg[0]);
-		free(wolf->syssmg[1]);
+		free(wlf->syssmg[0]);
+		free(wlf->syssmg[1]);
 	}
-	if (wolf->gfx)
-		destroy_gfx(wolf, -1);
+	if (wlf->gfx)
+		destroy_gfx(wlf, -1);
 	if (y > 0)
-		free_layer(wolf, wolf->flr, -1, y);
-	if (wolf->map)
-		free_map(wolf, -1, -1);
-	if (wolf->winb == 1)
-		mlx_destroy_window(wolf->mlx, wolf->win);
+		free_layer(wlf, wlf->flr, -1, y);
+	if (wlf->map)
+		free_map(wlf, -1, -1);
+	if (wlf->winb == 1)
+		mlx_destroy_window(wlf->mlx, wlf->win);
 	exit(0);
 }
 
-void	setup(t_wolf *wolf)
+void	setup(t_wolf *wlf)
 {
-	wolf_default(wolf);
-	if (wolf->map[0][(int)wolf->posy][(int)wolf->posx] != 1)
-		error_out(SPW_ERROR, wolf, 0);
-	mlx_hook(wolf->win, 2, 0, key_hold, wolf);
-	mlx_hook(wolf->win, 3, 0, key_release, wolf);
-	mlx_hook(wolf->win, 17, 0, x_press, wolf);
-	mlx_loop_hook(wolf->mlx, move, wolf);
-	wolf->cycle(wolf);
-	mlx_loop(wolf->mlx);
+	wolf_default(wlf);
+	if (wlf->map[0][(int)wlf->posy][(int)wlf->posx] != 1)
+		error_out(SPW_ERROR, wlf, 0);
+	mlx_hook(wlf->win, 2, 0, key_hold, wlf);
+	mlx_hook(wlf->win, 3, 0, key_release, wlf);
+	mlx_hook(wlf->win, 17, 0, x_press, wlf);
+	mlx_loop_hook(wlf->mlx, move, wlf);
+	wlf->cycle(wlf);
+	mlx_loop(wlf->mlx);
 }
 
 int		main(int ac, char **av)
 {
-	t_wolf	*wolf;
+	t_wolf	*wlf;
 
-	if (!(wolf = (t_wolf*)malloc(sizeof(t_wolf))))
-		error_out(WLF_ERROR, wolf, 0);
-	ft_bzero(wolf, sizeof(t_wolf));
+	if (!(wlf = (t_wolf*)malloc(sizeof(t_wolf))))
+		error_out(WLF_ERROR, wlf, 0);
+	ft_bzero(wlf, sizeof(t_wolf));
 	if (ac != 4)
-		error_out(USAGE, wolf, 0);
-	wolf->tile = ft_atoi(av[1]);
-	if (wolf->tile < 1 || wolf->tile > 6)
-		error_out(USAGE, wolf, 0);
-	wolf->mxflr = ft_atoi(av[2]);
-	if (wolf->mxflr < 1 || wolf->mxflr > 9)
-		error_out(USAGE, wolf, 0);
-	if (!(wolf->mlx = mlx_init()))
-		error_out(MLX_ERROR, wolf, 0);
-	if (!(wolf->win = mlx_new_window(wolf->mlx, WINX, WINY, "Wolf3D")))
-		error_out(WIN_ERROR, wolf, 0);
-	wolf->winb = 1;
-	comp_map(wolf, av[3]);
-	comp_gfx(wolf, 0);
-	setup(wolf);
+		error_out(USAGE, wlf, 0);
+	wlf->tile = ft_atoi(av[1]);
+	if (wlf->tile < 1 || wlf->tile > 6)
+		error_out(USAGE, wlf, 0);
+	wlf->mxflr = ft_atoi(av[2]);
+	if (wlf->mxflr < 1 || wlf->mxflr > 9)
+		error_out(USAGE, wlf, 0);
+	if (!(wlf->mlx = mlx_init()))
+		error_out(MLX_ERROR, wlf, 0);
+	if (!(wlf->win = mlx_new_window(wlf->mlx, WINX, WINY, "Wolf3D")))
+		error_out(WIN_ERROR, wlf, 0);
+	wlf->winb = 1;
+	comp_map(wlf, av[3]);
+	comp_gfx(wlf, 0);
+	setup(wlf);
 	return (0);
 }
