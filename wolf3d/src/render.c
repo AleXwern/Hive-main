@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/15 13:17:40 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:01:51 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@ void	rc_init(t_wolf *wlf)
 		wlf->walldist += 0.01;
 }
 
+void	side_check(t_wolf* wlf)
+{
+	int	delta;
+
+	if (wlf->side == 0)
+		delta = wlf->posx - wlf->mapx;
+	else
+		delta = wlf->posy - wlf->mapy;
+	if (delta > 0)
+		wlf->side += 2;
+}
+
 void	render(t_wolf *wlf)
 {
 	wlf->img = init_image(wlf, WINX, WINY);
@@ -89,6 +101,7 @@ void	render(t_wolf *wlf)
 	{
 		rc_init(wlf);
 		wlf->lineh = (int)(WINY / wlf->walldist);
+		side_check(wlf);
 		wlf->start = -wlf->lineh / 2 + WINY / 2;
 		if (wlf->start < 0)
 			wlf->start = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:38:13 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/02 14:39:19 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:03:45 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	draw_stripe(t_wolf *wlf)
 					wlf->gfx[2].sizel / 4 + wlf->texx %
 					128 * wlf->gfx[2].bpp / 32];
 		}
+		if (wlf->side > 2)
+			wlf->testcolor = (wlf->testcolor >> 1) & 0xff7f7f7f;
 		wlf->img.data[WINX * wlf->start + wlf->x] = wlf->testcolor;
 		wlf->start++;
 	}
@@ -54,7 +56,7 @@ void	wall_stripe(t_wolf *wlf)
 	if (wlf->texbool)
 	{
 		wlf->texnum = wlf->map[wlf->flr][wlf->mapy][wlf->mapx];
-		if (wlf->side == 0)
+		if (wlf->side % 2 == 0)
 			wlf->wallx = wlf->posy + wlf->walldist * wlf->raydy;
 		else
 			wlf->wallx = wlf->posx + wlf->walldist * wlf->raydx;
