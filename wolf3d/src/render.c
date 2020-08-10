@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/08/07 16:01:51 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/08/10 13:38:01 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,14 @@ void	side_check(t_wolf* wlf)
 		delta = wlf->posy - wlf->mapy;
 	if (delta > 0)
 		wlf->side += 2;
+	if (wlf->side == 0)
+		wlf->testcolor = 0x3679ff;
+	else if (wlf->side == 1)
+		wlf->testcolor = 0xb01cff;
+	else if (wlf->side == 2)
+		wlf->testcolor = 0x1c03fc;
+	else
+		wlf->testcolor = 0x6a3396;
 }
 
 void	render(t_wolf *wlf)
@@ -108,10 +116,6 @@ void	render(t_wolf *wlf)
 		wlf->end = wlf->lineh / 2 + WINY / 2;
 		if (wlf->end >= WINY)
 			wlf->end = WINY - 1;
-		if (wlf->side == 1)
-			wlf->testcolor = 0x3679ff;
-		else
-			wlf->testcolor = 0xb01cff;
 		wall_stripe(wlf);
 	}
 	if (wlf->flrchange > 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:38:13 by anystrom          #+#    #+#             */
-/*   Updated: 2020/08/07 16:03:45 by AleXwern         ###   ########.fr       */
+/*   Updated: 2020/08/10 13:35:49 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	draw_stripe(t_wolf *wlf)
 					wlf->gfx[2].sizel / 4 + wlf->texx %
 					128 * wlf->gfx[2].bpp / 32];
 		}
-		if (wlf->side > 2)
-			wlf->testcolor = (wlf->testcolor >> 1) & 0xff7f7f7f;
 		wlf->img.data[WINX * wlf->start + wlf->x] = wlf->testcolor;
 		wlf->start++;
 	}
@@ -62,9 +60,9 @@ void	wall_stripe(t_wolf *wlf)
 			wlf->wallx = wlf->posx + wlf->walldist * wlf->raydx;
 		wlf->wallx -= floor(wlf->wallx);
 		wlf->texx = (int)(wlf->wallx * 128.0);
-		if (wlf->side == 0 && wlf->raydx > 0)
+		if (wlf->side % 2 == 0 && wlf->raydx > 0)
 			wlf->texx = 128 - wlf->texx - 1;
-		if (wlf->side == 1 && wlf->raydy < 0)
+		if (wlf->side % 2 == 1 && wlf->raydy < 0)
 			wlf->texx = 128 - wlf->texx - 1;
 	}
 	else if (wlf->map[wlf->flr][wlf->mapy][wlf->mapx] != 2)
