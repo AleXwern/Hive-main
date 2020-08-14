@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anystrom <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2019/11/01 15:20:10 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:35:27 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define RIGHT		124
 # define DOWN		125
 # define UP			126
-# define ROTLF		65361
-# define ROTRL		65363
+# define ROTLF		85
+# define ROTRL		88
 # define ROTUP		91
 # define ROTDW		84
 # define ZOOMI		89

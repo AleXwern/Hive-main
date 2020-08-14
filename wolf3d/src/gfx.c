@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:41:51 by anystrom          #+#    #+#             */
-/*   Updated: 2020/06/15 14:30:05 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/08/12 11:32:34 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_gfx	gfx_get(t_wolf *wlf, char *file, int x, int y)
 	int		fd;
 
 	fd = open(file, O_RDONLY);
-	ft_putendl(file);
 	if (fd == -1)
 		error_out(GFX_ERROR, wlf, 0);
 	gfx.img = mlx_xpm_file_to_image(wlf->mlx, file, &x, &y);

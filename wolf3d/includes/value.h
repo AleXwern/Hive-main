@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:24:47 by anystrom          #+#    #+#             */
-/*   Updated: 2020/08/10 13:20:54 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/08/12 12:17:36 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 */
 # define WINX		1080
 # define WINY		720
-# define MAXAGGRO	1600
+# define MAXAGGRO	2100
 # define GFXCOUNT	23
 
 /*

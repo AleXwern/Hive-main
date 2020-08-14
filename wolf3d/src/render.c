@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:25:29 by anystrom          #+#    #+#             */
-/*   Updated: 2020/08/10 13:38:01 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/08/12 12:09:48 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	rc_init(t_wolf *wlf)
 		wlf->walldist += 0.01;
 }
 
-void	side_check(t_wolf* wlf)
+void	side_check(t_wolf *wlf)
 {
 	int	delta;
 

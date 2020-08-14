@@ -6,7 +6,7 @@
 /*   By: anystrom <anystrom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:13:55 by anystrom          #+#    #+#             */
-/*   Updated: 2020/07/06 14:16:38 by anystrom         ###   ########.fr       */
+/*   Updated: 2020/08/12 12:15:53 by anystrom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int		get_next_matrix(t_wolf *wlf, char **temp, int x, int y)
 		wlf->width = wid;
 	if (wid < 4 || wid >= 35 || wlf->width != wid)
 		return (0);
-	if (!(wlf->map[wlf->flr][y] = (int*)malloc(sizeof(int) * wid)))
+	if (!(wlf->map[wlf->flr][y] = (int*)ft_memalloc(sizeof(int) * wid)))
 		error_out(MEM_ERROR, wlf, y);
 	while (temp[x])
 	{
 		wlf->map[wlf->flr][y][x] = ft_atoi(temp[x]);
 		if (wlf->map[wlf->flr][y][x] < 1 || wlf->map[wlf->flr][y][x] > 6)
-			return (0);
+			wlf->map[wlf->flr][y][x] = 2;
 		x++;
 	}
 	return (1);
@@ -99,17 +99,16 @@ void	comp_map(t_wolf *wlf, char *av)
 
 	wlf->height = -1;
 	wlf->width = -1;
-	if (!(wlf->map = (int***)malloc(sizeof(int**) * wlf->mxflr)))
+	if (!(wlf->map = (int***)ft_memalloc(sizeof(int**) * wlf->mxflr)))
 		error_out(MEM_ERROR, wlf, 0);
 	while (wlf->flr < wlf->mxflr)
 	{
 		if (wlf->flr >= wlf->mxflr)
 			return ;
-		if (!(wlf->map[wlf->flr] = (int**)malloc(sizeof(int*) * 35)))
+		if (!(wlf->map[wlf->flr] = (int**)ft_memalloc(sizeof(int*) * 35)))
 			error_out(MEM_ERROR, wlf, 0);
 		wlf->flr += 49;
 		flrfl = ft_quadjoin(av, "/", (char*)&(wlf->flr), "");
-		ft_putendl(flrfl);
 		fd = open(flrfl, O_RDONLY);
 		free(flrfl);
 		if (fd == -1)
